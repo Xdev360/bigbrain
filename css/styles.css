@@ -198,14 +198,17 @@ a{color:inherit;text-decoration:none}
     background:transparent;
     pointer-events:none;
     opacity:0;
-    transition:opacity .28s ease;
+    visibility:hidden;
+    transition:opacity .28s ease, visibility 0s linear .28s;
   }
   .nav-links.is-open{
-    pointer-events:auto;
+    pointer-events:none; /* container stays none — only pills capture taps */
     opacity:1;
+    visibility:visible;
+    transition:opacity .28s ease, visibility 0s linear 0s;
   }
   .nav-links a{
-    pointer-events:auto;
+    pointer-events:none; /* closed menu: invisible pills must NOT navigate */
     display:inline-flex;align-items:center;
     min-height:48px;
     padding:12px 20px;
@@ -222,6 +225,7 @@ a{color:inherit;text-decoration:none}
     position:relative;z-index:1;
   }
   .nav-links.is-open a{
+    pointer-events:auto; /* only clickable when hamburger is open */
     opacity:1;
     transform:none;
   }

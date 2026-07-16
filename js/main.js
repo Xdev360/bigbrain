@@ -59,6 +59,9 @@
   function setOpen(on){
     burger.classList.toggle('is-open', on);
     links.classList.toggle('is-open', on);
+    links.setAttribute('aria-hidden', on?'false':'true');
+    if(on) links.removeAttribute('inert');
+    else links.setAttribute('inert','');
     if(dim){
       if(on){
         dim.classList.add('is-on');
@@ -75,12 +78,22 @@
 
   function close(){ setOpen(false); }
 
+  /* Start closed — no ghost taps on invisible links */
+  setOpen(false);
+
   burger.addEventListener('click',function(){
     setOpen(!burger.classList.contains('is-open'));
   });
   if(dim) dim.addEventListener('click', close);
   links.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', close);
+    a.addEventListener('click',function(e){
+      if(!links.classList.contains('is-open')){
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      close();
+    });
   });
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape') close();
