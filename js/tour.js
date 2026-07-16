@@ -23,7 +23,7 @@
   var stops=Array.prototype.slice.call(document.querySelectorAll('[data-guide]'));
   if(stops.length<2) return;
 
-  var xs=[0.92,0.08,0.92,0.08,0.92,0.08,0.92,0.08];
+  var xs=[0.92,0.08,0.92,0.08,0.92,0.08,0.92,0.08]; /* legacy; stops pick sides explicitly */
   var points=[];
   var pathLen=0;
   var activeMsg='';
@@ -55,8 +55,11 @@
   var audioCtx=null,master=null,filter=null,sub=null,pads=[],hatTimer=null,kickTimer=null;
   var analyser=null,freqData=null,mediaSource=null,bassSmooth=0,bassPrev=0,bassHit=0,bassAvg=0.12;
 
-  var MS_PER_CHAR=28; /* letter-by-letter progress-bar pace */
-  var TRAVEL_MS=1100;
+  var MS_PER_CHAR=92; /* letter-by-letter — slow enough to read */
+  var TRAVEL_MS=2200;
+  var HOLD_MS=3200; /* pause after a section is fully read */
+  var CHAT_MS_PER_CHAR=48;
+  var chatTypeTimer=null;
 
   function pageH(){
     return Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);
@@ -95,24 +98,36 @@
       var target=head||el;
       var r;
       var y;
+      var x;
 
-      /* Black scoreboard: park under the last line (Canada) so the face never covers the numbers */
+      /* Keep the face in clear gutters — never over black scoreboard / portfolio copy */
       if(el.id==='band'){
-        var lines=el.querySelectorAll('.stats p');
-        var last=lines.length?lines[lines.length-1]:null;
-        var anchor=last||el.querySelector('.band-foot')||el;
-        r=anchor.getBoundingClientRect();
-        y=window.scrollY+r.bottom+40;
         var bandBox=el.getBoundingClientRect();
-        var maxY=window.scrollY+bandBox.bottom-56;
-        if(y>maxY) y=maxY;
+        /* Rail parks fully UNDER the black section in open space */
+        y=window.scrollY+bandBox.bottom+56;
+        x=w*0.07; /* always left — right side covers stats/portfolio */
+      }else if(el.id==='work'){
+        var wh=el.querySelector('.works-head')||el;
+        r=wh.getBoundingClientRect();
+        y=window.scrollY+r.bottom+40;
+        x=w*0.07;
+      }else if(el.id==='services'){
+        r=target.getBoundingClientRect();
+        y=window.scrollY+r.top+Math.min(r.height*0.5,40);
+        x=w*0.07;
+      }else if(el.id==='top'){
+        r=target.getBoundingClientRect();
+        y=window.scrollY+r.top+Math.min(r.height*0.5,40);
+        x=w*0.90; /* hero: sit by the art, right gutter */
       }else{
         r=target.getBoundingClientRect();
         y=window.scrollY+r.top+Math.min(r.height*0.5,40);
+        /* Prefer left so chat stays on-screen */
+        x=(i%2===0)?w*0.90:w*0.07;
       }
 
       return {
-        x:w*xs[i%xs.length],
+        x:x,
         y:Math.max(90,Math.min(h-90,y)),
         msg:el.getAttribute('data-guide')||'',
         el:el,
@@ -154,6 +169,7 @@
   }
 
   function placeOnPath(t,snap){
+    if(isMobile()) return;
     if(!pathLen) return;
     t=Math.max(0,Math.min(1,t));
     var pt=rail.getPointAtLength(t*pathLen);
@@ -164,35 +180,56 @@
     }
     pathT=t;
     traveler.style.transform='translate('+posX+'px,'+posY+'px)';
+    /* When face is on the right, open chat toward the LEFT (inward) so it stays in frame */
     traveler.classList.toggle('chat-left', posX>=window.innerWidth*0.5);
 
     var band=document.getElementById('band');
     var onDark=false;
     if(band){
       var br=band.getBoundingClientRect();
-      onDark=br.top<window.innerHeight*0.55 && br.bottom>window.innerHeight*0.2;
+      /* Only mark dark while the face is visually over the band — not when parked under it */
+      onDark=posY>(window.scrollY+br.top+20) && posY<(window.scrollY+br.bottom-20);
     }
     root.classList.toggle('on-dark',onDark);
   }
 
   function setChat(msg){
     if(!autoTour){
+      clearTimeout(chatTypeTimer);
       chat.classList.remove('is-on');
       chat.classList.remove('is-caption');
       return;
     }
     chat.classList.add('is-caption');
+    /* Caption docks to the clear side — left when face is right, and vice versa */
+    chat.classList.toggle('is-caption-right', posX<window.innerWidth*0.5);
     if(!msg){ chat.classList.remove('is-on'); return; }
-    if(msg===activeMsg){ chat.classList.add('is-on'); return; }
+    if(msg===activeMsg && chatText.dataset.full===msg){
+      chat.classList.add('is-on');
+      return;
+    }
     activeMsg=msg;
-    chatText.textContent=msg;
+    chatText.dataset.full=msg;
+    clearTimeout(chatTypeTimer);
+    chatText.textContent='';
     chat.classList.add('is-on');
+    var i=0;
+    function typeNext(){
+      if(activeMsg!==msg) return;
+      i++;
+      chatText.textContent=msg.slice(0,i);
+      if(i<msg.length) chatTypeTimer=setTimeout(typeNext, CHAT_MS_PER_CHAR);
+    }
+    typeNext();
   }
 
   function hideChat(){
     activeMsg='';
+    clearTimeout(chatTypeTimer);
+    if(chatText) delete chatText.dataset.full;
     chat.classList.remove('is-on');
     chat.classList.remove('is-caption');
+    chat.classList.remove('is-caption-right');
   }
 
   function wrapLetters(el){
@@ -445,10 +482,15 @@
   function showMusicDock(on){
     if(!musicDock) return;
     if(on){
-      /* Pin to where the guide PFP currently sits — then stay fixed while scrolling */
       var r=avatar.getBoundingClientRect();
       var top=Math.max(72, Math.min(window.innerHeight-140, r.top));
-      var left=Math.max(12, Math.min(window.innerWidth-72, r.left + r.width/2 - 32));
+      /* Sit BESIDE the face — never on top of it */
+      var left;
+      if(r.left+r.width/2 > window.innerWidth*0.5){
+        left=Math.max(12, r.left-68);
+      }else{
+        left=Math.min(window.innerWidth-72, r.right+14);
+      }
       musicDock.style.top=top+'px';
       musicDock.style.left=left+'px';
       musicDock.style.right='auto';
@@ -614,7 +656,7 @@
     var chars=activeWords.length||1;
     phase='read';
     phaseT0=performance.now();
-    phaseDur=Math.max(700, chars*MS_PER_CHAR);
+    phaseDur=Math.max(2400, chars*MS_PER_CHAR);
     setChat(stop.msg);
     setReadProgress(0);
   }
@@ -640,6 +682,14 @@
       updateTension();
       if(u>=1){
         setReadProgress(1);
+        phase='hold';
+        phaseT0=now;
+        phaseDur=HOLD_MS;
+      }
+    }else if(phase==='hold'){
+      placeOnPath(toT,false);
+      setReadProgress(1);
+      if(u>=1){
         clearActiveReadOnly();
         startTravel(step+1);
       }
@@ -701,7 +751,10 @@
 
   window.addEventListener('resize',function(){
     clearTimeout(resizeTimer);
-    resizeTimer=setTimeout(rebuild,80);
+    resizeTimer=setTimeout(function(){
+      rebuild();
+      syncMobileGuide();
+    },80);
   });
   window.addEventListener('load',rebuild);
   window.addEventListener('scroll',function(){
@@ -738,6 +791,14 @@
   avatar.addEventListener('click',function(e){
     e.stopPropagation();
     avatar.classList.remove('is-invite');
+    /* Mobile: music only — no tour / eye / hand menu */
+    if(isMobile()){
+      closeMenu();
+      if(!musicOn) startMusic(0.55).catch(function(){});
+      else if(musicPaused) resumeMusic();
+      else pauseMusic();
+      return;
+    }
     if(autoTour){
       ignoreUntil=0;
       abortTourToStart(null);
@@ -848,10 +909,45 @@
     });
   }
 
+  function syncMobileGuide(){
+    if(!isMobile()){
+      root.classList.remove('is-mobile-music');
+      avatar.style.left='';
+      avatar.style.top='';
+      avatar.style.position='';
+      avatar.style.margin='';
+      return;
+    }
+    root.classList.add('is-mobile-music');
+    var art=document.getElementById('artInner')||document.querySelector('.art');
+    if(!art) return;
+    var r=art.getBoundingClientRect();
+    var top=Math.max(96, Math.min(window.innerHeight-88, r.top+r.height*0.38));
+    var left=Math.max(14, Math.min(r.left+12, window.innerWidth-68));
+    avatar.style.position='fixed';
+    avatar.style.left=left+'px';
+    avatar.style.top=top+'px';
+    avatar.style.margin='0';
+    avatar.style.transform='';
+    traveler.style.transform='none';
+    if(musicOn && musicDock && !musicDock.hidden) showMusicDock(true);
+  }
+
+  function playMobileIntro(){
+    if(!isMobile()) return;
+    avatar.classList.remove('is-invite');
+    avatar.classList.add('is-shake');
+    setTimeout(function(){
+      avatar.classList.remove('is-shake');
+      avatar.classList.add('is-live-dot');
+    },900);
+  }
+
   rebuild();
   setTimeout(rebuild,300);
   hideChat();
   avatar.classList.add('is-invite');
+  syncMobileGuide();
   requestAnimationFrame(tick);
 
   try{
@@ -866,6 +962,19 @@
   /* Kick lyric street on load for the hero (and again after layout) */
   setTimeout(function(){ updateManualLyrics(); },120);
   setTimeout(function(){ updateManualLyrics(); },500);
+  setTimeout(syncMobileGuide,200);
+  setTimeout(syncMobileGuide,800);
+  setTimeout(playMobileIntro,600);
+
+  window.addEventListener('scroll',function(){
+    if(isMobile()) syncMobileGuide();
+  },{passive:true});
+  function onNarrowChange(){
+    syncMobileGuide();
+    if(isMobile()) closeMenu();
+  }
+  if(narrowMq.addEventListener) narrowMq.addEventListener('change', onNarrowChange);
+  else if(narrowMq.addListener) narrowMq.addListener(onNarrowChange);
 
   window.BigBrainTour={
     start:startAutoTour,
