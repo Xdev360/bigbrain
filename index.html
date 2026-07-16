@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oladele Ibraheem — Designer</title>
+<meta name="description" content="Designer. Interfaces, brands and product systems, built from Lagos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/ai-overlay.css">
+</head>
+<body class="is-loading">
+
+<div class="preload" id="preload" role="status" aria-live="polite" aria-label="Loading">
+  <div class="preload-mark">
+    <svg class="preload-ring" width="84" height="84" viewBox="0 0 84 84" fill="none" aria-hidden="true">
+      <circle class="preload-track" cx="42" cy="42" r="41" stroke-width="1.5"/>
+      <circle class="preload-progress" cx="42" cy="42" r="41" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <img class="preload-pfp" src="assets/portrait.jpg" alt="" width="56" height="56">
+  </div>
+  <p class="preload-word">BigBrain<sup>®</sup></p>
+</div>
+
+<div class="grid-lens" id="gridLens" aria-hidden="true"></div>
+
+<div class="guide" id="guide" aria-hidden="true">
+  <svg class="guide-svg" id="guideSvg" xmlns="http://www.w3.org/2000/svg">
+    <path class="guide-rail" id="guideRail" fill="none"></path>
+  </svg>
+  <div class="guide-traveler" id="guideTraveler">
+    <div class="guide-chat" id="guideChat">
+      <p id="guideChatText"></p>
+    </div>
+    <div class="guide-menu" id="guideMenu" hidden>
+      <button type="button" id="menuChatAi">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Chat with X Big X
+      </button>
+      <button type="button" id="menuEye">
+        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Eye control
+      </button>
+      <button type="button" id="menuHand">
+        <svg viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v8"/><path d="M10 9.5V5a2 2 0 0 0-4 0v9"/><path d="M6 13v2a6 6 0 0 0 12 0v-2"/></svg>
+        Hand control
+      </button>
+      <button type="button" id="menuTour">
+        <svg viewBox="0 0 24 24"><path d="M4 19l4-4h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12z"/><path d="M8 9h8M8 12h5"/></svg>
+        Tour
+      </button>
+      <button type="button" id="menuMusic">
+        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        Music
+      </button>
+    </div>
+    <button type="button" class="guide-avatar is-invite" id="guideAvatar" aria-label="Guide — click for options">
+      <img src="assets/portrait.jpg" alt="" width="56" height="56">
+      <span class="guide-note" aria-hidden="true">♪</span>
+    </button>
+  </div>
+  <audio id="guideTrack" loop preload="none" src="assets/music/tension.mp3"></audio>
+</div>
+
+<div class="ai-overlay" id="aiOverlay" aria-hidden="true">
+  <div class="ai-sheet" role="dialog" aria-labelledby="aiTitle">
+    <div class="ai-sheet-head">
+      <div>
+        <p>Ask</p>
+        <h2 id="aiTitle">Chat with X Big X</h2>
+      </div>
+      <button class="ai-sheet-close" type="button" id="aiClose" aria-label="Close">×</button>
+    </div>
+    <div class="ai-log" data-ai-log></div>
+    <div class="ai-presets" data-ai-presets></div>
+    <form class="ai-form" data-ai-form>
+      <input data-ai-input type="text" placeholder="Ask anything — unknown goes to Telegram…" autocomplete="off">
+      <button type="submit" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="mp-hand">
+  <div class="mp-hand-hint" id="handHint" hidden></div>
+  <div class="mp-hand-preview" id="handPreview">
+    <video id="handVideo" playsinline muted></video>
+    <canvas id="handCanvas"></canvas>
+  </div>
+  <button class="mp-hand-btn" type="button" id="eyeToggle" hidden>Eye control</button>
+  <button class="mp-hand-btn" type="button" id="handToggle" hidden>Hand control</button>
+  <button class="mp-hand-btn mp-hand-stop" type="button" id="camStop" hidden>Turn off camera</button>
+</div>
+
+<div class="music-dock" id="musicDock" hidden>
+  <button type="button" class="music-dock-toggle is-playing" id="musicDockToggle" aria-label="Pause music">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path class="dock-pause" d="M8 5h3v14H8zm5 0h3v14h-3z"/>
+      <path class="dock-play" d="M8 5v14l11-7z"/>
+    </svg>
+  </button>
+  <button type="button" class="music-dock-close" id="musicDockClose" aria-label="Stop music">×</button>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="mark">BigBrain<sup>®</sup></a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#custom">Custom</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top" data-guide="Top of the page. I'm Oladele — design, code, brand from Lagos.">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="status status-top"><span class="dot"></span> Open for work</p>
+      <h1>Design, code and brand <span class="fade">— all from one head.</span></h1>
+      <p class="lede">Five years plus of shipping work across the design industry — mostly from Lagos.</p>
+      <div class="cta-row">
+        <a class="btn" href="#custom">Start a project</a>
+        <a class="btn-ghost" href="marketplace.html">Marketplace</a>
+      </div>
+    </div>
+
+    <div class="art">
+      <div class="art-inner" id="artInner" role="button" tabindex="0" aria-label="Dithered portrait — hover to peek, click to reveal full image">
+        <canvas id="dither" aria-label="Dithered portrait of the Big Brain character" role="img"></canvas>
+        <img class="real" id="real" alt="" aria-hidden="true" src="assets/portrait.jpg">
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="band" id="band" data-guide="The scoreboard: 5+ years, 8+ products, teams across Lagos and beyond.">
+  <div class="wrap band-in">
+    <p class="eyebrow">What that adds up to</p>
+    <div class="stats">
+      <p><b>5+ years</b> designing in production.</p>
+      <p><b>8+ products</b> taken from research to launch.</p>
+      <p><b>Teams</b> across Lagos, Canada and remote.</p>
+    </div>
+    <div class="band-foot">
+      <span>Figma · Framer · Adobe CC · Rive</span>
+      <a href="#work">See the case studies</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec works-sec" id="work" aria-label="Selected work" data-guide="Selected work — tap the card to flip to the next project. Hit View Project to open the case.">
+  <div class="wrap">
+    <div class="works-head reveal">
+      <p class="eyebrow">Portfolio</p>
+      <h2>Selected work</h2>
+      <p class="sec-note">One project at a time — tap the card to flip next. Open a case when you’re ready.</p>
+    </div>
+
+    <div class="work-showcase reveal" id="workShowcase">
+      <div class="work-stage" id="workStage" tabindex="0" aria-label="Project card — tap to see the next">
+        <!-- filled by js/works.js -->
+      </div>
+
+      <div class="work-dots" id="workDots" role="tablist" aria-label="Project pages"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec services-sec" id="services" data-guide="Services I offer — open a row for a short intro, then explore the work.">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Services I offer</h2>
+      <p class="sec-note">What I take on — clear scope, shipped outcomes.</p>
+    </div>
+
+    <div class="svc-acc reveal" id="svcAcc">
+      <div class="svc-item" data-svc>
+        <button type="button" class="svc-head" aria-expanded="false">
+          <span class="svc-label">Brand identity</span>
+          <span class="svc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="svc-body">
+          <div class="svc-body-inner">
+            <div class="svc-copy">
+              <h3>Making Brands Unforgettable</h3>
+              <p>We help brands find their voice and identity with unique logos, colors, and visuals that make a lasting impression.</p>
+            </div>
+            <a class="svc-cta" href="#work">Explore our work</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-item" data-svc>
+        <button type="button" class="svc-head" aria-expanded="false">
+          <span class="svc-label">Website</span>
+          <span class="svc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="svc-body">
+          <div class="svc-body-inner">
+            <div class="svc-copy">
+              <h3>Sites That Convert</h3>
+              <p>Marketing sites and product pages in Framer or code — shaped around a clear story and a clean path to action.</p>
+            </div>
+            <a class="svc-cta" href="#work">Explore our work</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-item" data-svc>
+        <button type="button" class="svc-head" aria-expanded="false">
+          <span class="svc-label">Product Design</span>
+          <span class="svc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="svc-body">
+          <div class="svc-body-inner">
+            <div class="svc-copy">
+              <h3>Crafting Digital Experiences</h3>
+              <p>We craft intuitive, visually striking digital products with user-focused UI/UX, seamlessly aligning with your brand and goals.</p>
+            </div>
+            <a class="svc-cta" href="#work">Explore our work</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-item" data-svc>
+        <button type="button" class="svc-head" aria-expanded="false">
+          <span class="svc-label">Motion &amp; Video</span>
+          <span class="svc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="svc-body">
+          <div class="svc-body-inner">
+            <div class="svc-copy">
+              <h3>Bringing Motion to Design</h3>
+              <p>We bring designs to life with smooth and engaging animations, making content more dynamic and fun.</p>
+            </div>
+            <a class="svc-cta" href="#work">Explore our work</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-item" data-svc>
+        <button type="button" class="svc-head" aria-expanded="false">
+          <span class="svc-label">Development</span>
+          <span class="svc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="svc-body">
+          <div class="svc-body-inner">
+            <div class="svc-copy">
+              <h3>Websites &amp; Apps That Work</h3>
+              <p>We build smooth, fast, and user-friendly websites and apps that help businesses grow and stand out.</p>
+            </div>
+            <a class="svc-cta" href="#work">Explore our work</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec mp-overview-sec" id="market" data-guide="Marketplace — website templates for designers, founders, and agencies. Browse the full shelf.">
+  <div class="wrap">
+    <div class="mp-overview reveal">
+      <div class="mp-overview-copy">
+        <p class="eyebrow">Marketplace</p>
+        <h2>Website templates</h2>
+        <p class="sec-note">Ready-made portfolio kits for the roles people actually need a site for — designers, founders, agencies and more.</p>
+        <a class="btn" href="marketplace.html">Browse templates</a>
+      </div>
+      <div class="mp-overview-shelf" aria-hidden="true">
+        <article class="mp-ov-card">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=640&q=80" alt="" loading="lazy" width="280" height="180">
+          <div>
+            <strong>Designer Folio</strong>
+            <span>Case-study first</span>
+          </div>
+        </article>
+        <article class="mp-ov-card">
+          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=640&q=80" alt="" loading="lazy" width="280" height="180">
+          <div>
+            <strong>Founder Site</strong>
+            <span>Story + waitlist</span>
+          </div>
+        </article>
+        <article class="mp-ov-card">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=640&q=80" alt="" loading="lazy" width="280" height="180">
+          <div>
+            <strong>Agency Desk</strong>
+            <span>Services + work</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec custom-sec" id="custom" data-guide="Custom projects — open the brief, fill it in, it reaches me on Telegram.">
+  <div class="wrap">
+    <div class="custom-row reveal">
+      <div class="custom-copy">
+        <p class="eyebrow">Brief</p>
+          <h2><button type="button" class="custom-title-btn" id="openInquiryTitle">Custom projects</button></h2>
+        <p class="sec-note">Have something specific in mind? Open the brief, pick a scope, and send it through.</p>
+      </div>
+      <button type="button" class="btn" id="openInquiry">Start a custom project</button>
+    </div>
+  </div>
+</section>
+
+<div class="inq-overlay" id="inqOverlay" aria-hidden="true">
+  <div class="inq-sheet" role="dialog" aria-modal="true" aria-labelledby="inqTitle">
+    <button type="button" class="inq-close" id="inqClose" aria-label="Close">×</button>
+
+    <div class="inq-main">
+      <h2 id="inqTitle">Got an idea? Let's discuss!</h2>
+
+      <form class="inq-form" id="inqForm" novalidate>
+        <fieldset class="inq-block">
+          <legend>Service</legend>
+          <div class="inq-pills" data-inq-group="service" data-inq-mode="multi">
+            <button type="button" class="inq-pill" data-value="Interface design">Interface design</button>
+            <button type="button" class="inq-pill" data-value="Animation">Animation</button>
+            <button type="button" class="inq-pill" data-value="3D">3D</button>
+            <button type="button" class="inq-pill" data-value="Development">Development</button>
+            <button type="button" class="inq-pill" data-value="Branding">Branding</button>
+            <button type="button" class="inq-pill" data-value="Illustration">Illustration</button>
+            <button type="button" class="inq-pill" data-value="Icon">Icon</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="inq-block">
+          <legend>Budget</legend>
+          <div class="inq-pills" data-inq-group="budget" data-inq-mode="single">
+            <button type="button" class="inq-pill" data-value="less than 5K">less than 5K</button>
+            <button type="button" class="inq-pill" data-value="5K-10K">5K-10K</button>
+            <button type="button" class="inq-pill" data-value="10K-30K">10K-30K</button>
+            <button type="button" class="inq-pill" data-value="More than 30K">More than 30K</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="inq-block">
+          <legend>Information</legend>
+          <div class="inq-fields">
+            <label class="inq-field">
+              <span class="sr-only">Name</span>
+              <input type="text" name="name" id="inqName" placeholder="Name" autocomplete="name" required>
+            </label>
+            <label class="inq-field">
+              <span class="sr-only">Email</span>
+              <input type="email" name="email" id="inqEmail" placeholder="Email" autocomplete="email" required>
+            </label>
+            <label class="inq-field inq-field-full">
+              <span class="sr-only">Project details</span>
+              <textarea name="details" id="inqDetails" placeholder="Project details" rows="4" required></textarea>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="inq-block">
+          <legend>I found your agency through</legend>
+          <div class="inq-pills" data-inq-group="referral" data-inq-mode="single">
+            <button type="button" class="inq-pill" data-value="Google">Google</button>
+            <button type="button" class="inq-pill" data-value="Instagram">Instagram</button>
+            <button type="button" class="inq-pill" data-value="Dribbble">Dribbble</button>
+            <button type="button" class="inq-pill" data-value="Twitter">Twitter</button>
+            <button type="button" class="inq-pill" data-value="Linkedin">Linkedin</button>
+            <button type="button" class="inq-pill" data-value="Other">Other</button>
+          </div>
+        </fieldset>
+
+        <p class="inq-status" id="inqStatus" hidden></p>
+
+        <button type="submit" class="inq-submit" id="inqSubmit">
+          Easy! Submit now
+          <span aria-hidden="true">↗</span>
+        </button>
+      </form>
+    </div>
+
+    <aside class="inq-side">
+      <p class="inq-side-label">Selected work by category</p>
+      <div class="inq-scroll" id="inqScroll" aria-label="Projects by category">
+        <div class="inq-scroll-track" id="inqScrollTrack">
+          <!-- filled by js/inquiry.js -->
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<section class="contact" id="contact" data-guide="Contact — email, phone, or DM. Let's build something.">
+  <div class="wrap">
+    <p class="eyebrow reveal">Next</p>
+    <h2 class="reveal" style="margin-top:16px">Got something to build? <span class="fade">Send it over.</span></h2>
+    <div class="contact-grid reveal">
+      <div class="reach">
+        <a href="mailto:ibrahimoladele9@gmail.com"><span>Email</span> ibrahimoladele9@gmail.com</a>
+        <a href="tel:+2348120075678"><span>Phone</span> +234 812 007 5678</a>
+        <a href="https://x.com/xbigbrainnx" target="_blank" rel="noopener"><span>DM</span> @xbigbrainnx</a>
+      </div>
+      <div class="socials">
+        <a href="https://x.com/xbigbrainnx" target="_blank" rel="noopener">X</a>
+        <a href="https://www.instagram.com/xbigbrainnx" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@xbigbrainnx" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://youtube.com/@xbigbrainnx" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://xbigbrainnx.substack.com" target="_blank" rel="noopener">Substack</a>
+        <a href="https://selar.com/m/xbig-brainnx1?category=wallpapers" target="_blank" rel="noopener">Wallpapers</a>
+      </div>
+    </div>
+    <footer>
+      <span>© 2026 Oladele Ibraheem · Big Brain</span>
+      <span>Lagos → anywhere</span>
+    </footer>
+  </div>
+</section>
+
+<script src="js/config.js"></script>
+<script src="js/ai.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4.1633559619/face_mesh.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js" crossorigin="anonymous"></script>
+<script src="js/eyes.js"></script>
+<script src="js/hands.js"></script>
+<script src="js/main.js"></script>
+<script src="js/works.js"></script>
+<script src="js/services.js"></script>
+<script src="js/inquiry.js"></script>
+<script src="js/tour.js"></script>
+</body>
+</html>

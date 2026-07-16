@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketplace — BigBrain</title>
+<meta name="description" content="Templates, equity, writing — BigBrain marketplace.">
+<link rel="stylesheet" href="css/marketplace.css">
+</head>
+<body>
+
+<div class="mp-gate" aria-label="Marketplace desktop only">
+  <img class="mp-gate-avatar" src="assets/portrait.jpg" alt="X Big Brain" width="72" height="72">
+  <h1 class="mp-gate-brand">X Big Brain</h1>
+  <p class="mp-gate-copy">X Big Brain Market is made for bigger screens. Please open it on a laptop or desktop.</p>
+  <a class="mp-gate-btn" href="index.html">Back to portfolio</a>
+</div>
+
+<div class="mp-app">
+  <aside class="mp-side">
+    <a class="mp-brand" href="index.html">
+      <span class="mp-brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+      BigBrain
+    </a>
+
+    <nav class="mp-nav">
+      <p class="mp-nav-label">Sell</p>
+      <button class="mp-nav-item is-active" type="button" data-view="templates">
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16"/></svg>
+        Templates
+      </button>
+      <button class="mp-nav-item" type="button" data-view="equity">
+        <svg viewBox="0 0 24 24"><path d="M12 3v18M7 8h7a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h8"/></svg>
+        Equity
+      </button>
+      <button class="mp-nav-item" type="button" data-view="writing">
+        <svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M8 9h8M8 12h8M8 15h5"/></svg>
+        Writing
+      </button>
+      <button class="mp-nav-item" type="button" data-view="podcasts">
+        <svg viewBox="0 0 24 24"><path d="M12 3a5 5 0 0 0-5 5v4a5 5 0 0 0 10 0V8a5 5 0 0 0-5-5z"/><path d="M5 11v1a7 7 0 0 0 14 0v-1M12 18v3"/></svg>
+        Podcasts
+        <em class="mp-soon">Soon</em>
+      </button>
+
+      <p class="mp-nav-label">Help</p>
+      <a class="mp-nav-item" href="mailto:ibrahimoladele9@gmail.com?subject=Template%20request">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        Request a template
+      </a>
+      <a class="mp-nav-item" href="index.html">
+        <svg viewBox="0 0 24 24"><path d="M4 12l8-8 8 8M6 10v10h12V10"/></svg>
+        Portfolio
+      </a>
+    </nav>
+  </aside>
+
+  <main class="mp-main" id="mpMain">
+    <a class="mp-back" href="index.html">← Portfolio</a>
+
+    <!-- TEMPLATES -->
+    <section class="mp-panel" data-panel="templates">
+      <header class="mp-head">
+        <h1>Website templates</h1>
+        <p>Portfolio kits for digital services people actually need a site for. Buy redirects to checkout — files deliver there.</p>
+      </header>
+
+      <div class="mp-cats" id="templateCats" role="tablist"></div>
+      <div class="mp-grid" id="templateGrid"></div>
+    </section>
+
+    <!-- EQUITY -->
+    <section class="mp-panel" data-panel="equity" hidden>
+      <header class="mp-head">
+        <h1>Equity</h1>
+        <p>Selective startup slices. Review the demo, then continue off-site to inquire or buy.</p>
+      </header>
+      <div class="mp-stack" id="equityGrid"></div>
+    </section>
+
+    <!-- WRITING -->
+    <section class="mp-panel" data-panel="writing" hidden>
+      <header class="mp-head">
+        <h1>Writing</h1>
+        <p>Essays and e-books. Cards open Substack — reading and purchase live there.</p>
+      </header>
+      <div class="mp-grid" id="writingGrid"></div>
+    </section>
+
+    <!-- PODCASTS -->
+    <section class="mp-panel" data-panel="podcasts" hidden>
+      <header class="mp-head">
+        <h1>Podcasts</h1>
+      </header>
+      <div class="mp-empty">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a5 5 0 0 0-5 5v4a5 5 0 0 0 10 0V8a5 5 0 0 0-5-5z" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M5 11v1a7 7 0 0 0 14 0v-1M12 18v3" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+        <strong>Coming soon</strong>
+        <span>Nothing to play yet. Check Writing on Substack meanwhile.</span>
+      </div>
+    </section>
+  </main>
+
+  <aside class="mp-ai" id="mpAi">
+    <div class="mp-ai-head">
+      <div>
+        <p class="mp-ai-kicker">Ask</p>
+        <h2>X Big X</h2>
+      </div>
+      <span class="mp-ai-dot" title="On-site answers"></span>
+    </div>
+    <div class="ai-log" data-ai-log></div>
+    <div class="ai-presets" data-ai-presets></div>
+    <form class="ai-form" data-ai-form>
+      <input data-ai-input type="text" placeholder="Ask anything — unknown goes to Telegram…" autocomplete="off">
+      <button type="submit" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+  </aside>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/marketplace.js"></script>
+</body>
+</html>

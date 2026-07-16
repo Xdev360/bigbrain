@@ -1,0 +1,83 @@
+{
+  "assistant_name": "X Big X",
+  "person": {
+    "name": "Oladele Ibraheem",
+    "aka": "BigBrain / xbigbrainnx",
+    "role": "Designer — UI/UX, brand, product, motion",
+    "location": "Lagos, Nigeria (remote-friendly)",
+    "experience": "5+ years designing in production",
+    "status": "Open for work"
+  },
+  "contact": {
+    "email": "ibrahimoladele9@gmail.com",
+    "phone": "+234 812 007 5678",
+    "x": "https://x.com/xbigbrainnx",
+    "instagram": "https://www.instagram.com/xbigbrainnx",
+    "substack": "https://xbigbrainnx.substack.com",
+    "tiktok": "https://www.tiktok.com/@xbigbrainnx",
+    "youtube": "https://youtube.com/@xbigbrainnx"
+  },
+  "services": [
+    "Product UI/UX",
+    "Brand identity",
+    "Websites and landings (Framer or code)",
+    "Motion design (Rive, After Effects)",
+    "Web3 interfaces"
+  ],
+    "selected_work": [
+      {"name": "Malete Foods", "type": "App design", "year": "2024", "url": "works/malete-foods.html"},
+      {"name": "Star Hunt", "type": "Web design", "year": "2024", "url": "works/star-hunt.html"},
+      {"name": "TandF Technology", "type": "Web + brand identity", "year": "2025", "url": "works/tandf-technology.html"},
+      {"name": "PlutoTech Wallet", "type": "App / Web3", "year": "2024", "url": "works/plutotech-wallet.html"}
+    ],
+  "studio": {
+    "name": "Wintech Studio",
+    "focus": "Design and digital product systems for businesses in Lagos and beyond"
+  },
+  "marketplace": {
+    "templates": "Portfolio website templates for designers, developers, founders, agencies, photographers, and product roles — sold via external checkout links",
+    "equity": "Selective equity listings in early startups with demos",
+    "writing": "Essays and e-books; reading/buying via Substack",
+    "podcasts": "Coming soon"
+  },
+  "presets": [
+    {
+      "q": "Who is Oladele?",
+      "a": "Oladele Ibraheem (BigBrain) is a designer based in Lagos — UI/UX, brand, product, and motion. 5+ years shipping work. Currently open for work."
+    },
+    {
+      "q": "What services do you offer?",
+      "a": "Product UI/UX, brand identity, websites and landings (Framer or code), motion design (Rive, After Effects), and Web3 interfaces."
+    },
+    {
+      "q": "Show selected work",
+      "a": "Selected work: Malete Foods (app, 2024), Star Hunt (web/landing, 2024), TandF Technology (web + identity, 2025), PlutoTech Wallet (app/Web3, 2024). Open any project from the portfolio."
+    },
+    {
+      "q": "How do I buy a template?",
+      "a": "Open Marketplace → Templates, pick a kit, then checkout redirects off-site (Selar). Files are delivered after payment there."
+    },
+    {
+      "q": "What is equity here?",
+      "a": "Selective startup equity listings with demos. Review the demo, then inquire or continue off-site. Not financial advice — each listing is case-by-case."
+    },
+    {
+      "q": "Where can I read your writing?",
+      "a": "Writing and e-books live on Substack: https://xbigbrainnx.substack.com"
+    },
+    {
+      "q": "How do I contact you?",
+      "a": "Email ibrahimoladele9@gmail.com or call +234 812 007 5678. Also on X, Instagram, TikTok, and YouTube as @xbigbrainnx."
+    },
+    {
+      "q": "Are you open for work?",
+      "a": "Yes — open for work. Remote-friendly from Lagos. Email ibrahimoladele9@gmail.com with the brief."
+    }
+  ],
+  "rules": [
+    "Only answer using this knowledge.",
+    "If unknown, forward the question to Oladele on Telegram.",
+    "Do not invent clients, prices, or case studies.",
+    "Be concise, calm, and helpful."
+  ]
+}
