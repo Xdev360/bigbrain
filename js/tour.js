@@ -906,22 +906,35 @@
       avatar.style.left='';
       avatar.style.top='';
       avatar.style.right='';
+      avatar.style.bottom='';
       avatar.style.position='';
       avatar.style.margin='';
+      avatar.style.transform='';
       return;
     }
     root.classList.add('is-mobile-music');
+    root.setAttribute('aria-hidden','false');
+    /* Always pin to the right — stay findable while scrolling */
     var art=document.getElementById('artInner')||document.querySelector('.art');
-    if(!art) return;
-    var r=art.getBoundingClientRect();
-    var top=Math.max(96, Math.min(window.innerHeight-88, r.top+r.height*0.38));
-    var right=Math.max(14, window.innerWidth - r.right + 12);
+    var top;
+    if(art){
+      var r=art.getBoundingClientRect();
+      if(r.bottom>100 && r.top<window.innerHeight-60){
+        top=Math.max(100, Math.min(window.innerHeight-80, r.top+r.height*0.4));
+      }else{
+        top=Math.round(window.innerHeight*0.42);
+      }
+    }else{
+      top=Math.round(window.innerHeight*0.42);
+    }
     avatar.style.position='fixed';
     avatar.style.left='auto';
-    avatar.style.right=right+'px';
+    avatar.style.right='16px';
     avatar.style.top=top+'px';
+    avatar.style.bottom='auto';
     avatar.style.margin='0';
-    avatar.style.transform='';
+    avatar.style.transform='none';
+    avatar.style.zIndex='81';
     traveler.style.transform='none';
   }
 
