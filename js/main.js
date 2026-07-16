@@ -41,6 +41,43 @@
   }
 })();
 
+/* ---------- mobile nav: burger → X, floating link pills from the right ---------- */
+(function(){
+  var burger=document.getElementById('navBurger');
+  var links=document.getElementById('navLinks');
+  var dim=document.getElementById('navDim');
+  if(!burger || !links) return;
+
+  function setOpen(on){
+    burger.classList.toggle('is-open', on);
+    links.classList.toggle('is-open', on);
+    if(dim){
+      dim.hidden=!on;
+      dim.classList.toggle('is-on', on);
+      dim.setAttribute('aria-hidden', on?'false':'true');
+    }
+    burger.setAttribute('aria-expanded', on?'true':'false');
+    burger.setAttribute('aria-label', on?'Close menu':'Open menu');
+    document.body.style.overflow=on?'hidden':'';
+  }
+
+  function close(){ setOpen(false); }
+
+  burger.addEventListener('click',function(){
+    setOpen(!burger.classList.contains('is-open'));
+  });
+  if(dim) dim.addEventListener('click', close);
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', close);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') close();
+  });
+  window.addEventListener('resize',function(){
+    if(window.innerWidth>900) close();
+  });
+})();
+
 /* ---------- hover grid ---------- */
 (function(){
   var el=document.getElementById('gridLens');
