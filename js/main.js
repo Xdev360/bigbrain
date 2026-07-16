@@ -1,5 +1,8 @@
 /* ---------- Serena-style page preloader ---------- */
 (function(){
+  try{ if('scrollRestoration' in history) history.scrollRestoration='manual'; }catch(e){}
+  window.scrollTo(0,0);
+
   var el=document.getElementById('preload');
   if(!el) return;
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -9,8 +12,10 @@
     done=true;
     el.classList.add('is-done');
     document.body.classList.remove('is-loading');
+    window.scrollTo(0,0);
     window.setTimeout(function(){
       if(el.parentNode) el.parentNode.removeChild(el);
+      window.scrollTo(0,0);
     },450);
   }
   var wait=reduced ? 200 : 2400;
@@ -23,6 +28,9 @@
   if(document.readyState==='complete') maybeFinish();
   else window.addEventListener('load',maybeFinish);
   window.setTimeout(finish,reduced ? 600 : 4000);
+  window.addEventListener('pageshow',function(e){
+    if(e.persisted) window.scrollTo(0,0);
+  });
 })();
 
 (function(){

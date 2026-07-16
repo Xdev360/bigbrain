@@ -100,30 +100,29 @@
       var y;
       var x;
 
-      /* Keep the face in clear gutters — never over black scoreboard / portfolio copy */
+      /* Keep the face in the RIGHT gutter — chat opens inward (left) so copy stays clear */
       if(el.id==='band'){
         var bandBox=el.getBoundingClientRect();
         /* Rail parks fully UNDER the black section in open space */
         y=window.scrollY+bandBox.bottom+56;
-        x=w*0.07; /* always left — right side covers stats/portfolio */
+        x=w*0.93;
       }else if(el.id==='work'){
         var wh=el.querySelector('.works-head')||el;
         r=wh.getBoundingClientRect();
         y=window.scrollY+r.bottom+40;
-        x=w*0.07;
+        x=w*0.93;
       }else if(el.id==='services'){
         r=target.getBoundingClientRect();
         y=window.scrollY+r.top+Math.min(r.height*0.5,40);
-        x=w*0.07;
+        x=w*0.93;
       }else if(el.id==='top'){
         r=target.getBoundingClientRect();
         y=window.scrollY+r.top+Math.min(r.height*0.5,40);
-        x=w*0.90; /* hero: sit by the art, right gutter */
+        x=w*0.93;
       }else{
         r=target.getBoundingClientRect();
         y=window.scrollY+r.top+Math.min(r.height*0.5,40);
-        /* Prefer left so chat stays on-screen */
-        x=(i%2===0)?w*0.90:w*0.07;
+        x=w*0.93;
       }
 
       return {
@@ -200,9 +199,9 @@
       chat.classList.remove('is-caption');
       return;
     }
-    chat.classList.add('is-caption');
-    /* Caption docks to the clear side — left when face is right, and vice versa */
-    chat.classList.toggle('is-caption-right', posX<window.innerWidth*0.5);
+    /* Caption always bottom-left — clear of the right-side face */
+  chat.classList.add('is-caption');
+  chat.classList.remove('is-caption-right');
     if(!msg){ chat.classList.remove('is-on'); return; }
     if(msg===activeMsg && chatText.dataset.full===msg){
       chat.classList.add('is-on');
@@ -482,19 +481,11 @@
   function showMusicDock(on){
     if(!musicDock) return;
     if(on){
-      var r=avatar.getBoundingClientRect();
-      var top=Math.max(72, Math.min(window.innerHeight-140, r.top));
-      /* Sit BESIDE the face — never on top of it */
-      var left;
-      if(r.left+r.width/2 > window.innerWidth*0.5){
-        left=Math.max(12, r.left-68);
-      }else{
-        left=Math.min(window.innerWidth-72, r.right+14);
-      }
-      musicDock.style.top=top+'px';
-      musicDock.style.left=left+'px';
-      musicDock.style.right='auto';
-      musicDock.style.bottom='auto';
+      /* Always top-right — never follow the face around the page */
+      musicDock.style.top='';
+      musicDock.style.left='';
+      musicDock.style.right='';
+      musicDock.style.bottom='';
       musicDock.hidden=false;
     }else{
       musicDock.hidden=true;
@@ -914,6 +905,7 @@
       root.classList.remove('is-mobile-music');
       avatar.style.left='';
       avatar.style.top='';
+      avatar.style.right='';
       avatar.style.position='';
       avatar.style.margin='';
       return;
@@ -923,14 +915,14 @@
     if(!art) return;
     var r=art.getBoundingClientRect();
     var top=Math.max(96, Math.min(window.innerHeight-88, r.top+r.height*0.38));
-    var left=Math.max(14, Math.min(r.left+12, window.innerWidth-68));
+    var right=Math.max(14, window.innerWidth - r.right + 12);
     avatar.style.position='fixed';
-    avatar.style.left=left+'px';
+    avatar.style.left='auto';
+    avatar.style.right=right+'px';
     avatar.style.top=top+'px';
     avatar.style.margin='0';
     avatar.style.transform='';
     traveler.style.transform='none';
-    if(musicOn && musicDock && !musicDock.hidden) showMusicDock(true);
   }
 
   function playMobileIntro(){
