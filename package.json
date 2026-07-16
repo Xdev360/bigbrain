@@ -1,0 +1,8 @@
+{
+  "name": "bigbrainportfolio",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/sync-config.js",
+    "sync-config": "node scripts/sync-config.js"
+  }
+}
