@@ -262,6 +262,9 @@ h1{
   margin:0;
   padding:0;
   text-align:left;
+  white-space:normal;
+  overflow-wrap:break-word;
+  word-wrap:break-word;
 }
 h1 .fade{color:var(--smoke);font-weight:500}
 .h1-em{display:inline}
@@ -316,7 +319,7 @@ body:has(.guide.on-dark) .music-dock-close{
   transition:none;
 }
 .lyric-char.is-on{opacity:1}
-.lyric-char.is-space{white-space:pre}
+.lyric-char.is-space{white-space:normal}
 .is-lyrics .fade .lyric-char.is-on{color:var(--smoke)}
 .band .is-lyrics .lyric-char{opacity:.28;color:rgba(255,255,255,.28)}
 .band .is-lyrics .lyric-char.is-on{opacity:1;color:#fff}
@@ -1182,7 +1185,12 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
 }
 
 .contact{border-top:1px solid var(--line);padding-block:clamp(64px,9vw,120px) 0}
-.contact h2{font-size:clamp(32px,5vw,64px);letter-spacing:-.045em;max-width:16ch}
+.contact h2{
+  font-size:clamp(32px,5vw,64px);letter-spacing:-.045em;
+  max-width:16ch;
+  overflow-wrap:break-word;
+  word-wrap:break-word;
+}
 .contact h2 .fade{color:var(--smoke);font-weight:500}
 .contact-grid{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:end}
 .reach{display:flex;flex-direction:column;gap:12px}
@@ -1220,13 +1228,24 @@ footer{margin-top:clamp(56px,8vw,96px);border-top:1px solid var(--line);padding-
 /* ---------- mobile responsive ---------- */
 @media(max-width:900px){
   html,body{overflow-x:hidden}
-  .sec,.works-sec,.services-sec,.mp-overview-sec,.custom-sec,.contact{
+  .sec,.works-sec,.services-sec,.mp-overview-sec,.custom-sec,.contact,#top{
     overflow-x:hidden;
     max-width:100%;
   }
-  .hero-in,.hero-copy,.art,.band-in,.work-showcase,.work-stage{
+  .hero-in,.hero-copy,.art,.band-in,.work-showcase,.work-stage,.wrap{
     max-width:100%;
     min-width:0;
+  }
+
+  /* Headings must use full column width so lines can wrap (flex center was shrink-wrapping them) */
+  h1,h2,.works-head h2,.mp-overview-copy h2,.custom-copy h2,.contact h2,.sec-head h2{
+    width:100%;
+    max-width:100%!important;
+    min-width:0;
+    white-space:normal;
+    overflow-wrap:break-word;
+    word-wrap:break-word;
+    hyphens:auto;
   }
 
   /* Center everything except the black band */
@@ -1234,61 +1253,87 @@ footer{margin-top:clamp(56px,8vw,96px);border-top:1px solid var(--line);padding-
     text-align:center;
     display:flex;
     flex-direction:column;
-    align-items:center;
+    align-items:stretch;
     width:100%;
+    min-width:0;
   }
   #top .hero-copy > h1,
-  #top .hero-copy > .lede,
-  #top .hero-copy > .cta-row,
-  #top .hero-copy > .status-top{
-    margin-left:auto;
-    margin-right:auto;
+  #top .hero-copy > .lede{
+    margin-left:0;
+    margin-right:0;
     text-align:center;
+    width:100%;
     max-width:100%;
-  }
-  #top .hero-copy > h1{
-    max-width:16ch;
+    min-width:0;
+    white-space:normal;
+    overflow-wrap:break-word;
   }
   #top .hero-copy .h1-em{display:none}
   #top .hero-copy > .lede{
     max-width:42ch;
+    margin-inline:auto;
+  }
+  #top .hero-copy > .status-top,
+  #top .hero-copy > .cta-row{
+    align-self:center;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:100%;
   }
   #top .hero-copy > .cta-row{
     justify-content:center;
     width:auto;
-    max-width:100%;
     flex-wrap:wrap;
   }
   .sec-head{
     justify-content:center;
     text-align:center;
     flex-direction:column;
-    align-items:center;
+    align-items:stretch;
+    width:100%;
   }
   .sec-note{max-width:min(46ch,100%);margin-inline:auto;text-align:center}
-  .works-head{text-align:center}
+  .works-head{text-align:center;width:100%}
   .works-head .sec-note{margin-inline:auto}
-  .mp-overview-copy{text-align:center}
+  .mp-overview-copy{text-align:center;width:100%;min-width:0}
   .mp-overview-copy .sec-note{margin-inline:auto}
   .mp-overview-copy .btn{display:inline-flex}
   .custom-row{
     align-items:center;
     flex-direction:column;
     text-align:center;
+    width:100%;
   }
+  .custom-copy{width:100%;min-width:0}
   .custom-copy .sec-note{margin-inline:auto}
-  .custom-title-btn{text-align:center}
+  .custom-title-btn{text-align:center;max-width:100%;white-space:normal}
   .contact{text-align:center}
-  .contact h2{margin-inline:auto;text-align:center}
+  .contact h2{
+    margin-inline:auto;
+    text-align:center;
+    width:100%;
+    max-width:100%!important;
+  }
   .contact .eyebrow{text-align:center}
-  .reach a{justify-content:center}
+  .reach{width:100%;min-width:0}
+  .reach a{
+    justify-content:center;
+    flex-wrap:wrap;
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
   .reach a span{width:auto}
-  .socials{justify-content:center}
+  .socials{justify-content:center;max-width:100%}
   footer{justify-content:center;text-align:center}
 
-  /* Black band stays left */
-  .stats{align-items:flex-start}
-  .band-in,.band-foot{text-align:left}
+  /* Black band stays left — but text must still wrap inside the frame */
+  .stats{align-items:flex-start;width:100%;min-width:0}
+  .stats p{
+    max-width:100%;
+    white-space:normal;
+    overflow-wrap:break-word;
+  }
+  .band-in,.band-foot{text-align:left;max-width:100%;min-width:0}
   .band-foot{justify-content:flex-start}
 
   .inq-sheet{
@@ -1303,7 +1348,8 @@ footer{margin-top:clamp(56px,8vw,96px);border-top:1px solid var(--line);padding-
   .wrap{padding-inline:clamp(18px,5vw,28px)}
   .nav-in{height:64px}
   .mark{font-size:18px}
-  h1{font-size:clamp(32px,9vw,48px);max-width:14ch}
+  h1{font-size:clamp(30px,8.5vw,44px);max-width:100%}
+  .contact h2{font-size:clamp(28px,8vw,44px);max-width:100%}
   .nav-links{padding-top:calc(64px + 28px)}
   .work-stage{height:560px;min-height:560px}
   .svc-acc{margin-top:28px}
