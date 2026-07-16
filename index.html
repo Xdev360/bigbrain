@@ -35,6 +35,10 @@
       <p id="guideChatText"></p>
     </div>
     <div class="guide-menu" id="guideMenu" hidden>
+      <button type="button" id="menuTour" aria-pressed="false">
+        <svg viewBox="0 0 24 24"><path d="M4 19l4-4h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12z"/><path d="M8 9h8M8 12h5"/></svg>
+        Tour
+      </button>
       <button type="button" id="menuChatAi">
         <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Chat with X Big X
@@ -46,10 +50,6 @@
       <button type="button" id="menuHand">
         <svg viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v8"/><path d="M10 9.5V5a2 2 0 0 0-4 0v9"/><path d="M6 13v2a6 6 0 0 0 12 0v-2"/></svg>
         Hand control
-      </button>
-      <button type="button" id="menuTour">
-        <svg viewBox="0 0 24 24"><path d="M4 19l4-4h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12z"/><path d="M8 9h8M8 12h5"/></svg>
-        Tour
       </button>
       <button type="button" id="menuMusic">
         <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
@@ -123,7 +123,7 @@
 </nav>
 <div class="nav-dim" id="navDim" aria-hidden="true"></div>
 
-<header id="top" data-guide="Top of the page. I'm Oladele — design, code, brand from Lagos.">
+<header id="top" data-guide="Top of the page. I'm Oladele — design, code, brand from Lagos." data-guide-pitch="Design, code, and brand from Lagos — if you're here, you're probably ready to build something that actually ships.">
   <div class="wrap hero-in">
     <div class="hero-copy">
       <p class="status status-top"><span class="dot"></span> Open for work</p>
@@ -144,7 +144,7 @@
   </div>
 </header>
 
-<section class="band" id="band" data-guide="The scoreboard: 5+ years, 8+ products, teams across Lagos and beyond.">
+<section class="band" id="band" data-guide="The scoreboard: 5+ years, 8+ products, teams across Lagos and beyond." data-guide-pitch="Five years, eight products, teams across Lagos and beyond — that's the track record behind what you're about to click.">
   <div class="wrap band-in">
     <p class="eyebrow">What that adds up to</p>
     <div class="stats">
@@ -159,7 +159,7 @@
   </div>
 </section>
 
-<section class="sec works-sec" id="work" aria-label="Selected work" data-guide="Selected work — tap the card to flip to the next project. Hit View Project to open the case.">
+<section class="sec works-sec" id="work" aria-label="Selected work" data-guide="Selected work — tap the card to flip to the next project. Hit View Project to open the case." data-guide-pitch="Real shipped work — flip through, open a case, and see if the fit is right for your project.">
   <div class="wrap">
     <div class="works-head reveal">
       <p class="eyebrow">Portfolio</p>
@@ -177,7 +177,7 @@
   </div>
 </section>
 
-<section class="sec services-sec" id="services" data-guide="Services I offer — open a row for a short intro, then explore the work.">
+<section class="sec services-sec" id="services" data-guide="Services I offer — open a row for a short intro, then explore the work." data-guide-pitch="Pick a service, open the row — each one is a lane I take clients from brief to launch.">
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Services I offer</h2>
@@ -268,7 +268,7 @@
   </div>
 </section>
 
-<section class="sec mp-overview-sec" id="market" data-guide="Marketplace — website templates for designers, founders, and agencies. Browse the full shelf.">
+<section class="sec mp-overview-sec" id="market" data-guide="Marketplace — website templates for designers, founders, and agencies. Browse the full shelf." data-guide-pitch="Templates for designers, founders, and agencies — grab one, customize fast, and go live before the next sprint ends.">
   <div class="wrap">
     <div class="mp-overview reveal">
       <div class="mp-overview-copy">
@@ -341,7 +341,7 @@
   </div>
 </section>
 
-<section class="sec custom-sec" id="custom" data-guide="Custom projects — open the brief, fill it in, it reaches me on Telegram.">
+<section class="sec custom-sec" id="custom" data-guide="Custom projects — open the brief, fill it in, it reaches me on Telegram." data-guide-pitch="Something bespoke? Open the brief — it lands on my Telegram and we start the same day.">
   <div class="wrap">
     <div class="custom-row reveal">
       <div class="custom-copy">
@@ -435,7 +435,7 @@
   </div>
 </div>
 
-<section class="contact" id="contact" data-guide="Contact — email, phone, or DM. Let's build something.">
+<section class="contact" id="contact" data-guide="Contact — email, phone, or DM. Let's build something." data-guide-pitch="Email, phone, or DM — send the idea over and let's talk scope before you commit to anything.">
   <div class="wrap">
     <p class="eyebrow reveal">Next</p>
     <h2 class="reveal" style="margin-top:16px">Got something to build? <span class="fade">Send it over.</span></h2>

@@ -15,6 +15,8 @@
   font:inherit;font-size:13px;font-weight:500;color:#0a0a0a;
 }
 .guide-menu button:hover{background:#f4f4f5}
+.guide-menu button.is-on{background:#0a0a0a;color:#fff}
+.guide-menu button.is-on:hover{background:#1a1a1a}
 .guide-menu svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 
 .ai-overlay{

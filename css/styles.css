@@ -797,6 +797,8 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
   pointer-events:none;
 }
 .guide.is-live .guide-rail{opacity:1}
+.guide.is-explore .guide-rail{opacity:0}
+.guide.is-explore .guide-svg{pointer-events:none}
 .guide.on-dark .guide-rail{stroke:rgba(255,255,255,.32)}
 .guide-traveler{
   position:absolute;left:0;top:0;
