@@ -52,9 +52,13 @@
     burger.classList.toggle('is-open', on);
     links.classList.toggle('is-open', on);
     if(dim){
-      dim.hidden=!on;
-      dim.classList.toggle('is-on', on);
-      dim.setAttribute('aria-hidden', on?'false':'true');
+      if(on){
+        dim.classList.add('is-on');
+        dim.setAttribute('aria-hidden','false');
+      }else{
+        dim.classList.remove('is-on');
+        dim.setAttribute('aria-hidden','true');
+      }
     }
     burger.setAttribute('aria-expanded', on?'true':'false');
     burger.setAttribute('aria-label', on?'Close menu':'Open menu');

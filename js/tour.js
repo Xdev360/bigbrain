@@ -16,7 +16,9 @@
     root.style.display='none';
     return;
   }
-  if(window.matchMedia('(max-width:900px)').matches) return;
+  /* Mobile: keep lyric street; hide the floating guide face via CSS */
+  var narrowMq=window.matchMedia('(max-width:900px)');
+  function isMobile(){ return narrowMq.matches; }
 
   var stops=Array.prototype.slice.call(document.querySelectorAll('[data-guide]'));
   if(stops.length<2) return;
@@ -60,11 +62,13 @@
     return Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);
   }
 
-  /* Headlines normally; black band also reads the scoreboard lines.
-     Hero (#top) is excluded — dimmed lyric letters looked like a broken left edge. */
+  /* Headlines normally; black band also reads the scoreboard lines. */
   function lyricBlocksOf(section){
     if(!section) return [];
-    if(section.id==='top') return [];
+    if(section.id==='top'){
+      var hero=section.querySelector('h1');
+      return hero?[hero]:[];
+    }
     if(section.id==='band'){
       return Array.prototype.slice.call(section.querySelectorAll('.stats p'));
     }
@@ -77,18 +81,6 @@
     var blocks=lyricBlocksOf(section);
     return blocks[0]||section.querySelector('.eyebrow')||null;
   }
-
-  function unwrapLyrics(el){
-    if(!el || el.dataset.lyricChars!=='1') return;
-    el.querySelectorAll('.lyric-char').forEach(function(span){
-      span.replaceWith(document.createTextNode(span.textContent||''));
-    });
-    el.normalize();
-    el.classList.remove('is-lyrics');
-    delete el.dataset.lyricChars;
-    delete el.dataset.lyrics;
-  }
-  unwrapLyrics(document.querySelector('#top h1'));
 
   function rebuild(){
     var w=window.innerWidth;
@@ -658,6 +650,7 @@
 
   function startAutoTour(opts){
     opts=opts||{};
+    if(isMobile()) return;
     if(autoTour) return;
     rebuild();
     autoTour=true;
@@ -862,13 +855,17 @@
   requestAnimationFrame(tick);
 
   try{
-    if(!localStorage.getItem('bb_tour_seen')){
+    if(!isMobile() && !localStorage.getItem('bb_tour_seen')){
       localStorage.setItem('bb_tour_seen','1');
       setTimeout(function(){
         startAutoTour({volume:0.18,grace:1800});
       },700);
     }
   }catch(e){}
+
+  /* Kick lyric street on load for the hero (and again after layout) */
+  setTimeout(function(){ updateManualLyrics(); },120);
+  setTimeout(function(){ updateManualLyrics(); },500);
 
   window.BigBrainTour={
     start:startAutoTour,
