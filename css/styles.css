@@ -40,12 +40,19 @@
   --text-lg:18px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+  max-width:100%;
+}
 body{
   position:relative;
   background:var(--paper);color:var(--ink);
   font-family:var(--font);
   -webkit-font-smoothing:antialiased;font-size:var(--text-md);line-height:1.5;
+  overflow-x:hidden;
+  max-width:100%;
+  width:100%;
 }
 body.is-loading{overflow:hidden}
 
@@ -99,7 +106,13 @@ a{color:inherit;text-decoration:none}
 ::selection{background:var(--ink);color:var(--paper)}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 
-.wrap{max-width:1360px;margin:0 auto;padding-inline:var(--pad)}
+.wrap{
+  max-width:1360px;
+  margin:0 auto;
+  padding-inline:var(--pad);
+  width:100%;
+  min-width:0;
+}
 .eyebrow{
   font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;
   color:var(--smoke);font-weight:500;
@@ -388,21 +401,24 @@ body:has(.guide.on-dark) .music-dock-close{
 }
 .art-inner.full-reveal canvas{opacity:1}
 @media(max-width:900px){
-  .hero-in{grid-template-columns:1fr;padding-block:30px 0;gap:26px}
-  .art{order:0;justify-content:center;margin-block-end:-6px}
-  .art-inner{max-width:460px;--r:96px}
+  .hero-in{grid-template-columns:1fr;padding-block:30px 0;gap:26px;min-width:0}
+  .art{order:0;justify-content:center;margin-block-end:-6px;max-width:100%;overflow:hidden}
+  .art-inner{max-width:min(460px,100%);width:100%;--r:96px}
   /* no edge fade on mobile — the dither's own silhouette is the edge, and the
      black band below covers the point where the render is cropped */
-  .art canvas{-webkit-mask-image:none;mask-image:none}
+  .art canvas{-webkit-mask-image:none;mask-image:none;max-width:100%}
   h1{max-width:none}
 }
 
 /* ---------- band ---------- */
-.band{background:var(--band);color:#fff;position:relative;z-index:1}
-.band-in{padding-block:clamp(56px,8vw,110px)}
+.band{background:var(--band);color:#fff;position:relative;z-index:1;overflow:hidden}
+.band-in{padding-block:clamp(56px,8vw,110px);min-width:0;max-width:100%}
 .band .eyebrow{color:rgba(255,255,255,.42)}
-.stats{margin-top:14px;display:flex;flex-direction:column;gap:18px}
-.stats p{font-size:clamp(28px,4.4vw,58px);line-height:1.16;letter-spacing:-.04em;font-weight:500;color:rgba(255,255,255,.6)}
+.stats{margin-top:14px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.stats p{
+  font-size:clamp(22px,4.4vw,58px);line-height:1.16;letter-spacing:-.04em;font-weight:500;color:rgba(255,255,255,.6);
+  overflow-wrap:anywhere;word-break:break-word;max-width:100%;
+}
 .stats b{font-weight:600;color:#fff}
 .band-foot{margin-top:44px;display:flex;gap:26px;align-items:center;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.45)}
 .band-foot a{border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:2px;color:rgba(255,255,255,.85)}
@@ -896,12 +912,18 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
   .guide{display:none}
 }
 /* ---------- marketplace overview ---------- */
-.mp-overview-sec{border-top:1px solid var(--line)}
+.mp-overview-sec{border-top:1px solid var(--line);overflow:hidden}
 .mp-overview{
   display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
   gap:clamp(28px,4vw,56px);
   align-items:center;
+  min-width:0;
+  max-width:100%;
+}
+.mp-overview-copy{
+  min-width:0;
+  max-width:100%;
 }
 .mp-overview-copy h2{
   margin-top:14px;
@@ -910,6 +932,9 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
 .mp-overview-copy .sec-note{margin-top:12px;max-width:38ch}
 .mp-overview-copy .btn{margin-top:22px}
 .mp-overview-shelf{
+  min-width:0;
+  max-width:100%;
+  width:100%;
   overflow:hidden;
   mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
@@ -918,7 +943,9 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
   display:flex;
   gap:12px;
   width:max-content;
+  max-width:none;
   animation:mp-ov-marquee 32s linear infinite;
+  will-change:transform;
 }
 .mp-overview-track:hover{animation-play-state:paused}
 @keyframes mp-ov-marquee{
@@ -1192,12 +1219,23 @@ footer{margin-top:clamp(56px,8vw,96px);border-top:1px solid var(--line);padding-
 
 /* ---------- mobile responsive ---------- */
 @media(max-width:900px){
+  html,body{overflow-x:hidden}
+  .sec,.works-sec,.services-sec,.mp-overview-sec,.custom-sec,.contact{
+    overflow-x:hidden;
+    max-width:100%;
+  }
+  .hero-in,.hero-copy,.art,.band-in,.work-showcase,.work-stage{
+    max-width:100%;
+    min-width:0;
+  }
+
   /* Center everything except the black band */
   #top .hero-copy{
     text-align:center;
     display:flex;
     flex-direction:column;
     align-items:center;
+    width:100%;
   }
   #top .hero-copy > h1,
   #top .hero-copy > .lede,
@@ -1206,6 +1244,7 @@ footer{margin-top:clamp(56px,8vw,96px);border-top:1px solid var(--line);padding-
     margin-left:auto;
     margin-right:auto;
     text-align:center;
+    max-width:100%;
   }
   #top .hero-copy > h1{
     max-width:16ch;
@@ -1217,6 +1256,8 @@ footer{margin-top:clamp(56px,8vw,96px);border-top:1px solid var(--line);padding-
   #top .hero-copy > .cta-row{
     justify-content:center;
     width:auto;
+    max-width:100%;
+    flex-wrap:wrap;
   }
   .sec-head{
     justify-content:center;
@@ -1224,7 +1265,7 @@ footer{margin-top:clamp(56px,8vw,96px);border-top:1px solid var(--line);padding-
     flex-direction:column;
     align-items:center;
   }
-  .sec-note{max-width:46ch;margin-inline:auto;text-align:center}
+  .sec-note{max-width:min(46ch,100%);margin-inline:auto;text-align:center}
   .works-head{text-align:center}
   .works-head .sec-note{margin-inline:auto}
   .mp-overview-copy{text-align:center}
