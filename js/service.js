@@ -57,4 +57,36 @@
       el.classList.add('in');
     });
   });
+
+  function barOffset(){
+    var bar=document.querySelector('.svc-bar');
+    return (bar?bar.offsetHeight:64)+12;
+  }
+
+  function scrollToHash(hash, smooth){
+    if(!hash||hash.charAt(0)!=='#') return;
+    var id=hash.slice(1);
+    var el=document.getElementById(id);
+    if(!el) return;
+    var top=el.getBoundingClientRect().top+window.scrollY-barOffset();
+    window.scrollTo({top:Math.max(0,top),behavior:smooth?'smooth':'auto'});
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    var h=a.getAttribute('href');
+    if(!h||h.length<2) return;
+    a.addEventListener('click',function(e){
+      var el=document.getElementById(h.slice(1));
+      if(!el) return;
+      e.preventDefault();
+      scrollToHash(h,true);
+      if(history.pushState) history.pushState(null,'',h);
+    });
+  });
+
+  function scrollHashOnLoad(){
+    if(location.hash&&location.hash.length>1) scrollToHash(location.hash,false);
+  }
+  if(document.readyState==='complete') scrollHashOnLoad();
+  else window.addEventListener('load',scrollHashOnLoad);
 })();

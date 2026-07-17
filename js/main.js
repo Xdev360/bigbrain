@@ -1,23 +1,38 @@
 /* ---------- Serena-style page preloader ---------- */
 (function(){
   try{ if('scrollRestoration' in history) history.scrollRestoration='manual'; }catch(e){}
-  window.scrollTo(0,0);
+  if(!location.hash) window.scrollTo(0,0);
 
   var el=document.getElementById('preload');
-  if(!el) return;
+  if(!el){
+    document.body.classList.remove('is-loading');
+    return;
+  }
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var done=false;
+
+  function scrollToId(id, smooth){
+    var target=document.getElementById(id);
+    if(!target) return;
+    var nav=document.getElementById('nav');
+    var off=(nav?nav.offsetHeight:74)+8;
+    var top=target.getBoundingClientRect().top+window.scrollY-off;
+    window.scrollTo({top:Math.max(0,top),behavior:smooth?'smooth':'auto'});
+  }
+
   function finish(){
     if(done) return;
     done=true;
     el.classList.add('is-done');
     document.body.classList.remove('is-loading');
-    window.scrollTo(0,0);
+    var hash=location.hash;
+    if(hash&&hash.length>1) scrollToId(hash.slice(1),false);
+    else if(!hash) window.scrollTo(0,0);
     window.setTimeout(function(){
       if(el.parentNode) el.parentNode.removeChild(el);
-      window.scrollTo(0,0);
     },450);
   }
+
   var wait=reduced ? 200 : 2400;
   var start=performance.now();
   function maybeFinish(){
@@ -28,8 +43,16 @@
   if(document.readyState==='complete') maybeFinish();
   else window.addEventListener('load',maybeFinish);
   window.setTimeout(finish,reduced ? 600 : 4000);
+
+  ['wheel','touchstart','keydown'].forEach(function(ev){
+    window.addEventListener(ev,function(e){
+      if(e.type==='keydown'&&e.key!=='Tab'&&e.key!=='ArrowDown'&&e.key!=='ArrowUp'&&e.key!=='PageDown'&&e.key!=='PageUp'&&e.key!==' ') return;
+      finish();
+    },{passive:true,once:true});
+  });
+
   window.addEventListener('pageshow',function(e){
-    if(e.persisted) window.scrollTo(0,0);
+    if(e.persisted&&location.hash&&location.hash.length>1) scrollToId(location.hash.slice(1),false);
   });
 })();
 
@@ -56,12 +79,18 @@
   var dim=document.getElementById('navDim');
   if(!burger || !links) return;
 
+  function isMobileNav(){ return window.innerWidth<=900; }
+
   function setOpen(on){
     burger.classList.toggle('is-open', on);
     links.classList.toggle('is-open', on);
     links.setAttribute('aria-hidden', on?'false':'true');
-    if(on) links.removeAttribute('inert');
-    else links.setAttribute('inert','');
+    if(isMobileNav()){
+      if(on) links.removeAttribute('inert');
+      else links.setAttribute('inert','');
+    }else{
+      links.removeAttribute('inert');
+    }
     if(dim){
       if(on){
         dim.classList.add('is-on');
@@ -94,7 +123,12 @@
     if(e.key==='Escape') close();
   });
   window.addEventListener('resize',function(){
-    if(window.innerWidth>900) close();
+    if(window.innerWidth>900){
+      close();
+      links.removeAttribute('inert');
+    }else if(!burger.classList.contains('is-open')){
+      links.setAttribute('inert','');
+    }
   });
 })();
 
@@ -111,6 +145,20 @@
     if(id) sectionMap[id]=a.getAttribute('href');
   });
 
+  function navOffset(){
+    var nav=document.getElementById('nav');
+    return (nav?nav.offsetHeight:74)+8;
+  }
+
+  function scrollToHash(hash, smooth){
+    if(!hash||hash.charAt(0)!=='#') return;
+    var id=hash.slice(1);
+    var el=document.getElementById(id);
+    if(!el) return;
+    var top=el.getBoundingClientRect().top+window.scrollY-navOffset();
+    window.scrollTo({top:Math.max(0,top),behavior:smooth?'smooth':'auto'});
+  }
+
   function setActive(hash){
     items.forEach(function(a){
       var on=a.getAttribute('href')===hash;
@@ -120,9 +168,15 @@
   }
 
   items.forEach(function(a){
-    a.addEventListener('click',function(){
+    a.addEventListener('click',function(e){
       var h=a.getAttribute('href');
-      if(h&&h.charAt(0)==='#') setActive(h);
+      if(!h||h.charAt(0)!=='#') return;
+      var el=document.getElementById(h.slice(1));
+      if(!el) return;
+      e.preventDefault();
+      scrollToHash(h,true);
+      setActive(h);
+      if(history.pushState) history.pushState(null,'',h);
     });
   });
 
@@ -143,7 +197,12 @@
     });
   }
 
-  if(location.hash&&sectionMap[location.hash.slice(1)]) setActive(location.hash);
+  if(location.hash&&sectionMap[location.hash.slice(1)]){
+    setActive(location.hash);
+    window.addEventListener('load',function(){
+      scrollToHash(location.hash,false);
+    });
+  }
 })();
 
 /* ---------- hover grid ---------- */

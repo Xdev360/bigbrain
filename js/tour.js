@@ -75,6 +75,10 @@
   var analyser=null,freqData=null,mediaSource=null,bassSmooth=0,bassPrev=0,bassHit=0,bassAvg=0.12;
 
   var MS_PER_CHAR=92; /* letter-by-letter — slow enough to read */
+  var BAND_MS_PER_CHAR=36; /* black band reads faster */
+  function msPerCharForSection(section){
+    return (section&&section.id==='band') ? BAND_MS_PER_CHAR : MS_PER_CHAR;
+  }
   var TRAVEL_MS=2200;
   var HOLD_MS=3200; /* pause after a section is fully read */
   var CHAT_MS_PER_CHAR=48;
@@ -731,7 +735,7 @@
     var chars=activeWords.length||1;
     phase='read';
     phaseT0=performance.now();
-    phaseDur=Math.max(2400, chars*MS_PER_CHAR);
+    phaseDur=Math.max(2400, chars*msPerCharForSection(stop.el));
     setChat(stop.msg);
     setReadProgress(0);
   }
@@ -973,8 +977,9 @@
       bestStop.el._lyricT0=performance.now();
     }
     var chars=activeWords.length||1;
+    var mspc=msPerCharForSection(bestStop.el);
     var elapsed=performance.now()-(bestStop.el._lyricT0||performance.now());
-    setReadProgress(Math.min(1,elapsed/(chars*MS_PER_CHAR)));
+    setReadProgress(Math.min(1,elapsed/(chars*mspc)));
   }
 
   function updateExploreFly(){
@@ -1176,6 +1181,7 @@
 
   function syncMobileGuide(){
     if(!isMobile()){
+      root.style.display='';
       root.classList.remove('is-mobile-music');
       avatar.style.left='';
       avatar.style.top='';
@@ -1186,30 +1192,7 @@
       avatar.style.transform='';
       return;
     }
-    root.classList.add('is-mobile-music');
-    root.setAttribute('aria-hidden','false');
-    /* Always pin to the right — stay findable while scrolling */
-    var art=document.getElementById('artInner')||document.querySelector('.art');
-    var top;
-    if(art){
-      var r=art.getBoundingClientRect();
-      if(r.bottom>100 && r.top<window.innerHeight-60){
-        top=Math.max(100, Math.min(window.innerHeight-80, r.top+r.height*0.4));
-      }else{
-        top=Math.round(window.innerHeight*0.42);
-      }
-    }else{
-      top=Math.round(window.innerHeight*0.42);
-    }
-    avatar.style.position='fixed';
-    avatar.style.left='auto';
-    avatar.style.right='16px';
-    avatar.style.top=top+'px';
-    avatar.style.bottom='auto';
-    avatar.style.margin='0';
-    avatar.style.transform='none';
-    avatar.style.zIndex='81';
-    traveler.style.transform='none';
+    root.style.display='none';
   }
 
   function playMobileIntro(){

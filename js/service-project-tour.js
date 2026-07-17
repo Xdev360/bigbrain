@@ -10,6 +10,7 @@
   var menu=document.getElementById('pjGuideMenu');
   var menuTour=document.getElementById('pjMenuTour');
   if(!root||!traveler||!chat||!chatText||!avatar) return;
+  if(window.matchMedia('(max-width:900px)').matches) return;
 
   var narrowMq=window.matchMedia('(max-width:900px)');
   function isMobile(){ return narrowMq.matches; }
