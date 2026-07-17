@@ -86,13 +86,8 @@
   });
   if(dim) dim.addEventListener('click', close);
   links.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click',function(e){
-      if(!links.classList.contains('is-open')){
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
-      close();
+    a.addEventListener('click',function(){
+      if(links.classList.contains('is-open')) close();
     });
   });
   document.addEventListener('keydown',function(e){
@@ -101,6 +96,54 @@
   window.addEventListener('resize',function(){
     if(window.innerWidth>900) close();
   });
+})();
+
+/* ---------- nav: active section + underline ---------- */
+(function(){
+  var links=document.getElementById('navLinks');
+  if(!links) return;
+  var items=Array.prototype.slice.call(links.querySelectorAll('a[href^="#"]'));
+  if(!items.length) return;
+
+  var sectionMap={};
+  items.forEach(function(a){
+    var id=(a.getAttribute('href')||'').slice(1);
+    if(id) sectionMap[id]=a.getAttribute('href');
+  });
+
+  function setActive(hash){
+    items.forEach(function(a){
+      var on=a.getAttribute('href')===hash;
+      a.classList.toggle('is-active',on);
+      a.setAttribute('aria-current',on?'page':'false');
+    });
+  }
+
+  items.forEach(function(a){
+    a.addEventListener('click',function(){
+      var h=a.getAttribute('href');
+      if(h&&h.charAt(0)==='#') setActive(h);
+    });
+  });
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      var best=null,bestRatio=0;
+      es.forEach(function(e){
+        if(e.isIntersecting&&e.intersectionRatio>=bestRatio){
+          bestRatio=e.intersectionRatio;
+          best=e.target.id;
+        }
+      });
+      if(best&&sectionMap[best]) setActive(sectionMap[best]);
+    },{rootMargin:'-42% 0px -42% 0px',threshold:[0,0.12,0.25,0.5]});
+    Object.keys(sectionMap).forEach(function(id){
+      var el=document.getElementById(id);
+      if(el) io.observe(el);
+    });
+  }
+
+  if(location.hash&&sectionMap[location.hash.slice(1)]) setActive(location.hash);
 })();
 
 /* ---------- hover grid ---------- */

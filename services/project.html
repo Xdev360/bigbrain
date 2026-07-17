@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project — Oladele Ibraheem</title>
+<meta name="description" content="Project case study — problem, process, outcome, and key screens.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/service.css">
+</head>
+<body>
+
+<header class="svc-bar">
+  <div class="svc-bar-in">
+    <a href="../index.html" class="mark">BigBrain<sup>®</sup></a>
+    <a class="svc-back" id="projectBack" href="brand-identity.html">← Back</a>
+  </div>
+</header>
+
+<section class="pj-header">
+  <div class="wrap pj-header-in reveal">
+    <div class="pj-header-copy">
+      <span class="pj-service-tag" id="pjServiceTag">Brand identity</span>
+      <h1 id="pjTitle">Demo Project 1</h1>
+      <p class="pj-sub" id="pjSub">Demo subtitle — replace with real project summary.</p>
+      <div class="pj-meta">
+        <div><span class="k">Role</span><span class="v" id="pjRole">Lead designer</span></div>
+        <div><span class="k">Timeline</span><span class="v" id="pjTimeline">Demo timeline</span></div>
+      </div>
+      <p class="pj-tools-label">Tools</p>
+      <div class="pj-tools" id="pjTools"></div>
+    </div>
+    <div class="pj-header-cover" id="pjCover"></div>
+  </div>
+</section>
+
+<section class="pj-tour-intro">
+  <div class="wrap pj-tour-intro-in">
+    <div class="pj-tour-anchor" id="pjTourAnchor" aria-hidden="true"></div>
+    <p class="pj-tour-copy">Click my face → <strong>Tour</strong>. I'll walk you through this project.</p>
+  </div>
+</section>
+
+<section class="pj-sec" data-pj-tour data-pj-tour-key="problem">
+  <div class="wrap reveal">
+    <span class="pj-tag" data-pj-tour-anchor>The Problem</span>
+    <p class="pj-problem" id="pjProblem"></p>
+  </div>
+</section>
+
+<section class="pj-sec pj-sec--process">
+  <div class="wrap reveal d1">
+    <span class="pj-tag pj-tag--process">Design process</span>
+    <p class="pj-sec-lead" id="pjProcessLead">Sketches, wireframes, and iterations — with the reasoning behind every major decision. Click my face → Tour, then hover any step and I'll explain why.</p>
+    <div class="pj-study-grid" id="pjProcess"></div>
+  </div>
+</section>
+
+<section class="pj-sec">
+  <div class="wrap pj-outcome reveal d1">
+    <div class="pj-outcome-copy" data-pj-tour data-pj-tour-key="solution">
+      <span class="pj-tag" data-pj-tour-anchor>The Solution</span>
+      <p id="pjSolution"></p>
+    </div>
+    <div class="pj-outcome-impact" data-pj-tour data-pj-tour-key="impact">
+      <span class="pj-tag" data-pj-tour-anchor>Impact</span>
+      <div class="pj-metrics" id="pjMetrics"></div>
+    </div>
+  </div>
+</section>
+
+<section class="pj-sec pj-sec--screens">
+  <div class="wrap reveal d2">
+    <span class="pj-tag">Key screens</span>
+    <p class="pj-sec-lead">Click any screen to expand full size. Enable Tour on my face — I'll follow your cursor and explain each detail.</p>
+    <div class="pj-screens" id="pjScreens"></div>
+  </div>
+</section>
+
+<section class="sp-cta">
+  <h2 class="reveal">Working on something similar?</h2>
+  <div class="sp-hero-cta reveal d1">
+    <a class="btn" href="../index.html#custom">Discuss your project</a>
+    <a class="btn btn-outline" id="projectServiceLink" href="brand-identity.html">Back to service</a>
+  </div>
+</section>
+
+<!-- Project guide — Tour only (same hover fly as homepage) -->
+<div class="pj-guide" id="pjGuide" aria-hidden="true">
+  <div class="pj-guide-traveler" id="pjGuideTraveler">
+    <div class="pj-guide-chat" id="pjGuideChat">
+      <p id="pjGuideChatText"></p>
+    </div>
+    <div class="pj-guide-menu" id="pjGuideMenu" hidden>
+      <button type="button" id="pjMenuTour" aria-pressed="false">
+        <svg viewBox="0 0 24 24"><path d="M4 19l4-4h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12z"/><path d="M8 9h8M8 12h5"/></svg>
+        Tour
+      </button>
+    </div>
+    <button type="button" class="pj-guide-avatar is-invite" id="pjGuideAvatar" aria-label="Guide — click for Tour">
+      <img src="../assets/portrait.jpg" alt="" width="52" height="52">
+    </button>
+  </div>
+</div>
+
+<!-- Screen lightbox -->
+<div class="pj-lightbox" id="pjLightbox" hidden aria-modal="true" role="dialog">
+  <div class="pj-lightbox-backdrop" id="pjLightboxBackdrop"></div>
+  <button type="button" class="pj-lightbox-close" id="pjLightboxClose" aria-label="Close">×</button>
+  <div class="pj-lightbox-stage" id="pjLightboxStage"></div>
+</div>
+
+<script src="../js/service.js"></script>
+<script src="../js/service-project.js"></script>
+<script src="../js/service-project-tor.js"></script>
+<script src="../js/service-project-tour.js"></script>
+</body>
+</html>
