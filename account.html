@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Account — BigBrain</title>
+<meta name="description" content="Manage your BigBrain marketplace account.">
+<link rel="stylesheet" href="css/marketplace.css">
+</head>
+<body class="acct-body">
+
+<div class="acct-app" id="acctApp">
+  <aside class="acct-side" id="acctSide">
+    <div class="acct-side-top">
+      <a class="mp-brand" href="marketplace.html">
+        <span class="mp-brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="mp-side-label">BigBrain</span>
+      </a>
+      <button class="mp-collapse" id="acctCollapse" type="button" aria-label="Collapse sidebar" title="Collapse sidebar">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg>
+      </button>
+    </div>
+
+    <nav class="mp-nav">
+      <p class="mp-nav-label"><span class="mp-side-label">Settings</span></p>
+      <button class="mp-nav-item" type="button" data-acct="workspace" title="Workspace">
+        <svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+        <span class="mp-side-label">Workspace</span>
+      </button>
+      <button class="mp-nav-item" type="button" data-acct="overview" title="Overview">
+        <svg viewBox="0 0 24 24"><path d="M4 8c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 8v8c0 1.7 3.6 3 8 3s8-1.3 8-3V8"/></svg>
+        <span class="mp-side-label">Overview</span>
+      </button>
+      <button class="mp-nav-item" type="button" data-acct="templates" title="My templates">
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 10v10"/></svg>
+        <span class="mp-side-label">My templates</span>
+      </button>
+      <button class="mp-nav-item" type="button" data-acct="orders" title="Orders">
+        <svg viewBox="0 0 24 24"><path d="M6 4h12l1.5 5H4.5L6 4z"/><path d="M4.5 9h15V20h-15V9z"/><path d="M9 13h6"/></svg>
+        <span class="mp-side-label">Orders</span>
+      </button>
+      <button class="mp-nav-item" type="button" data-acct="integrations" title="Integrations">
+        <svg viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M7 7h10v5a5 5 0 0 1-10 0V7z"/><path d="M12 17v4"/></svg>
+        <span class="mp-side-label">Integrations</span>
+      </button>
+
+      <p class="mp-nav-label"><span class="mp-side-label">My Account</span></p>
+      <button class="mp-nav-item is-active" type="button" data-acct="profile" title="Profile">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 19.5c1.6-3 4-4.5 7-4.5s5.4 1.5 7 4.5"/></svg>
+        <span class="mp-side-label">Profile</span>
+      </button>
+      <button class="mp-nav-item" type="button" data-acct="notifications" title="Notifications">
+        <svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2.5h-15L6 16z"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+        <span class="mp-side-label">Notifications</span>
+      </button>
+      <button class="mp-nav-item" type="button" data-acct="security" title="Security &amp; Access">
+        <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.4-7 10-4-1.6-7-5.5-7-10V6l7-3z"/><path d="M9.5 12l2 2 3.5-4"/></svg>
+        <span class="mp-side-label">Security &amp; Access</span>
+      </button>
+      <button class="mp-nav-item" type="button" data-acct="apikeys" title="API Keys">
+        <svg viewBox="0 0 24 24"><circle cx="8" cy="14" r="4"/><path d="M11 11l8-8M15 7l2 2M18 4l2 2"/></svg>
+        <span class="mp-side-label">API Keys</span>
+      </button>
+      <button class="mp-nav-item" type="button" data-acct="shortcuts" title="Keyboard shortcuts">
+        <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="11" rx="2"/><path d="M7 11h.01M11 11h.01M15 11h.01M7 14.5h10"/></svg>
+        <span class="mp-side-label">Keyboard shortcuts</span>
+      </button>
+    </nav>
+
+    <div class="mp-side-user" id="acctSideUser"></div>
+  </aside>
+
+  <main class="acct-main">
+    <div class="acct-crumb">
+      <span>My Account</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="is-here" id="acctCrumbHere">Profile</span>
+      <a class="acct-crumb-market" href="marketplace.html">← Marketplace</a>
+    </div>
+
+    <div class="acct-content" id="acctContent">
+      <div class="acct-hero">
+        <span class="acct-avatar" id="acctAvatar"></span>
+        <h1 id="acctName"><span></span>
+          <svg class="acct-verified" viewBox="0 0 24 24" aria-label="Verified"><path fill="#3b82f6" d="M12 2l2.4 2 3.1-.4 1.2 2.9 2.9 1.2-.4 3.1 2 2.4-2 2.4.4 3.1-2.9 1.2-1.2 2.9-3.1-.4-2.4 2-2.4-2-3.1.4-1.2-2.9L2.4 18l.4-3.1-2-2.4 2-2.4-.4-3.1 2.9-1.2L6.5 3.6l3.1.4L12 2z"/><path fill="#fff" d="M10.6 14.6l-2.2-2.2-1.1 1.1 3.3 3.3 6-6-1.1-1.1-4.9 4.9z"/></svg>
+        </h1>
+        <p class="acct-email" id="acctEmail"></p>
+      </div>
+
+      <section class="acct-card">
+        <h2>Personal details</h2>
+        <div class="acct-rows" id="acctRows"></div>
+      </section>
+
+      <section class="acct-card">
+        <h2>Security Settings</h2>
+        <div class="acct-rows">
+          <div class="acct-row"><span>Password:</span><b>••••••••</b><button class="acct-row-action" type="button">Change</button></div>
+          <div class="acct-row"><span>Two-factor auth:</span><b>Off</b><button class="acct-row-action" type="button">Enable</button></div>
+          <div class="acct-row"><span>Active sessions:</span><b>This device</b><button class="acct-row-action" type="button">Manage</button></div>
+        </div>
+      </section>
+
+      <section class="acct-card">
+        <h2>Plan &amp; template</h2>
+        <div class="acct-rows" id="acctPlanRows"></div>
+      </section>
+
+      <button class="acct-signout" id="acctSignOut" type="button">Sign out</button>
+    </div>
+  </main>
+</div>
+
+<script src="js/mp-auth.js"></script>
+<script src="js/account.js"></script>
+</body>
+</html>
