@@ -614,7 +614,7 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
 }
 .work-view{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  margin-top:auto;
+  margin-top:20px;
   align-self:flex-start;
   padding:11px 18px;
   border-radius:999px;

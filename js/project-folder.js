@@ -434,35 +434,46 @@
       var clip = pin.querySelector('[data-phase-clip]');
       var row = pin.querySelector('[data-phase-row]');
       if(!sticky || !clip || !row) return;
-      var metrics = { travel: 0, overflow: 0, stickTop: 88 };
+      var section = pin.closest('.phase-sec') || pin;
+      var metrics = { travel: 0, overflow: 0, stickTop: 88, mobile: false };
 
       function measure(){
         row.style.transform = 'translate3d(0,0,0)';
         pin.style.height = '';
-        if(isMobile()){
-          metrics = { travel: 0, overflow: 0, stickTop: 88 };
-          return;
-        }
         var cs = getComputedStyle(clip);
         var pad = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
         var viewW = Math.max(0, clip.clientWidth - pad);
         var overflow = Math.max(0, row.scrollWidth - viewW);
+        if(isMobile()){
+          /* no pin on mobile — drift the row as the section scrolls through the viewport */
+          metrics = { travel: 0, overflow: overflow, stickTop: 88, mobile: true };
+          return;
+        }
         var barH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bar-h')) || 68;
         var stickTop = barH + 20;
         /* travel = overflow → 1:1 scroll feel; pin only as tall as needed so no extra dead space */
         var travel = overflow > 8 ? overflow : 0;
         pin.style.height = travel > 0 ? (sticky.offsetHeight + travel) + 'px' : '';
-        metrics = { travel: travel, overflow: overflow, stickTop: stickTop };
+        metrics = { travel: travel, overflow: overflow, stickTop: stickTop, mobile: false };
       }
 
       function onScroll(){
-        if(isMobile() || metrics.travel <= 0){
+        if(metrics.overflow <= 8){
           row.style.transform = '';
           return;
         }
+        if(metrics.mobile){
+          /* progress: 0 when section enters from bottom, 1 when it leaves the top */
+          var rect = section.getBoundingClientRect();
+          var vh = window.innerHeight || 1;
+          var p = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+          row.style.transform = 'translate3d('+(-p * metrics.overflow)+'px,0,0)';
+          return;
+        }
+        if(metrics.travel <= 0){ row.style.transform = ''; return; }
         var top = pin.getBoundingClientRect().top;
-        var p = Math.max(0, Math.min(1, (metrics.stickTop - top) / metrics.travel));
-        row.style.transform = 'translate3d('+(-p * metrics.overflow)+'px,0,0)';
+        var pp = Math.max(0, Math.min(1, (metrics.stickTop - top) / metrics.travel));
+        row.style.transform = 'translate3d('+(-pp * metrics.overflow)+'px,0,0)';
       }
 
       measure();
