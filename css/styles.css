@@ -126,17 +126,11 @@ a{color:inherit;text-decoration:none}
 .nav{
   position:sticky;top:0;z-index:50;background:#fff;
   border-bottom:1px solid transparent;transition:border-color .3s ease;
-  transform:translateZ(0);
-  -webkit-backface-visibility:hidden;
-  backface-visibility:hidden;
 }
 .nav.stuck{border-bottom-color:var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:74px;position:relative}
 .mark{
   font-size:21px;font-weight:600;letter-spacing:-.035em;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  text-rendering:geometricPrecision;
 }
 .mark sup{font-size:9px;font-weight:400;top:-.85em;left:1px;position:relative}
 .nav-links{display:flex;gap:38px;align-items:center}
