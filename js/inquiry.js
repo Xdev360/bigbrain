@@ -12,32 +12,32 @@
 
   var categories=[
     {
-      label:'Web design',
+      label:'App design',
       items:[
         {
-          name:'Star Hunt',
-          blurb:'Conversion landing for a betting platform.',
-          image:'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=640&q=80'
+          name:'GOLDEN',
+          blurb:'Master goals → yearly, monthly, weekly, daily.',
+          image:'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=640&q=80'
         },
         {
-          name:'TandF Technology',
-          blurb:'Engineering firm site — built in Framer.',
-          image:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=640&q=80'
+          name:'Lumia Essence',
+          blurb:'Skincare P2P with subscribe and pay-small-small.',
+          image:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=640&q=80'
         }
       ]
     },
     {
-      label:'App design',
+      label:'Web design',
       items:[
         {
-          name:'Malete Foods',
-          blurb:'Campus food ordering — menu, cart, checkout.',
-          image:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=640&q=80'
+          name:'WinTech Studio',
+          blurb:'Agency site that books brand and web work.',
+          image:'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=640&q=80'
         },
         {
-          name:'PlutoTech Wallet',
-          blurb:'Wallet UI made legible beyond crypto natives.',
-          image:'https://images.unsplash.com/photo-1639763483549-9c68de7c1d51?auto=format&fit=crop&w=640&q=80'
+          name:'QAfrica',
+          blurb:'Crew marketplace — browse, book, pay.',
+          image:'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=640&q=80'
         }
       ]
     },
@@ -45,34 +45,29 @@
       label:'Brand identity',
       items:[
         {
-          name:'TandF Technology',
-          blurb:'Visual identity for an engineering firm.',
-          image:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=640&q=80'
-        }
-      ]
-    },
-    {
-      label:'Web3 interfaces',
-      items:[
-        {
-          name:'PlutoTech Wallet',
-          blurb:'Readable wallet flows for everyday users.',
-          image:'https://images.unsplash.com/photo-1639763483549-9c68de7c1d51?auto=format&fit=crop&w=640&q=80'
-        }
-      ]
-    },
-    {
-      label:'Motion & product',
-      items:[
-        {
-          name:'Malete Foods',
-          blurb:'Product UI shaped for slow connections.',
-          image:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=640&q=80'
+          name:'Nicovellor',
+          blurb:'Coded luxury for Velourians — black and white.',
+          image:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=640&q=80'
         },
         {
-          name:'Star Hunt',
-          blurb:'Landing motion and conversion structure.',
-          image:'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=640&q=80'
+          name:'GOLDEN',
+          blurb:'Green system for consistency and focus.',
+          image:'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=640&q=80'
+        }
+      ]
+    },
+    {
+      label:'Graphic design',
+      items:[
+        {
+          name:'Lumia Essence',
+          blurb:'Burgundy and pink campaign + plan explainers.',
+          image:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=640&q=80'
+        },
+        {
+          name:'QAfrica',
+          blurb:'Casting and crew role kits.',
+          image:'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=640&q=80'
         }
       ]
     }

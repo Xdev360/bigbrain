@@ -18,17 +18,17 @@
     "youtube": "https://youtube.com/@xbigbrainnx"
   },
   "services": [
-    "Product UI/UX",
     "Brand identity",
-    "Websites and landings (Framer or code)",
-    "Motion design (Rive, After Effects)",
-    "Web3 interfaces"
+    "Web design",
+    "App design",
+    "Graphic design"
   ],
     "selected_work": [
-      {"name": "Malete Foods", "type": "App design", "year": "2024", "url": "works/malete-foods.html"},
-      {"name": "Star Hunt", "type": "Web design", "year": "2024", "url": "works/star-hunt.html"},
-      {"name": "TandF Technology", "type": "Web + brand identity", "year": "2025", "url": "works/tandf-technology.html"},
-      {"name": "PlutoTech Wallet", "type": "App / Web3", "year": "2024", "url": "works/plutotech-wallet.html"}
+      {"name": "GOLDEN", "type": "Consistency / goals app", "year": "2025", "url": "works/golden.html"},
+      {"name": "WinTech Studio", "type": "Agency brand + web", "year": "2024", "url": "works/wintech-studio.html"},
+      {"name": "QAfrica", "type": "Crew marketplace", "year": "2025", "url": "works/qafrica.html"},
+      {"name": "Lumia Essence", "type": "Skincare commerce app", "year": "2025", "url": "works/lumia-essence.html"},
+      {"name": "Nicovellor", "type": "Luxury network brand", "year": "2025", "url": "works/nicovellor.html"}
     ],
   "studio": {
     "name": "Wintech Studio",
@@ -47,11 +47,11 @@
     },
     {
       "q": "What services do you offer?",
-      "a": "Product UI/UX, brand identity, websites and landings (Framer or code), motion design (Rive, After Effects), and Web3 interfaces."
+      "a": "Brand identity, web design, app design, and graphic design — each phase shows up inside the five project folders."
     },
     {
       "q": "Show selected work",
-      "a": "Selected work: Malete Foods (app, 2024), Star Hunt (web/landing, 2024), TandF Technology (web + identity, 2025), PlutoTech Wallet (app/Web3, 2024). Open any project from the portfolio."
+      "a": "Five projects: GOLDEN (goals/consistency), WinTech Studio (agency), QAfrica (crew marketplace), Lumia Essence (skincare commerce), and Nicovellor (luxury network for Velourians). Open any folder to walk brand → graphics → web → app → outcome."
     },
     {
       "q": "How do I buy a template?",

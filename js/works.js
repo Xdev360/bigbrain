@@ -6,36 +6,44 @@
 
   var projects=[
     {
-      name:'Malete Foods',
-      year:'2024',
-      info:'Campus food ordering — menu, cart and checkout built for slow connections.',
-      roles:['App design','Product UI','UX'],
-      image:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80',
-      href:'works/malete-foods.html'
-    },
-    {
-      name:'Star Hunt',
-      year:'2024',
-      info:'Conversion landing for a betting platform — download, play, support.',
-      roles:['Web design','Landing','Canada'],
-      image:'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=80',
-      href:'works/star-hunt.html'
-    },
-    {
-      name:'TandF Technology',
+      name:'GOLDEN',
       year:'2025',
-      info:'Engineering firm site and visual identity — built in Framer.',
-      roles:['Web design','Brand identity','Framer'],
-      image:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80',
-      href:'works/tandf-technology.html'
+      info:'Consistency app — one master goal broken into yearly, monthly, weekly and daily discipline.',
+      roles:['Brand identity','App design','Web design','Graphic design'],
+      image:'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=1400&q=80',
+      href:'works/golden.html'
     },
     {
-      name:'PlutoTech Wallet',
+      name:'WinTech Studio',
       year:'2024',
-      info:'Wallet UI made legible for people who don’t live in crypto.',
-      roles:['App design','Web3','Product UI'],
-      image:'https://images.unsplash.com/photo-1639763483549-9c68de7c1d51?auto=format&fit=crop&w=1400&q=80',
-      href:'works/plutotech-wallet.html'
+      info:'Agency system — brand identity, websites, motion and delivery.',
+      roles:['Brand identity','Web design','Graphic design','App design'],
+      image:'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80',
+      href:'works/wintech-studio.html'
+    },
+    {
+      name:'QAfrica',
+      year:'2025',
+      info:'Crew marketplace — hire models, makeup, photography and production teams fast.',
+      roles:['Brand identity','App design','Web design','Graphic design'],
+      image:'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1400&q=80',
+      href:'works/qafrica.html'
+    },
+    {
+      name:'Lumia Essence',
+      year:'2025',
+      info:'Skincare commerce — P2P products, subscriptions and pay-small-small.',
+      roles:['Brand identity','App design','Web design','Graphic design'],
+      image:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=1400&q=80',
+      href:'works/lumia-essence.html'
+    },
+    {
+      name:'Nicovellor',
+      year:'2025',
+      info:'Ultra-wealthy network brand — clothing and art for Velourians.',
+      roles:['Brand identity','Web design','Graphic design','App design'],
+      image:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80',
+      href:'works/nicovellor.html'
     }
   ];
 

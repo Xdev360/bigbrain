@@ -65,11 +65,10 @@
   var HOVER_DWELL=4000; /* wait here before flying to the next hover */
 
   var SERVICE_PITCH={
-    'Brand identity':'A mark people remember is the cheapest ad you\'ll ever run — let\'s make yours impossible to forget.',
-    'Website':'Your site should sell while you sleep. I build pages with one clear path to yes.',
-    'Product Design':'Good UX isn\'t decoration — it\'s fewer drop-offs and more people finishing what they started.',
-    'Motion & Video':'Motion holds attention longer than static. That\'s more time to convince someone you\'re the one.',
-    'Development':'Fast, clean builds that ship on time — so your idea isn\'t still "almost ready" next quarter.'
+    'Brand identity':'A mark people remember is the cheapest ad you\'ll ever run — see it across all five project folders.',
+    'Web design':'Sites that explain and convert — open the web phase inside each project.',
+    'App design':'Product UI people finish — jump into the app phase of any selected build.',
+    'Graphic design':'Campaign and print that match the system — same five projects, graphics lens.'
   };
   var audioCtx=null,master=null,filter=null,sub=null,pads=[],hatTimer=null,kickTimer=null;
   var analyser=null,freqData=null,mediaSource=null,bassSmooth=0,bassPrev=0,bassHit=0,bassAvg=0.12;

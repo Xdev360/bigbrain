@@ -1,0 +1,71 @@
+PROJECT ASSET FORM — fill this and drop files in assets/projects/
+================================================================
+Specs: JPG/WebP · ~400KB each · use exact filenames below
+Frame sizes (must match — don’t crop to a random box):
+  brand-*-01…03   → 1920×1080 (16:9) — shown scaled down in a row
+  graphic-*-01…03 → Instagram carousel 1080×1350 (4:5) — continuous row
+  web-*-01…03     → desktop hero ~1440×900 (16:10) — scaled down
+  app-*-01…03     → phone 9:19.5 — all phones on one row together
+  *-cover.jpg     → 16:10 context image
+  liveUrl         → set in js/projects-data.js for “View Live”
+
+Per phase image also write one short guide line (what BigBrain says on open).
+
+
+--------------------------------------------------------------------
+1) GOLDEN (green)   assets/projects/golden/
+--------------------------------------------------------------------
+[ ] golden-cover.jpg
+[ ] golden-brand-01.jpg … golden-brand-03.jpg
+[ ] golden-graphic-01.jpg … golden-graphic-03.jpg
+[ ] golden-web-01.jpg … golden-web-03.jpg
+[ ] golden-app-01.jpg … golden-app-03.jpg
+Guide lines / outcomes: _________________________________
+
+
+--------------------------------------------------------------------
+2) WinTech Studio (black & white)   assets/projects/wintech-studio/
+--------------------------------------------------------------------
+[ ] wintech-cover.jpg
+[ ] wintech-brand-01.jpg … wintech-brand-03.jpg
+[ ] wintech-graphic-01.jpg … wintech-graphic-03.jpg
+[ ] wintech-web-01.jpg … wintech-web-03.jpg
+[ ] wintech-app-01.jpg … wintech-app-03.jpg
+Guide lines / outcomes: _________________________________
+
+
+--------------------------------------------------------------------
+3) QAfrica (dark green)   assets/projects/qafrica/
+--------------------------------------------------------------------
+[ ] qafrica-cover.jpg
+[ ] qafrica-brand-01.jpg … qafrica-brand-03.jpg
+[ ] qafrica-graphic-01.jpg … qafrica-graphic-03.jpg
+[ ] qafrica-web-01.jpg … qafrica-web-03.jpg
+[ ] qafrica-app-01.jpg … qafrica-app-03.jpg
+Guide lines / outcomes: _________________________________
+
+
+--------------------------------------------------------------------
+4) Lumia Essence (burgundy + pink)   assets/projects/lumia-essence/
+--------------------------------------------------------------------
+[ ] lumia-cover.jpg
+[ ] lumia-brand-01.jpg … lumia-brand-03.jpg
+[ ] lumia-graphic-01.jpg … lumia-graphic-03.jpg
+[ ] lumia-web-01.jpg … lumia-web-03.jpg
+[ ] lumia-app-01.jpg … lumia-app-03.jpg
+Guide lines / outcomes: _________________________________
+
+
+--------------------------------------------------------------------
+5) Nicovellor (black & white · Velourians)   assets/projects/nicovellor/
+--------------------------------------------------------------------
+[ ] nicovellor-cover.jpg
+[ ] nicovellor-brand-01.jpg … nicovellor-brand-03.jpg
+[ ] nicovellor-graphic-01.jpg … nicovellor-graphic-03.jpg
+[ ] nicovellor-web-01.jpg … nicovellor-web-03.jpg
+[ ] nicovellor-app-01.jpg … nicovellor-app-03.jpg
+Guide lines / outcomes: _________________________________
+
+
+TOTAL: 5 × (1 cover + 12 phase) = 65 images
+When ready: drop files in those folders and tell me.
