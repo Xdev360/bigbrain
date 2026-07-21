@@ -556,6 +556,14 @@ body[data-project-theme="nicovellor"] .phase-outcome{background:#111}
   position:sticky;
   top:calc(var(--bar-h) + 20px);
 }
+/* while a row is scrubbing, fill the viewport so the next section
+   stays hidden until the images finish; content stays vertically centered */
+.phase-pin.is-scrub .phase-pin-sticky{
+  min-height:calc(100vh - var(--bar-h) - 20px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
 /* extra breathing room between the copy and the images */
 .phase-pin .phase-in{margin-bottom:28px}
 .phase-row-clip{
@@ -794,7 +802,8 @@ body.lb-open{overflow:hidden}
   /* mobile: no pin — images drift sideways as you scroll past the section */
   .phase-sec{padding-block:48px}
   .phase-pin{height:auto!important}
-  .phase-pin-sticky{position:relative;top:auto}
+  .phase-pin.is-scrub .phase-pin-sticky,
+  .phase-pin-sticky{position:relative;top:auto;min-height:0;display:block}
   .phase-pin .phase-in{margin-bottom:22px}
   .phase-row-clip{
     overflow:hidden;

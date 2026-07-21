@@ -440,6 +440,7 @@
       function measure(){
         row.style.transform = 'translate3d(0,0,0)';
         pin.style.height = '';
+        pin.classList.remove('is-scrub');
         var cs = getComputedStyle(clip);
         var pad = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
         var viewW = Math.max(0, clip.clientWidth - pad);
@@ -451,9 +452,12 @@
         }
         var barH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bar-h')) || 68;
         var stickTop = barH + 20;
-        /* travel = overflow → 1:1 scroll feel; pin only as tall as needed so no extra dead space */
         var travel = overflow > 8 ? overflow : 0;
-        pin.style.height = travel > 0 ? (sticky.offsetHeight + travel) + 'px' : '';
+        /* fill the viewport while scrubbing so the next section can't scroll in early */
+        if(travel > 0){
+          pin.classList.add('is-scrub');
+          pin.style.height = (sticky.offsetHeight + travel) + 'px';
+        }
         metrics = { travel: travel, overflow: overflow, stickTop: stickTop, mobile: false };
       }
 
