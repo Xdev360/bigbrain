@@ -550,20 +550,28 @@
 
       function onScroll(){
         if(metrics.overflow <= 8){
+          row.classList.remove('is-moving');
           row.style.transform = '';
           return;
         }
         if(metrics.mobile){
-          /* progress: 0 when section enters from bottom, 1 when it leaves the top */
           var rect = section.getBoundingClientRect();
           var vh = window.innerHeight || 1;
           var p = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+          var moving = p > 0 && p < 1;
+          row.classList.toggle('is-moving', moving);
           row.style.transform = 'translate3d('+(-p * metrics.overflow)+'px,0,0)';
           return;
         }
-        if(metrics.travel <= 0){ row.style.transform = ''; return; }
+        if(metrics.travel <= 0){
+          row.classList.remove('is-moving');
+          row.style.transform = '';
+          return;
+        }
         var top = pin.getBoundingClientRect().top;
         var pp = Math.max(0, Math.min(1, (metrics.stickTop - top) / metrics.travel));
+        var active = pp > 0 && pp < 1;
+        row.classList.toggle('is-moving', active);
         row.style.transform = 'translate3d('+(-pp * metrics.overflow)+'px,0,0)';
       }
 
