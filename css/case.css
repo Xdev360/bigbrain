@@ -365,45 +365,56 @@ body.folder-open{
 .folder-hero{
   padding:clamp(28px,5vw,56px) 0 12px;
   position:relative;z-index:2;
+  /* isolate swipe transforms from nav / page chrome */
+  isolation:isolate;
+  contain:layout style;
 }
 .folder-stage{
   max-width:var(--max);margin:0 auto;
 }
 .folder-viewport{
   position:relative;
-  overflow-x:auto;overflow-y:visible;
-  scroll-snap-type:x proximity;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
+  overflow:hidden;
+  padding:18px 0 10px;
   touch-action:pan-y;
-  padding:12px 0 8px;
-  /* bleed to viewport edge on the right so cards can scroll, keep left on wrap pad */
-  margin-right:calc(-1 * var(--pad));
-  padding-right:var(--pad);
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+  /* allow peeks without clipping the lift */
+  margin-inline:calc(-1 * min(24px, var(--pad)));
+  padding-inline:min(24px, var(--pad));
 }
+.folder-viewport.is-dragging{cursor:grabbing}
 .folder-viewport::-webkit-scrollbar{display:none}
 
 .folder-strip-track{
   display:flex;
-  align-items:stretch;
-  gap:clamp(28px,3.5vw,48px);
+  align-items:flex-end;
+  gap:clamp(22px,3vw,40px);
   width:max-content;
-  min-width:100%;
-  justify-content:flex-start;
-  padding-inline:0;
+  will-change:transform;
+  transform:translate3d(0,0,0);
+  transition:transform .42s cubic-bezier(.22,.61,.36,1);
 }
+.folder-viewport.is-dragging .folder-strip-track{transition:none}
+
 .folder-card{
   position:relative;
   flex:0 0 auto;
-  width:min(280px, calc((100vw - 96px) / 3.2));
-  max-width:280px;
-  scroll-snap-align:start;
-  opacity:.5;
-  transition:opacity .25s ease,transform .25s ease;
+  width:min(240px,62vw);
+  opacity:.32;
+  transform:scale(.92) translateY(4px);
+  transition:opacity .35s ease,transform .35s cubic-bezier(.22,.61,.36,1);
+  pointer-events:auto;
 }
 .folder-card.is-active{
   opacity:1;
-  transform:translateY(-6px);
+  transform:scale(1) translateY(-8px);
+  z-index:2;
+}
+.folder-card.is-near{
+  opacity:.48;
+  transform:scale(.95) translateY(0);
 }
 .folder-hit{
   display:flex;flex-direction:column;align-items:center;text-align:center;
@@ -423,7 +434,9 @@ body.folder-open{
 .os-folder{
   position:relative;display:block;width:100%;max-width:200px;
   margin-inline:auto;
+  transition:transform .4s cubic-bezier(.22,.61,.36,1);
 }
+.folder-card:hover .os-folder{transform:translateY(-6px)}
 .os-folder-svg{display:block;width:100%;height:auto}
 /* reserved center slot for project logo (add later) */
 .folder-logo-slot{
@@ -432,11 +445,10 @@ body.folder-open{
   transform:translate(-50%,-50%);
   width:28%;height:28%;
   border-radius:10px;
-  /* empty on purpose — logo drops in here later */
   pointer-events:none;
 }
 .folder-title{
-  font-size:clamp(20px,2.2vw,26px);font-weight:600;letter-spacing:-.035em;line-height:1.1;
+  font-size:clamp(18px,2vw,24px);font-weight:600;letter-spacing:-.035em;line-height:1.1;
   color:#131313;max-width:14ch;width:100%;
   text-align:center;margin:0 auto;
 }
@@ -446,9 +458,8 @@ body.folder-open{
 }
 
 @media(min-width:901px){
-  .folder-strip-track{gap:clamp(32px,4vw,48px)}
-  .folder-card{width:260px;max-width:260px}
-  .os-folder{max-width:200px}
+  .folder-card{width:220px}
+  .os-folder{max-width:190px}
   .folder-strip-hint{display:none}
 }
 
@@ -782,21 +793,11 @@ body.lb-open{overflow:hidden}
     position:relative;top:auto;
   }
   .folder-viewport{margin-right:0;padding-right:0}
-  .folder-strip-track{
-    width:100%;
-    gap:0;
-    justify-content:flex-start;
-    transition:transform .38s cubic-bezier(.22,.61,.36,1);
-  }
   .folder-card{
-    flex:0 0 100%;
-    width:100%;
-    max-width:none;
-    opacity:1;
-    transform:none;
+    width:min(200px,58vw);
   }
-  .folder-title{font-size:clamp(24px,7vw,30px)}
-  .os-folder{max-width:min(220px,58vw)}
+  .folder-title{font-size:clamp(18px,5.5vw,24px)}
+  .os-folder{max-width:min(180px,52vw)}
   .folder-strip-hint{display:block}
   .shot-lb-guide{align-items:flex-start}
   /* mobile: no pin — images drift sideways as you scroll past the section */

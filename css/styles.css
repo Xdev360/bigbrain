@@ -871,29 +871,15 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
   position:relative;
   min-height:0;
   height:auto;
-  perspective:1400px;
+  perspective:1200px;
   outline:none;
   cursor:grab;
-  overflow:visible;
+  overflow:hidden;
   touch-action:pan-y;
-  padding:12px 0 8px;
 }
 .work-stage.is-grabbing{cursor:grabbing}
-.work-rail{
-  --drag:0px;
-  position:relative;
-  width:100%;
-  min-height:0;
-  display:block;
-  transform:translateX(var(--drag));
-  transition:transform .18s ease-out;
-}
-.work-stage.is-grabbing .work-rail{transition:none}
-
 .work-card{
-  position:absolute;
-  left:50%;top:0;
-  width:min(100%,920px);
+  position:relative;
   display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
   gap:14px;
@@ -906,55 +892,24 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
   box-shadow:0 18px 50px -28px rgba(0,0,0,.35);
   transform-origin:center center;
   will-change:transform,opacity;
-  transform:translateX(-50%) translateX(78%) scale(.88) rotateY(-14deg);
-  opacity:0;
-  z-index:1;
-  transition:
-    transform .48s cubic-bezier(.22,.61,.36,1),
-    opacity .36s ease,
-    box-shadow .35s ease;
 }
-/* active: in-flow so the rail gets real height, then centered */
-.work-card.is-active,
-.work-card[data-off="0"]{
-  position:relative;
-  left:auto;top:auto;
-  width:min(92%,920px);
-  margin-inline:auto;
-  transform:translateX(0) scale(1) rotateY(0);
-  opacity:1;
-  z-index:5;
-  box-shadow:0 28px 64px -30px rgba(0,0,0,.42);
+.work-card.is-out{
+  animation:work-card-out .15s cubic-bezier(.4,0,1,1) forwards;
 }
-/* next peek: right side, soft opacity */
-.work-card[data-off="1"]{
-  transform:translateX(-50%) translateX(68%) scale(.9) rotateY(-10deg);
-  opacity:.28;
-  z-index:3;
+.work-card.is-in{
+  animation:work-card-in .32s cubic-bezier(.15,.85,.25,1) forwards;
 }
-/* prev peek: left side */
-.work-card[data-off="-1"]{
-  transform:translateX(-50%) translateX(-68%) scale(.9) rotateY(10deg);
-  opacity:.22;
-  z-index:2;
+@keyframes work-card-out{
+  0%{opacity:1;transform:translateX(0)}
+  100%{opacity:0;transform:translateX(-52%) scale(.98)}
 }
-/* far cards stay off-stage */
-.work-card[data-off="2"],
-.work-card[data-off="-2"]{
-  transform:translateX(-50%) translateX(110%) scale(.82);
-  opacity:0;z-index:0;
+@keyframes work-card-in{
+  0%{opacity:0;transform:translateX(58%)}
+  58%{opacity:1;transform:translateX(-7%)}
+  72%{transform:translateX(3.5%)}
+  84%{transform:translateX(-1.8%)}
+  100%{opacity:1;transform:translateX(0)}
 }
-
-/* click / tap: short spin into center */
-.work-card.is-spin{
-  animation:work-card-spin .52s cubic-bezier(.22,.61,.36,1);
-}
-@keyframes work-card-spin{
-  0%{transform:scale(.94) rotateY(18deg)}
-  55%{transform:scale(1.02) rotateY(-6deg)}
-  100%{transform:scale(1) rotateY(0)}
-}
-
 .work-card-copy{
   display:flex;flex-direction:column;gap:12px;
   padding:clamp(16px,2.5vw,24px) clamp(12px,2vw,18px);
@@ -1008,7 +963,7 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
 .work-card-folder{
   position:relative;
   display:flex;align-items:center;justify-content:center;
-  min-height:260px;height:100%;
+  min-height:0;height:100%;
   border-radius:22px;
   overflow:hidden;
   background:
@@ -1021,19 +976,9 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
   display:block;width:min(60%,240px);
   filter:drop-shadow(0 24px 34px rgba(0,0,0,.18));
   transform:translateZ(0);
-  transition:transform .45s cubic-bezier(.22,.61,.36,1);
+  transition:transform .5s cubic-bezier(.22,.61,.36,1);
 }
-/* hover lift: any visible card / folder */
-.work-card:hover .work-folder,
-.work-card.is-active:hover .work-folder{
-  transform:translateY(-10px) scale(1.04);
-}
-@media(hover:hover){
-  .work-card[data-off="1"]:hover,
-  .work-card[data-off="-1"]:hover{
-    opacity:.4;
-  }
-}
+.work-card:hover .work-folder{transform:translateY(-6px) scale(1.02)}
 .work-folder-svg{display:block;width:100%;height:auto}
 .work-view{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
@@ -1090,64 +1035,15 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
 @media(max-width:820px){
   .works-head{text-align:center}
   .works-head .sec-note{margin-inline:auto}
-  .work-stage{
-    overflow:hidden;
-    padding:8px 0 4px;
-  }
-  .work-rail{min-height:0;padding:4px 0 12px}
+  .work-stage{height:auto;min-height:0}
   .work-card{
-    width:92%;
     grid-template-columns:1fr;
     padding:20px;border-width:8px;border-radius:24px;gap:18px;
-  }
-  .work-card.is-active,
-  .work-card[data-off="0"]{
-    position:relative;
-    left:auto;top:auto;
-    width:92%;
-    margin-inline:auto;
-    transform:none;
-    opacity:1;z-index:5;
-  }
-  /* next card peeks on the right with low opacity */
-  .work-card[data-off="1"]{
-    position:absolute;
-    left:50%;top:0;
-    width:92%;
-    transform:translateX(-18%) scale(.94);
-    opacity:.34;
-    z-index:3;
-    pointer-events:none;
-  }
-  .work-card[data-off="-1"]{
-    position:absolute;
-    left:50%;top:0;
-    width:92%;
-    transform:translateX(-82%) scale(.94);
-    opacity:.18;
-    z-index:2;
-    pointer-events:none;
-  }
-  .work-card[data-off="2"],
-  .work-card[data-off="-2"]{
-    display:none;
-  }
-  .work-card.is-spin{
-    animation:work-card-spin-m .45s cubic-bezier(.22,.61,.36,1);
-  }
-  @keyframes work-card-spin-m{
-    0%{transform:translateX(14%) scale(.96);opacity:.65}
-    100%{transform:none;opacity:1}
   }
   .work-card-media{order:-1;min-height:220px;height:220px}
   .work-card-folder{order:-1;min-height:230px;height:230px}
   .work-card-folder .work-folder{width:min(58%,200px)}
   .work-card-copy{min-height:0;height:auto;padding:12px 10px 8px}
-  .work-card:hover .work-folder{transform:translateY(-8px) scale(1.03)}
-}
-
-@media(prefers-reduced-motion:reduce){
-  .work-card,.work-rail,.work-folder{transition:none!important;animation:none!important}
 }
 
 /* ---------- services accordion ---------- */

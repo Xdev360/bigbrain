@@ -1,4 +1,4 @@
-/* Selected work — centered loop carousel, swipe-snap + haptic, hover lift */
+/* Selected work — fixed stage; sliding dots; tap flips card only */
 (function(){
   var stage=document.getElementById('workStage');
   var dotsHost=document.getElementById('workDots');
@@ -47,14 +47,14 @@
     }
   ];
 
-  var N=projects.length;
   var index=0;
   var busy=false;
-  var rail=null;
-  var cards=[];
+  var touchX=null;
+  var swiped=false;
+  var OUT_MS=150;
+  var IN_MS=320;
   var thumb=null;
   var track=null;
-  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   function pillHtml(roles){
     return roles.map(function(r){
@@ -94,10 +94,10 @@
       '</span>';
   }
 
-  function cardHtml(p,i){
+  function cardHtml(p){
     var tint=(p.theme&&p.theme.secondary)||'#e9e9e9';
     return ''+
-      '<article class="work-card" data-work-card data-i="'+i+'" tabindex="-1">'+
+      '<article class="work-card" data-work-card>'+
         '<div class="work-card-copy">'+
           '<p class="work-card-kicker">'+p.year+'</p>'+
           '<h3>'+p.name+'</h3>'+
@@ -114,19 +114,6 @@
       '</article>';
   }
 
-  /* shortest signed distance on the loop: -floor(N/2) .. +floor(N/2) */
-  function ringOff(i,active){
-    var d=((i-active)%N+N)%N;
-    if(d>Math.floor(N/2)) d-=N;
-    return d;
-  }
-
-  function haptic(){
-    try{
-      if(navigator.vibrate) navigator.vibrate([18,28,36]);
-    }catch(e){}
-  }
-
   function buildDots(){
     dotsHost.innerHTML='';
     track=document.createElement('div');
@@ -135,10 +122,10 @@
       var b=document.createElement('button');
       b.type='button';
       b.className='work-dot';
-      b.setAttribute('aria-label','Go to '+projects[i].name);
+      b.setAttribute('aria-label','Project '+(i+1));
       b.addEventListener('click',function(e){
         e.stopPropagation();
-        goTo(i,'dot');
+        goTo(i);
       });
       track.appendChild(b);
     });
@@ -159,159 +146,95 @@
     var r=dot.getBoundingClientRect();
     var x=r.left-tr.left+(r.width/2)-(thumb.offsetWidth/2);
     thumb.style.transform='translateX('+x+'px)';
-    dots.forEach(function(d,i){
-      if(i===index) d.setAttribute('aria-current','true');
-      else d.removeAttribute('aria-current');
-    });
   }
 
-  function layout(animate){
-    cards.forEach(function(card){
-      var i=parseInt(card.getAttribute('data-i'),10);
-      var off=ringOff(i,index);
-      var abs=Math.abs(off);
-      card.dataset.off=String(off);
-      card.classList.toggle('is-active',off===0);
-      card.setAttribute('aria-hidden',off===0?'false':'true');
-      if(off===0) card.removeAttribute('tabindex');
-      else card.setAttribute('tabindex','-1');
-
-      /* hide far cards so only center + neighbors show */
-      var show=abs<=1;
-      card.style.visibility=show?'visible':'hidden';
-      card.style.pointerEvents=off===0?'auto':'none';
-      if(!animate) card.style.transition='none';
-    });
-    if(!animate){
-      void stage.offsetWidth;
-      cards.forEach(function(c){ c.style.transition=''; });
+  function mount(withIn){
+    stage.innerHTML=cardHtml(projects[index]);
+    var card=stage.querySelector('[data-work-card]');
+    var view=stage.querySelector('.work-view');
+    if(view){
+      view.addEventListener('click',function(e){ e.stopPropagation(); });
+    }
+    if(withIn && card){
+      void card.offsetWidth;
+      card.classList.add('is-in');
+      setTimeout(function(){
+        card.classList.remove('is-in');
+        busy=false;
+      },IN_MS);
+    }else{
+      busy=false;
     }
     syncThumb();
-    stage.setAttribute('aria-label','Selected work: '+projects[index].name+'. Swipe or click for the next project.');
   }
 
-  function goTo(next,how){
-    next=((next%N)+N)%N;
-    if(next===index || busy) return;
-    busy=true;
-    var dir=ringOff(next,index);
-    index=next;
-    if(how==='swipe' || how==='tap') haptic();
-
-    cards.forEach(function(card){
-      card.classList.remove('is-spin');
-    });
-    if(how==='tap' || how==='dot'){
-      var active=cards[index];
-      if(active && !reduced){
-        active.classList.add('is-spin');
-        setTimeout(function(){ active.classList.remove('is-spin'); },520);
-      }
+  function goTo(next){
+    if(busy) return;
+    next=((next%projects.length)+projects.length)%projects.length;
+    if(next===index) return;
+    var card=stage.querySelector('[data-work-card]');
+    if(!card){
+      index=next;
+      syncThumb();
+      mount(true);
+      return;
     }
-
-    layout(true);
-    stage.classList.toggle('is-dir-next',dir>0);
-    stage.classList.toggle('is-dir-prev',dir<0);
-
-    setTimeout(function(){ busy=false; },reduced?80:420);
+    busy=true;
+    index=next;
+    syncThumb();
+    card.classList.remove('is-in');
+    card.classList.add('is-out');
+    setTimeout(function(){
+      mount(true);
+    },OUT_MS);
   }
 
-  function next(){ goTo(index+1,'swipe'); }
-  function prev(){ goTo(index-1,'swipe'); }
+  function next(){ goTo(index+1); }
 
-  function mount(){
-    rail=document.createElement('div');
-    rail.className='work-rail';
-    rail.innerHTML=projects.map(cardHtml).join('');
-    stage.innerHTML='';
-    stage.appendChild(rail);
-    cards=Array.prototype.slice.call(stage.querySelectorAll('[data-work-card]'));
+  stage.addEventListener('click',function(e){
+    if(e.target.closest('a')) return;
+    if(swiped){ swiped=false; return; }
+    next();
+  });
 
-    cards.forEach(function(card){
-      var view=card.querySelector('.work-view');
-      if(view) view.addEventListener('click',function(e){ e.stopPropagation(); });
-
-      /* inactive / active: click brings that card to center with spin */
-      card.addEventListener('click',function(e){
-        if(e.target.closest('a')) return;
-        if(swiped){ swiped=false; return; }
-        var i=parseInt(card.getAttribute('data-i'),10);
-        if(i===index) goTo(index+1,'tap');
-        else goTo(i,'tap');
-      });
-    });
-
-    layout(false);
-  }
-
-  /* ---- swipe / drag: snaps as soon as threshold is crossed ---- */
   var dragActive=false;
-  var touchX=null;
-  var swiped=false;
-  var dragDx=0;
-  var SWIPE_MIN=36;
-  var snapped=false;
+  var SWIPE_MIN=45;
 
   stage.addEventListener('pointerdown',function(e){
     if(e.target.closest('a')) return;
-    if(busy) return;
     dragActive=true;
-    snapped=false;
     touchX=e.clientX;
-    dragDx=0;
     swiped=false;
     stage.classList.add('is-grabbing');
-    try{ stage.setPointerCapture(e.pointerId); }catch(err){}
   });
 
   stage.addEventListener('pointermove',function(e){
-    if(!dragActive || touchX===null || busy) return;
-    dragDx=e.clientX-touchX;
-    if(Math.abs(dragDx)>6) swiped=true;
-
-    /* live drag follow on the rail (subtle) */
-    if(rail && !snapped){
-      var pull=Math.max(-72,Math.min(72,dragDx*0.42));
-      rail.style.setProperty('--drag',pull+'px');
-    }
-
-    /* snap the moment threshold is crossed — no need to release first */
-    if(!snapped && Math.abs(dragDx)>=SWIPE_MIN){
-      snapped=true;
-      rail.style.setProperty('--drag','0px');
-      if(dragDx<0) next();
-      else prev();
-      dragActive=false;
-      stage.classList.remove('is-grabbing');
-      touchX=null;
-    }
+    if(!dragActive || touchX===null) return;
+    if(Math.abs(e.clientX-touchX)>8) swiped=true;
   });
 
-  function endDrag(){
+  function endDrag(e){
     if(!dragActive) return;
     dragActive=false;
     stage.classList.remove('is-grabbing');
-    if(rail) rail.style.setProperty('--drag','0px');
+    if(touchX===null) return;
+    var dx=(e && typeof e.clientX==='number' ? e.clientX : touchX)-touchX;
     touchX=null;
-    dragDx=0;
+    if(Math.abs(dx)<SWIPE_MIN) return;
+    swiped=true;
+    if(dx<0) next();
+    else goTo(index-1);
   }
 
-  stage.addEventListener('pointerup',endDrag);
-  stage.addEventListener('pointercancel',endDrag);
-  stage.addEventListener('pointerleave',function(){
-    if(dragActive && !snapped) endDrag();
+  window.addEventListener('pointerup',endDrag);
+  window.addEventListener('pointercancel',function(){
+    dragActive=false;
+    touchX=null;
+    stage.classList.remove('is-grabbing');
   });
 
-  /* keyboard */
-  stage.addEventListener('keydown',function(e){
-    if(e.key==='ArrowRight' || e.key===' '){ e.preventDefault(); goTo(index+1,'tap'); }
-    else if(e.key==='ArrowLeft'){ e.preventDefault(); goTo(index-1,'tap'); }
-  });
-
-  window.addEventListener('resize',function(){
-    layout(false);
-  });
+  window.addEventListener('resize',syncThumb);
 
   buildDots();
-  mount();
+  mount(false);
 })();

@@ -290,95 +290,182 @@
     document.documentElement.style.setProperty('--project-accent', p.theme.primary || p.theme.accent || '#111');
   }
 
-  var audioCtx = null;
-  function playTick(){
-    try{ if(navigator.vibrate) navigator.vibrate(12); }catch(e){}
-    try{
-      var AC = window.AudioContext || window.webkitAudioContext;
-      if(!AC) return;
-      if(!audioCtx) audioCtx = new AC();
-      if(audioCtx.state === 'suspended') audioCtx.resume();
-      var t0 = audioCtx.currentTime;
-      var osc = audioCtx.createOscillator();
-      var gain = audioCtx.createGain();
-      osc.type = 'square';
-      osc.frequency.setValueAtTime(1700, t0);
-      osc.frequency.exponentialRampToValueAtTime(850, t0 + 0.028);
-      gain.gain.setValueAtTime(0.0001, t0);
-      gain.gain.exponentialRampToValueAtTime(0.04, t0 + 0.003);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.035);
-      osc.connect(gain); gain.connect(audioCtx.destination);
-      osc.start(t0); osc.stop(t0 + 0.04);
-    }catch(e){}
+  function hapticSnap(){
+    try{ if(navigator.vibrate) navigator.vibrate([16, 24, 32]); }catch(e){}
+  }
+  function hapticSoft(){
+    try{ if(navigator.vibrate) navigator.vibrate(10); }catch(e){}
   }
 
-  /* ---------- Folder strip ---------- */
+  /* ---------- Folder strip: peek neighbors, drag/swipe snap, vibrate only ---------- */
   var track = document.getElementById('folderTrack');
   var viewport = document.getElementById('folderViewport');
   var hint = document.getElementById('folderHint');
   var navigating = false;
+  var baseX = 0;
+  var dragX = 0;
 
-  function goProject(i, withTick){
+  function cardStep(){
+    var card = track && track.querySelector('.folder-card');
+    if(!card) return 240;
+    var gap = parseFloat(getComputedStyle(track).gap) || 32;
+    return card.offsetWidth + gap;
+  }
+
+  function alignX(i){
+    var step = cardStep();
+    var vw = viewport ? viewport.clientWidth : 0;
+    var card = track.querySelector('.folder-card');
+    var cw = card ? card.offsetWidth : 220;
+    /* center the active folder so left + right peeks stay visible */
+    return (vw * 0.5) - (cw * 0.5) - (i * step);
+  }
+
+  function paintFolder(animate){
+    if(!track) return;
+    var cards = track.querySelectorAll('.folder-card');
+    cards.forEach(function(card, i){
+      var dist = Math.abs(i - idx);
+      card.classList.toggle('is-active', i === idx);
+      card.classList.toggle('is-near', dist === 1);
+      if(i === idx) card.setAttribute('aria-current', 'page');
+      else card.removeAttribute('aria-current');
+    });
+    baseX = alignX(idx);
+    dragX = 0;
+    if(animate === false) track.style.transition = 'none';
+    track.style.transform = 'translate3d('+baseX+'px,0,0)';
+    if(animate === false){
+      void track.offsetWidth;
+      track.style.transition = '';
+    }
+    if(hint){
+      hint.hidden = false;
+      hint.textContent = 'Swipe';
+    }
+  }
+
+  function goProject(i, fromSwipe){
     i = ((i % all.length) + all.length) % all.length;
     if(navigating) return;
     var target = all[i];
     if(!target) return;
-    if(withTick) playTick();
+
     if(target.id === id){
       idx = i;
-      paintFolder();
+      paintFolder(true);
+      if(fromSwipe) hapticSoft();
       return;
     }
+
+    /* snap the strip first, vibrate, then navigate — only the strip moves */
+    idx = i;
+    paintFolder(true);
+    hapticSnap();
     navigating = true;
-    location.href = target.id + '.html';
+    setTimeout(function(){
+      location.href = target.id + '.html';
+    }, 280);
   }
 
-  function paintFolder(){
-    var cards = track.querySelectorAll('.folder-card');
-    cards.forEach(function(card, i){
-      card.classList.toggle('is-active', i === idx);
-    });
-    if(isMobile()){
-      track.style.transform = 'translate3d('+(-idx * 100)+'%,0,0)';
-      if(hint){ hint.hidden = false; hint.textContent = 'Swipe'; }
-    }else{
-      track.style.transform = 'none';
-      if(hint) hint.hidden = true;
-      var activeCard = track.querySelector('.folder-card.is-active');
-      if(activeCard && viewport){
-        /* keep active card on the left content margin */
-        viewport.scrollTo({ left: Math.max(0, activeCard.offsetLeft), behavior: 'smooth' });
-      }
-    }
-  }
-  paintFolder();
-  window.addEventListener('resize', paintFolder, {passive:true});
+  paintFolder(false);
+  window.addEventListener('resize', function(){ paintFolder(false); }, {passive:true});
 
   track.querySelectorAll('[data-go]').forEach(function(btn){
-    btn.addEventListener('click', function(){
+    btn.addEventListener('click', function(e){
+      if(didDrag){ e.preventDefault(); return; }
       var go = btn.getAttribute('data-go');
       var i = all.findIndex(function(x){ return x.id === go; });
       if(i < 0) return;
-      goProject(i, true);
+      goProject(i, false);
     });
   });
 
-  (function(){
-    var startX=0, startY=0;
-    viewport.addEventListener('touchstart', function(e){
-      if(!e.touches[0]) return;
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    }, {passive:true});
-    viewport.addEventListener('touchend', function(e){
-      if(!isMobile() || !e.changedTouches[0]) return;
-      var dx = e.changedTouches[0].clientX - startX;
-      var dy = e.changedTouches[0].clientY - startY;
-      if(Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.35) return;
-      if(dx < 0) goProject(idx + 1, true);
-      else goProject(idx - 1, true);
-    }, {passive:true});
-  })();
+  /* pointer drag — desktop + mobile, only transforms #folderTrack */
+  var dragging = false;
+  var startPX = 0;
+  var startPY = 0;
+  var axis = null; /* 'x' | 'y' */
+  var didDrag = false;
+  var SWIPE_MIN = 42;
+  var pointerId = null;
+
+  function onPointerDown(e){
+    if(navigating || e.button === 2) return;
+    dragging = true;
+    didDrag = false;
+    axis = null;
+    pointerId = e.pointerId;
+    startPX = e.clientX;
+    startPY = e.clientY;
+    dragX = 0;
+    viewport.classList.add('is-dragging');
+    try{ viewport.setPointerCapture(e.pointerId); }catch(err){}
+  }
+
+  function onPointerMove(e){
+    if(!dragging || (pointerId !== null && e.pointerId !== pointerId)) return;
+    var dx = e.clientX - startPX;
+    var dy = e.clientY - startPY;
+
+    if(!axis){
+      if(Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+      axis = Math.abs(dx) > Math.abs(dy) * 1.1 ? 'x' : 'y';
+      if(axis === 'y'){
+        /* let the page scroll — abandon horizontal drag */
+        dragging = false;
+        viewport.classList.remove('is-dragging');
+        track.style.transform = 'translate3d('+baseX+'px,0,0)';
+        return;
+      }
+    }
+    if(axis !== 'x') return;
+
+    e.preventDefault();
+    didDrag = true;
+    dragX = dx;
+    track.style.transform = 'translate3d('+(baseX + dragX)+'px,0,0)';
+  }
+
+  function onPointerUp(e){
+    if(!dragging && axis !== 'x'){
+      dragging = false;
+      viewport.classList.remove('is-dragging');
+      return;
+    }
+    if(pointerId !== null && e.pointerId !== pointerId) return;
+    dragging = false;
+    viewport.classList.remove('is-dragging');
+    pointerId = null;
+
+    if(axis !== 'x'){
+      axis = null;
+      dragX = 0;
+      return;
+    }
+
+    var dx = dragX;
+    axis = null;
+    dragX = 0;
+
+    if(Math.abs(dx) < SWIPE_MIN){
+      /* spring back to active */
+      paintFolder(true);
+      setTimeout(function(){ didDrag = false; }, 40);
+      return;
+    }
+
+    if(dx < 0) goProject(idx + 1, true);
+    else goProject(idx - 1, true);
+    setTimeout(function(){ didDrag = false; }, 40);
+  }
+
+  if(viewport && track){
+    viewport.addEventListener('pointerdown', onPointerDown);
+    viewport.addEventListener('pointermove', onPointerMove, {passive:false});
+    viewport.addEventListener('pointerup', onPointerUp);
+    viewport.addEventListener('pointercancel', onPointerUp);
+  }
 
   /* ---------- Locked form ---------- */
   var lockedForm = document.getElementById('lockedForm');
@@ -391,7 +478,7 @@
       var pass = (p.unlockPassword || '').trim();
       if(pass && val.toLowerCase() === pass.toLowerCase()){
         sessionStorage.setItem(unlockKey, '1');
-        playTick();
+        hapticSnap();
         location.reload();
         return;
       }
