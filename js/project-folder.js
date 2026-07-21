@@ -373,7 +373,8 @@
 
   track.querySelectorAll('[data-go]').forEach(function(btn){
     btn.addEventListener('click', function(e){
-      if(didDrag){ e.preventDefault(); return; }
+      /* only ignore click if this gesture was a real swipe */
+      if(swipedAway){ e.preventDefault(); e.stopPropagation(); return; }
       var go = btn.getAttribute('data-go');
       var i = all.findIndex(function(x){ return x.id === go; });
       if(i < 0) return;
@@ -386,21 +387,20 @@
   var startPX = 0;
   var startPY = 0;
   var axis = null; /* 'x' | 'y' */
-  var didDrag = false;
+  var swipedAway = false; /* true only after a real snap swipe */
   var SWIPE_MIN = 42;
   var pointerId = null;
 
   function onPointerDown(e){
     if(navigating || e.button === 2) return;
+    /* allow normal clicks on the hit button — only start drag tracking */
     dragging = true;
-    didDrag = false;
+    swipedAway = false;
     axis = null;
     pointerId = e.pointerId;
     startPX = e.clientX;
     startPY = e.clientY;
     dragX = 0;
-    viewport.classList.add('is-dragging');
-    try{ viewport.setPointerCapture(e.pointerId); }catch(err){}
   }
 
   function onPointerMove(e){
@@ -409,55 +409,52 @@
     var dy = e.clientY - startPY;
 
     if(!axis){
-      if(Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
-      axis = Math.abs(dx) > Math.abs(dy) * 1.1 ? 'x' : 'y';
+      if(Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+      axis = Math.abs(dx) > Math.abs(dy) * 1.15 ? 'x' : 'y';
       if(axis === 'y'){
-        /* let the page scroll — abandon horizontal drag */
         dragging = false;
-        viewport.classList.remove('is-dragging');
         track.style.transform = 'translate3d('+baseX+'px,0,0)';
         return;
       }
+      /* committed horizontal drag — capture so we keep getting moves */
+      viewport.classList.add('is-dragging');
+      try{ viewport.setPointerCapture(e.pointerId); }catch(err){}
     }
     if(axis !== 'x') return;
 
     e.preventDefault();
-    didDrag = true;
     dragX = dx;
     track.style.transform = 'translate3d('+(baseX + dragX)+'px,0,0)';
   }
 
   function onPointerUp(e){
-    if(!dragging && axis !== 'x'){
-      dragging = false;
-      viewport.classList.remove('is-dragging');
-      return;
-    }
     if(pointerId !== null && e.pointerId !== pointerId) return;
+    var dx = dragX;
+    var wasX = axis === 'x';
     dragging = false;
     viewport.classList.remove('is-dragging');
     pointerId = null;
-
-    if(axis !== 'x'){
-      axis = null;
-      dragX = 0;
-      return;
-    }
-
-    var dx = dragX;
     axis = null;
     dragX = 0;
 
-    if(Math.abs(dx) < SWIPE_MIN){
-      /* spring back to active */
-      paintFolder(true);
-      setTimeout(function(){ didDrag = false; }, 40);
+    if(!wasX){
+      /* pure click / vertical scroll — leave click handlers alone */
+      swipedAway = false;
       return;
     }
 
+    if(Math.abs(dx) < SWIPE_MIN){
+      /* small jitter — spring back, still allow the click */
+      paintFolder(true);
+      swipedAway = false;
+      return;
+    }
+
+    /* real swipe: snap + navigate, suppress the synthetic click */
+    swipedAway = true;
     if(dx < 0) goProject(idx + 1, true);
     else goProject(idx - 1, true);
-    setTimeout(function(){ didDrag = false; }, 40);
+    setTimeout(function(){ swipedAway = false; }, 120);
   }
 
   if(viewport && track){
@@ -550,28 +547,22 @@
 
       function onScroll(){
         if(metrics.overflow <= 8){
-          row.classList.remove('is-moving');
-          row.style.transform = '';
+          row.style.transform = 'translate3d(0,0,0)';
           return;
         }
         if(metrics.mobile){
           var rect = section.getBoundingClientRect();
           var vh = window.innerHeight || 1;
           var p = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
-          var moving = p > 0 && p < 1;
-          row.classList.toggle('is-moving', moving);
           row.style.transform = 'translate3d('+(-p * metrics.overflow)+'px,0,0)';
           return;
         }
         if(metrics.travel <= 0){
-          row.classList.remove('is-moving');
-          row.style.transform = '';
+          row.style.transform = 'translate3d(0,0,0)';
           return;
         }
         var top = pin.getBoundingClientRect().top;
         var pp = Math.max(0, Math.min(1, (metrics.stickTop - top) / metrics.travel));
-        var active = pp > 0 && pp < 1;
-        row.classList.toggle('is-moving', active);
         row.style.transform = 'translate3d('+(-pp * metrics.overflow)+'px,0,0)';
       }
 

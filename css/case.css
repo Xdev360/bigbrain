@@ -1,22 +1,22 @@
 @font-face{
   font-family:"Gellix";
   src:url("../assets/fonts/Gellix-TRIAL-Regular.otf") format("opentype");
-  font-weight:400;font-style:normal;font-display:swap;
+  font-weight:400;font-style:normal;font-display:block;
 }
 @font-face{
   font-family:"Gellix";
   src:url("../assets/fonts/Gellix-TRIAL-Medium.otf") format("opentype");
-  font-weight:500;font-style:normal;font-display:swap;
+  font-weight:500;font-style:normal;font-display:block;
 }
 @font-face{
   font-family:"Gellix";
   src:url("../assets/fonts/Gellix-TRIAL-SemiBold.otf") format("opentype");
-  font-weight:600;font-style:normal;font-display:swap;
+  font-weight:600;font-style:normal;font-display:block;
 }
 @font-face{
   font-family:"Gellix";
   src:url("../assets/fonts/Gellix-TRIAL-Bold.otf") format("opentype");
-  font-weight:700;font-style:normal;font-display:swap;
+  font-weight:700;font-style:normal;font-display:block;
 }
 
 :root{
@@ -73,19 +73,26 @@ img{display:block;max-width:100%;height:auto}
 /* ---------- top bar ---------- */
 .case-bar{
   position:sticky;top:0;z-index:50;
-  /* solid-ish fill (no live backdrop blur) — blur + sticky causes text AA flash */
-  background:rgba(255,255,255,.97);
+  background:#fff;
   border-bottom:1px solid transparent;
+  /* permanent layer — avoids AA flip when sticky engages */
+  transform:translateZ(0);
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
 }
 .case-bar.stuck{border-bottom-color:var(--line)}
 .case-bar-in{
   display:flex;align-items:center;justify-content:space-between;
   height:var(--bar-h);max-width:var(--max);margin:0 auto;padding-inline:var(--pad);
 }
-.mark{
-  font-size:19px;font-weight:600;letter-spacing:-.035em;
+.mark,
+.case-back{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  text-rendering:geometricPrecision;
+}
+.mark{
+  font-size:19px;font-weight:600;letter-spacing:-.035em;
 }
 .mark sup{font-size:9px;font-weight:400;top:-.85em;left:1px;position:relative}
 .case-back{
@@ -324,10 +331,12 @@ img{display:block;max-width:100%;height:auto}
 
 /* ---------- reveal ---------- */
 .reveal{
-  opacity:0;transform:translateY(18px);
+  opacity:0;transform:translate3d(0,18px,0);
   transition:opacity .8s ease,transform .8s ease;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
-.reveal.in{opacity:1;transform:none}
+.reveal.in{opacity:1;transform:translate3d(0,0,0)}
 .reveal.d1{transition-delay:.08s}
 .reveal.d2{transition-delay:.16s}
 .reveal.d3{transition-delay:.24s}
@@ -354,7 +363,7 @@ img{display:block;max-width:100%;height:auto}
 
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
+  .reveal{opacity:1;transform:translate3d(0,0,0)}
   html{scroll-behavior:auto}
   .g-col{transform:none!important}
   .case-body{margin-top:0!important}
@@ -411,20 +420,33 @@ body.folder-open{
   position:relative;
   flex:0 0 auto;
   width:min(240px,62vw);
-  opacity:.32;
+  /* never scale/opacity the title text — that causes the bold AA flash */
+}
+.folder-card .os-folder{
+  opacity:.34;
   transform:scale(.92) translateY(4px);
   transition:opacity .35s ease,transform .35s cubic-bezier(.22,.61,.36,1);
-  pointer-events:auto;
 }
-.folder-card.is-active{
+.folder-card.is-active .os-folder{
   opacity:1;
   transform:scale(1) translateY(-8px);
-  z-index:2;
 }
-.folder-card.is-near{
-  opacity:.48;
+.folder-card.is-near .os-folder{
+  opacity:.5;
   transform:scale(.95) translateY(0);
 }
+.folder-card .folder-title{
+  opacity:.38;
+  transition:opacity .35s ease,color .35s ease;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:geometricPrecision;
+  transform:translateZ(0);
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+}
+.folder-card.is-near .folder-title{opacity:.62}
+.folder-card.is-active .folder-title{opacity:1;color:#131313}
 .folder-hit{
   display:flex;flex-direction:column;align-items:center;text-align:center;
   gap:14px;width:100%;padding:0;border:0;background:transparent;cursor:pointer;
@@ -443,9 +465,10 @@ body.folder-open{
 .os-folder{
   position:relative;display:block;width:100%;max-width:200px;
   margin-inline:auto;
-  transition:transform .4s cubic-bezier(.22,.61,.36,1);
 }
-.folder-card:hover .os-folder{transform:translateY(-6px)}
+.folder-card:hover .os-folder{transform:translateY(-6px) scale(.92)}
+.folder-card.is-near:hover .os-folder{transform:translateY(-6px) scale(.95)}
+.folder-card.is-active:hover .os-folder{transform:translateY(-12px) scale(1)}
 .os-folder-svg{display:block;width:100%;height:auto}
 /* reserved center slot for project logo (add later) */
 .folder-logo-slot{
@@ -488,14 +511,24 @@ body[data-project-theme="nicovellor"] .phase-outcome{background:#111}
   padding-block:clamp(36px,5vw,64px);
   position:relative;
 }
+.context-copy{
+  min-width:0;padding-bottom:8px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:geometricPrecision;
+  transform:translateZ(0);
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+}
 .context-media{min-width:0;align-self:start}
 .context-pin.is-tall .context-media{
   position:sticky;
   top:calc(var(--bar-h) + 28px);
   z-index:2;
-  isolation:isolate;
   transform:translateZ(0);
+  -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
+  contain:paint;
 }
 .context-frame{
   position:relative;width:100%;
@@ -515,7 +548,6 @@ body[data-project-theme="nicovellor"] .phase-outcome{background:#111}
   flex-direction:column;justify-content:flex-end;padding:18px 20px;
   background:linear-gradient(160deg,rgba(12,12,12,.03),rgba(12,12,12,.12)),#ebe6de;
 }
-.context-copy{min-width:0;padding-bottom:8px}
 .context-copy h2{
   margin-top:12px;font-size:clamp(26px,3.4vw,38px);
   font-weight:600;letter-spacing:-.035em;line-height:1.12;max-width:16ch;
@@ -580,7 +612,6 @@ body[data-project-theme="nicovellor"] .phase-outcome{background:#111}
   top:calc(var(--bar-h) + 20px);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  backface-visibility:hidden;
 }
 /* while a row is scrubbing, fill the viewport so the next section
    stays hidden until the images finish; content stays vertically centered */
@@ -590,29 +621,44 @@ body[data-project-theme="nicovellor"] .phase-outcome{background:#111}
   flex-direction:column;
   justify-content:center;
 }
-/* extra breathing room between the copy and the images */
-.phase-pin .phase-in{margin-bottom:28px}
+/* text lives in its own permanent layer so image transforms can't re-AA it */
+.phase-pin .phase-in{
+  position:relative;
+  z-index:1;
+  margin-bottom:28px;
+  transform:translateZ(0);
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:geometricPrecision;
+}
 .phase-pin .phase-in h2,
-.phase-pin .phase-in p{
+.phase-pin .phase-in p,
+.phase-pin .phase-in .eyebrow{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
 .phase-row-clip{
   overflow:hidden;
   width:100%;
-  /* isolate parallax compositing so sibling text doesn't re-AA */
-  isolation:isolate;
+  position:relative;
+  z-index:0;
+  /* own compositor lane, separate from the heading above */
   transform:translateZ(0);
+  -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
+  contain:paint;
 }
 .phase-row{
   display:flex;align-items:flex-start;
   gap:32px;
   width:max-content;
+  /* keep a transform matrix forever — never clear to "none" (layer thrash) */
   transform:translate3d(0,0,0);
+  -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
 }
-.phase-row.is-moving{will-change:transform}
 .shot-tile{
   flex:0 0 auto;border:0;background:transparent;padding:0;cursor:zoom-in;
   text-align:left;

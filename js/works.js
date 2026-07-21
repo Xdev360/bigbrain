@@ -152,8 +152,25 @@
     stage.innerHTML=cardHtml(projects[index]);
     var card=stage.querySelector('[data-work-card]');
     var view=stage.querySelector('.work-view');
+    var folder=stage.querySelector('.work-card-folder');
     if(view){
       view.addEventListener('click',function(e){ e.stopPropagation(); });
+    }
+    /* clicking the folder opens the project (same as View Project) */
+    if(folder){
+      folder.setAttribute('role','link');
+      folder.setAttribute('tabindex','0');
+      folder.setAttribute('aria-label','Open '+projects[index].name);
+      folder.style.cursor='pointer';
+      var openProject=function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href=projects[index].href;
+      };
+      folder.addEventListener('click',openProject);
+      folder.addEventListener('keydown',function(e){
+        if(e.key==='Enter' || e.key===' '){ openProject(e); }
+      });
     }
     if(withIn && card){
       void card.offsetWidth;
