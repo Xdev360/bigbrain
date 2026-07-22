@@ -52,7 +52,7 @@
     {
       name:'Spotlight',
       year:'2025',
-      info:'Open black folder — selected screen work: Google Movie, RESJAM, Yeild Mates.',
+      info:'Open black folder — Google Movie (entertainment OS), RESJAM (marketplace redesign), Yeild Mates.',
       roles:['Brand identity','Web design','Graphic design','App design'],
       theme:{id:'spotlight',primary:'#0A0A0A',secondary:'#2A2A2A'},
       href:'works/spotlight.html'
@@ -132,13 +132,16 @@
 
   function buildDots(){
     dotsHost.innerHTML='';
+    dotsHost.setAttribute('role','group');
+    dotsHost.setAttribute('aria-label','Project pages');
     track=document.createElement('div');
     track.className='work-dots-track';
-    projects.forEach(function(_,i){
+    projects.forEach(function(p,i){
       var b=document.createElement('button');
       b.type='button';
-      b.className='work-dot';
-      b.setAttribute('aria-label','Project '+(i+1));
+      b.className='work-dot'+(i===index?' is-on':'');
+      b.setAttribute('aria-label', p.name);
+      if(i===index) b.setAttribute('aria-current','true');
       b.addEventListener('click',function(e){
         e.stopPropagation();
         goTo(i);
@@ -151,6 +154,30 @@
     track.appendChild(thumb);
     dotsHost.appendChild(track);
     requestAnimationFrame(syncThumb);
+  }
+
+  function syncDots(){
+    if(!track) return;
+    track.querySelectorAll('.work-dot').forEach(function(b,i){
+      var on=i===index;
+      b.classList.toggle('is-on', on);
+      if(on) b.setAttribute('aria-current','true');
+      else b.removeAttribute('aria-current');
+    });
+  }
+
+  function ensureHint(){
+    var wrap=document.getElementById('workShowcase');
+    if(!wrap || wrap.querySelector('.work-key-hint')) return;
+    var hint=document.createElement('p');
+    hint.className='work-key-hint';
+    hint.setAttribute('aria-hidden','true');
+    hint.innerHTML='<span>←</span><span>→</span> to flip';
+    wrap.appendChild(hint);
+    try{
+      if(sessionStorage.getItem('bb-work-keys')==='1') hint.classList.add('is-gone');
+    }catch(e){}
+    window.setTimeout(function(){ hint.classList.add('is-fade'); }, 4200);
   }
 
   function syncThumb(){
@@ -213,12 +240,14 @@
     if(!card){
       index=next;
       syncThumb();
+      syncDots();
       mount(true);
       return;
     }
     busy=true;
     index=next;
     syncThumb();
+    syncDots();
     card.classList.remove('is-in');
     card.classList.add('is-out');
     setTimeout(function(){
@@ -228,10 +257,22 @@
 
   function next(){ goTo(index+1); }
 
+  stage.setAttribute('aria-label','Project card. Arrow keys, tap, or swipe for the next.');
   stage.addEventListener('click',function(e){
     if(e.target.closest('a')) return;
     if(swiped){ swiped=false; return; }
     next();
+  });
+  stage.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight' || e.key==='ArrowDown'){
+      e.preventDefault();
+      try{ sessionStorage.setItem('bb-work-keys','1'); }catch(err){}
+      next();
+    }else if(e.key==='ArrowLeft' || e.key==='ArrowUp'){
+      e.preventDefault();
+      try{ sessionStorage.setItem('bb-work-keys','1'); }catch(err){}
+      goTo(index-1);
+    }
   });
 
   var dragActive=false;
@@ -274,4 +315,5 @@
 
   buildDots();
   mount(false);
+  ensureHint();
 })();

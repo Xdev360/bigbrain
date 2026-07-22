@@ -7,89 +7,89 @@
     {
       id: 'google-movie',
       name: 'Google Movie',
-      productType: 'Product design / streaming UI',
-      industry: 'Entertainment',
+      productType: 'Concept product / streaming OS',
+      industry: 'Entertainment + social',
       date: '2024',
-      stage: 'Completed',
-      body: 'Google Movie is a streaming product experience focused on discovery, watchlists, and a clean path from browse to play. The work covers product screens, motion cues, and a visual system that stays quiet while the titles do the talking.',
+      stage: 'Concept — shipped as design system',
+      body: 'What if Google built the movie app? Not another clone of Netflix — a full entertainment OS: synced Watch Parties, Gemini in the scene, Smart Lens that turns frames into shoppable / searchable moments, and Workspace tools living beside the player. This case is how I design at platform scale — Material language, social systems, and AI surfaces that feel inevitable, not bolted on.',
       images: [
         {
           type: 'cover',
           src: 'assets/projects/spotlight/google-movie/cover.jpg',
-          title: 'Google Movie — cover',
-          note: 'Hero cover for the Google Movie redesign.'
+          title: 'What if Google made a movie app?',
+          note: 'The thesis shot. Google DNA, Spider-Verse energy, live party feeds, and ecosystem docks in one composition — proof I can invent a product world, not just dress a player.'
         },
         {
           type: 'frame',
           src: 'assets/projects/spotlight/google-movie/page.jpg',
-          title: 'Google Movie — homepage',
-          note: 'Full homepage — scroll in the lightbox to walk the page.'
+          title: 'Home — Ready. Set. Watch.',
+          note: 'Personal greeting, dual featured heroes, Today’s Pick, and Continue Watching. Hierarchy built so discovery feels curated, never noisy — scroll the full page in lightbox.'
         },
         {
           type: 'frame',
           src: 'assets/projects/spotlight/google-movie/shot-01.jpg',
-          title: 'Player + Smart Lens',
-          note: 'Playback chrome with Smart Lens on the Spider-Verse frame.'
+          title: 'Cinema chrome + Smart Lens',
+          note: 'Immersive player with Smart Lens as a first-class control — AI that belongs in the chrome, not buried in a menu.'
         },
         {
           type: 'frame',
           src: 'assets/projects/spotlight/google-movie/shot-02.jpg',
-          title: 'Browse + Today’s Pick',
-          note: 'Home browse with category pills and today’s pick row.'
+          title: 'Watch Party — sync + live chat',
+          note: 'Google Stream sync badge, friend tiles, and party chat beside the frame. Solitary streaming becomes a shared night without leaving the player.'
         },
         {
           type: 'frame',
           src: 'assets/projects/spotlight/google-movie/shot-03.jpg',
-          title: 'Continue watching',
-          note: 'Progress cards that make return visits obvious.'
+          title: 'Gemini — ask the scene',
+          note: 'Contextual Gemini panel with scene prompts and voice ask. Trivia, cast, and story beats while the film keeps playing — AI as co-viewer.'
         },
         {
           type: 'frame',
           src: 'assets/projects/spotlight/google-movie/shot-04.jpg',
-          title: 'Discovery',
-          note: 'Discovery layouts for the next watch.'
+          title: 'Smart Lens — shop the frame',
+          note: 'On-frame tags + Lens results for Miles / Gwen fits. Watch → recognize → want → buy, designed as one continuous flow.'
         },
         {
           type: 'frame',
           src: 'assets/projects/spotlight/google-movie/shot-05.jpg',
-          title: 'Library',
-          note: 'Library and lists in the same quiet system.'
+          title: 'YouTube Music — hear the scene',
+          note: 'Scene scan surfaces “Sunflower” into YouTube Music. Soundtrack discovery that feels native to Google’s stack, not a third-party popup.'
         },
         {
           type: 'frame',
           src: 'assets/projects/spotlight/google-movie/shot-06.jpg',
           title: 'Watch Party Hub',
-          note: 'Live rooms and upcoming parties in one hub.'
+          note: 'Live rooms, genre filters, and upcoming nights with Remind Me / View Invitation. Social viewing as a destination, not a hidden feature.'
         },
         {
           type: 'frame',
           src: 'assets/projects/spotlight/google-movie/shot-07.jpg',
-          title: 'Host a Watch Party',
-          note: 'Schedule, invite, and pick an interactive feature.'
+          title: 'Host flow — schedule → invite → interact',
+          note: 'Three-step host modal: Calendar sync, friend pick, Standard Stream vs Interactive Poll. End-to-end product thinking from empty state to scheduled party.'
         }
       ]
     },
     {
       id: 'rest-jam',
       name: 'RESJAM',
-      productType: 'Brand + product design',
-      industry: 'Lifestyle / wellness',
+      productType: 'Marketplace + network + capital',
+      industry: 'Creator economy / fintech-adjacent',
       date: '2024',
-      stage: 'Completed',
-      body: 'RESJAM is a calm product and brand system for slowing down without losing clarity. Screens and graphics share one paced rhythm so rest feels intentional, not empty.',
+      stage: 'Website redesign — live concept',
+      body: 'RESJAM is the free marketplace where founders, freelancers, coaches, and creators keep 80% of everything. I rebuilt the site from a dense dark funnel into a clearer growth machine — same sharp offer, stronger hierarchy, and a product story that sells Marketplace + Network + Capital as one system.',
       images: [
         {
           type: 'cover',
           src: 'assets/projects/spotlight/rest-jam/cover.jpg',
-          title: 'RESJAM — cover',
-          note: 'Hero cover for the RESJAM redesign.'
+          title: 'RESJAM — Website upgrade',
+          note: 'Old vs New in one frame. Dark density on the left, light clarity on the right — same 80% promise, redesigned so the product finally reads as premium.'
         },
         {
           type: 'compare-y',
           old: 'assets/projects/spotlight/rest-jam/old.jpg',
           new: 'assets/projects/spotlight/rest-jam/new.jpg',
-          title: 'RESJAM — site transform',
-          note: 'Tap Old or New to animate fully between the two sites — or drag the line.'
+          title: 'Full-site transform — Old → New',
+          note: 'Tap Old or New to lock the reveal, or drag the line. Watch the hero, proof stats, network UI, and journey map rewrite themselves — this is conversion design you can feel.'
         }
       ]
     },
@@ -99,8 +99,8 @@
       productType: 'Social product design',
       industry: 'Social / community',
       date: '2025',
-      stage: 'Completed',
-      body: 'Yeild Mates is a social product built around real groups, not endless feeds. The interface keeps hangouts, plans, and shared moments close while cutting the noise that usually kills follow-through.',
+      stage: 'In progress',
+      body: 'Yeild Mates is built for real crews — hangouts, plans, and shared moments without the infinite-scroll tax. Screens landing next; the brief is already locked: less feed noise, more follow-through.',
       images: []
     }
   ];
@@ -444,7 +444,7 @@
     root.innerHTML = ''+
       '<div class="sp-reel'+(solo?' is-solo':'')+'">'+
         (solo ? '<div class="sp-solo-head"><h1 class="sp-solo-title">Spotlight</h1></div>' : '')+
-        '<p class="sp-intro">Selected projects from our portfolio</p>'+
+        '<p class="sp-intro">Selected screen work — concept products, redesigns, and systems built to convert.</p>'+
         '<div class="sp-nav-wrap"><div class="sp-nav" id="spNav" role="tablist" aria-label="Spotlight projects"></div></div>'+
         '<div class="sp-stage">'+
           '<div class="sp-frame" id="spFrame" role="region" aria-roledescription="carousel" aria-label="Project screens">'+

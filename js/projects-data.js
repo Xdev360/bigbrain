@@ -37,55 +37,55 @@ window.BB_PROJECTS = [
         id: 'brand-identity',
         label: 'Brand identity',
         title: 'Fresh, motivating, and disciplined',
-        body: 'We created a fresh, motivating brand system for Goalden. We used vibrant, energetic colors grounded by a calming, disciplined green to balance excitement with focus.',
+        body: 'We built Goalden’s brand system — vibrant energy grounded by a disciplined green — so the product feels like a habit you actually trust.',
         shots: [
-          { k: '1.1', t: 'The logo', kind: 'brand', src: 'assets/projects/golden/golden-brand-01.jpg', note: 'Goalden logo, app icon, and brand sketches.' },
-          { k: '1.2', t: 'Design system', kind: 'brand', src: 'assets/projects/golden/golden-brand-02.jpg', note: 'Color and typography guide for the product.' },
-          { k: '1.3', t: 'Color your year', kind: 'brand', src: 'assets/projects/golden/golden-brand-03.jpg', note: 'Category colors that make the year feel alive.' }
+          { k: '1.1', t: 'Logo system', kind: 'brand', src: 'assets/projects/golden/golden-brand-01.jpg', note: 'Mark, icon, and sketch work that locks the Goalden voice.' },
+          { k: '1.2', t: 'Design system', kind: 'brand', src: 'assets/projects/golden/golden-brand-02.jpg', note: 'Colour and type rules the product can scale on.' },
+          { k: '1.3', t: 'Category colour', kind: 'brand', src: 'assets/projects/golden/golden-brand-03.jpg', note: 'A colour language that makes goals feel alive, not administrative.' }
         ],
-        guide: 'Goalden identity: energetic color, grounded by disciplined green.',
-        pitch: 'The brand has to feel like a habit you trust.'
+        guide: 'Goalden’s brand — energy with discipline.',
+        pitch: 'Goalden helps people turn big yearly goals into daily habits. The identity had to feel motivating without looking like another hustle app — green that grounds you, colour that keeps you coming back.'
       },
       {
         id: 'graphic-design',
         label: 'Graphic design',
-        title: 'Tracking that feels like a game',
-        body: 'We used friendly illustrations and clean, satisfying UI cards to make tracking habits feel like a game rather than a boring task.',
+        title: 'Campaign graphics that sell the habit',
+        body: 'We design full graphic systems for products like Goalden — launch visuals, campaign frames, and promo art that carry the brand into the world. Here’s a teaser of that craft; the full graphic suite ships with the engagement.',
         shots: [
-          { k: '2.1', t: 'Landscape launch', kind: 'ig', src: 'assets/projects/golden/golden-graphic-01.jpg', note: 'Green landscape with balloon and floating phone.' },
-          { k: '2.2', t: 'Self-correcting plan', kind: 'ig', src: 'assets/projects/golden/golden-graphic-02.jpg', note: 'A plan that corrects itself checklist card.' },
-          { k: '2.3', t: 'Start living it', kind: 'ig', src: 'assets/projects/golden/golden-graphic-03.jpg', note: 'Stop planning the year. Start living it.' }
+          { k: '2.1', t: 'Launch visual', kind: 'ig', src: 'assets/projects/golden/golden-graphic-01.jpg', note: 'Graphic design teaser — launch art that sells the Goalden feeling.' },
+          { k: '2.2', t: 'Campaign frame', kind: 'ig', src: 'assets/projects/golden/golden-graphic-02.jpg', note: 'Campaign graphic work — clarity first, personality second.' },
+          { k: '2.3', t: 'Promo art', kind: 'ig', src: 'assets/projects/golden/golden-graphic-03.jpg', note: 'Promo graphic design that makes the product want to be shared.' }
         ],
-        guide: 'Graphics that make daily check-ins feel rewarding.',
-        pitch: 'If it feels like homework, people quit by February.'
+        guide: 'Graphic design for Goalden — a teaser of the suite.',
+        pitch: 'Beyond the app screens, we design the graphics that introduce the product — campaign art, promo frames, visual hooks. You\'re seeing a taste of that service; if you need graphics that match a product this sharp, that\'s the lane.'
       },
       {
         id: 'web-design',
         label: 'Web design',
         title: 'A landing page that walks the habit',
-        body: 'A high-converting landing page that tells a story. Instead of just listing features, the site walks users through the actual steps of building better habits.',
+        body: 'A story-led landing page that sells the method before the install — features shown as steps, not a feature dump.',
         shots: [
-          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/golden/golden-web-01.jpg', note: 'Hero with floating app UI and main headline.' },
-          { k: '3.2', t: 'Start with one goal', kind: 'web', src: 'assets/projects/golden/golden-web-02.jpg', note: 'Set your reading goal card section.' },
-          { k: '3.3', t: 'Slide to begin', kind: 'web', src: 'assets/projects/golden/golden-web-03.jpg', note: 'Update Portfolio slide-to-confirm interaction.' }
+          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/golden/golden-web-01.jpg', note: 'Hero that sells the habit story in one breath.' },
+          { k: '3.2', t: 'Start with one goal', kind: 'web', src: 'assets/projects/golden/golden-web-02.jpg', note: 'Web section that teaches the method before the CTA.' },
+          { k: '3.3', t: 'Slide to begin', kind: 'web', src: 'assets/projects/golden/golden-web-03.jpg', note: 'Signature interaction teased on the marketing site.' }
         ],
-        guide: 'Web: story first, then the install.',
-        pitch: 'The site sells the method; the app keeps the habit.'
+        guide: 'Goalden on the web — story, then install.',
+        pitch: 'The site doesn\'t lecture about productivity. It walks you through how Goalden works, then asks for the download. That\'s how we design marketing pages that convert without sounding desperate.'
       },
       {
         id: 'app-design',
         label: 'App design',
         title: 'Quick daily check-ins, no clutter',
-        body: 'The core product. A beautifully simple mobile app designed for quick daily check-ins. No clutter, just clear goals and satisfying progress trackers.',
+        body: 'The core product — a simple mobile app for quick daily check-ins. Clear goals, satisfying progress, zero chore energy.',
         shots: [
-          { k: '4.1', t: 'Onboarding home', kind: 'phone', src: 'assets/projects/golden/golden-app-01.jpg', note: 'Onboarding and home screen.' },
-          { k: '4.2', t: 'Goal setup', kind: 'phone', src: 'assets/projects/golden/golden-app-02.jpg', note: 'Second screen in the mobile lineup.' },
-          { k: '4.3', t: 'Goal dashboard', kind: 'phone', src: 'assets/projects/golden/golden-app-03.jpg', note: 'Goal tracking dashboard.' },
-          { k: '4.4', t: 'Progress', kind: 'phone', src: 'assets/projects/golden/golden-app-04.jpg', note: 'Analytics and progress screen.' },
-          { k: '4.5', t: 'Check-in', kind: 'phone', src: 'assets/projects/golden/golden-app-05.jpg', note: 'Daily check-in flow.' }
+          { k: '4.1', t: 'Onboarding home', kind: 'phone', src: 'assets/projects/golden/golden-app-01.jpg', note: 'First open — calm, clear, ready to start one goal.' },
+          { k: '4.2', t: 'Goal setup', kind: 'phone', src: 'assets/projects/golden/golden-app-02.jpg', note: 'Setup that stays light so people finish it.' },
+          { k: '4.3', t: 'Goal dashboard', kind: 'phone', src: 'assets/projects/golden/golden-app-03.jpg', note: 'Home for the habit — progress without clutter.' },
+          { k: '4.4', t: 'Progress', kind: 'phone', src: 'assets/projects/golden/golden-app-04.jpg', note: 'Analytics that motivate, not overwhelm.' },
+          { k: '4.5', t: 'Check-in', kind: 'phone', src: 'assets/projects/golden/golden-app-05.jpg', note: 'The daily ritual — slide, confirm, smile.' }
         ],
-        guide: 'App: one goal, clear progress, slide to confirm.',
-        pitch: 'This is the product people open every morning.'
+        guide: 'The Goalden app — where the habit actually lives.',
+        pitch: 'This is the product people open every morning: one goal, clear progress, slide to confirm. If your app needs that kind of daily stickiness, this is the standard we design to.'
       }
     ],
     outcome: {
@@ -96,8 +96,8 @@ window.BB_PROJECTS = [
         { value: 'One goal', label: 'Start simple, stay consistent' },
         { value: 'Slide', label: 'Confirm action users want to repeat' }
       ],
-      guide: 'Outcome: simpler setup, stickier daily return.',
-      pitch: 'Consistency is the product. Goalden makes it feel light.'
+      guide: 'Goalden\'s punchline — consistency that feels light.',
+      pitch: 'We turned yearly overwhelm into a daily ritual people actually keep. Brand, graphics, web, and app — one system. Want that for your product? Let\'s talk.'
     }
   },
   {
@@ -137,57 +137,57 @@ window.BB_PROJECTS = [
         id: 'brand-identity',
         label: 'Brand identity',
         title: 'Trustworthy blue, built for finance',
-        body: 'We went with a highly trustworthy and professional visual identity. Using clean typography (DM Sans) and deep, reliable shades of blue to build instant financial trust with the users.',
+        body: 'A calm, professional identity — deep blues and clean type — so CrediGo feels solid before anyone looks at a number.',
         shots: [
-          { k: '1.1', t: 'The logo', kind: 'brand', src: 'assets/projects/credigo/credigo-brand-01.jpg', note: 'CrediGo logo on white and blue backgrounds.' },
-          { k: '1.2', t: 'Construction & icons', kind: 'brand', src: 'assets/projects/credigo/credigo-brand-02.jpg', note: 'C mark breakdown and mobile app icons.' },
-          { k: '1.3', t: 'Type & colour', kind: 'brand', src: 'assets/projects/credigo/credigo-brand-03.jpg', note: 'DM Sans and deep blue palette.' }
+          { k: '1.1', t: 'Logo system', kind: 'brand', src: 'assets/projects/credigo/credigo-brand-01.jpg', note: 'CrediGo mark — trust you can recognise instantly.' },
+          { k: '1.2', t: 'Construction & icons', kind: 'brand', src: 'assets/projects/credigo/credigo-brand-02.jpg', note: 'Icon construction that scales from app to billboard.' },
+          { k: '1.3', t: 'Type & colour', kind: 'brand', src: 'assets/projects/credigo/credigo-brand-03.jpg', note: 'Type and palette built for financial calm.' }
         ],
-        guide: 'CrediGo identity: calm blue that reads as financial trust.',
-        pitch: 'In fintech, trust has to land before the first number does.'
+        guide: 'CrediGo\'s brand — trust before the number.',
+        pitch: 'CrediGo is a smarter way to borrow: clear plans, calm dashboards, no hidden stress. In fintech, the brand has to earn trust before the first balance shows up — that\'s what this blue system is for.'
       },
       {
         id: 'graphic-design',
         label: 'Graphic design',
-        title: 'Friendly charts, not intimidating finance',
-        body: 'We incorporated smooth 3D illustrations, clear data visualization charts, and modern UI cards to make financial data look friendly instead of intimidating.',
+        title: 'Finance graphics that feel approachable',
+        body: 'We design graphic systems for fintech products — campaign visuals, promo frames, and illustration kits that make money feel clear instead of scary. A teaser of that service sits here; the full suite is ready when you are.',
         shots: [
-          { k: '2.1', t: 'Design system', kind: 'ig', src: 'assets/projects/credigo/credigo-graphic-01.jpg', note: 'UI components, buttons, and type hierarchy.' },
-          { k: '2.2', t: 'Login illustration', kind: 'ig', src: 'assets/projects/credigo/credigo-graphic-02.jpg', note: 'Login with 3D pie chart and coins.' },
-          { k: '2.3', t: 'Loan journey', kind: 'ig', src: 'assets/projects/credigo/credigo-graphic-03.jpg', note: 'Start Your Loan Journey Today promo.' }
+          { k: '2.1', t: 'Visual system', kind: 'ig', src: 'assets/projects/credigo/credigo-graphic-01.jpg', note: 'Graphic design teaser — visual language for CrediGo campaigns.' },
+          { k: '2.2', t: 'Campaign illustration', kind: 'ig', src: 'assets/projects/credigo/credigo-graphic-02.jpg', note: 'Illustration-led graphic work that softens finance without dumbing it down.' },
+          { k: '2.3', t: 'Promo frame', kind: 'ig', src: 'assets/projects/credigo/credigo-graphic-03.jpg', note: 'Promo graphic design that invites the next loan step.' }
         ],
-        guide: 'Graphics that make money data feel approachable.',
-        pitch: 'If the charts feel scary, people bounce before they borrow.'
+        guide: 'Graphic design for CrediGo — teaser of the craft.',
+        pitch: 'Loans already feel heavy. Our graphic design makes the product look approachable before anyone opens the app. Need campaign visuals that match a serious product? That\'s exactly this service.'
       },
       {
         id: 'web-design',
         label: 'Web design',
         title: 'Dashboard-first loan management',
-        body: 'A fully responsive web platform that makes managing loans straightforward. The dashboard surfaces the most important data—like active loan balance and upcoming payments—immediately.',
+        body: 'A responsive web platform where balance, plans, and repayments answer themselves in one glance.',
         shots: [
-          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/credigo/credigo-web-01.jpg', note: 'Hero: The Smarter Way to Borrow Money.' },
-          { k: '3.2', t: 'Web dashboard', kind: 'web', src: 'assets/projects/credigo/credigo-web-02.jpg', note: 'Balance, charts, and recent transactions.' },
-          { k: '3.3', t: 'Select a plan', kind: 'web', src: 'assets/projects/credigo/credigo-web-03.jpg', note: 'Choose loan amount and terms.' },
-          { k: '3.4', t: 'Web flow', kind: 'web', src: 'assets/projects/credigo/credigo-web-04.jpg', note: 'Additional web loan flow screen.' },
-          { k: '3.5', t: 'Web detail', kind: 'web', src: 'assets/projects/credigo/credigo-web-05.jpg', note: 'Additional web platform detail.' }
+          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/credigo/credigo-web-01.jpg', note: 'Marketing hero that sells smarter borrowing.' },
+          { k: '3.2', t: 'Web dashboard', kind: 'web', src: 'assets/projects/credigo/credigo-web-02.jpg', note: 'Dashboard that answers money questions immediately.' },
+          { k: '3.3', t: 'Select a plan', kind: 'web', src: 'assets/projects/credigo/credigo-web-03.jpg', note: 'Plan selection with terms you can actually read.' },
+          { k: '3.4', t: 'Web flow', kind: 'web', src: 'assets/projects/credigo/credigo-web-04.jpg', note: 'Loan flow designed for calm decisions.' },
+          { k: '3.5', t: 'Web detail', kind: 'web', src: 'assets/projects/credigo/credigo-web-05.jpg', note: 'Detail screens that keep clarity all the way through.' }
         ],
-        guide: 'Web: see balance, pick a plan, repay with clarity.',
-        pitch: 'The dashboard has to answer money questions in one glance.'
+        guide: 'CrediGo on the web — money, clear at a glance.',
+        pitch: 'Borrowing shouldn\'t feel like decoding a bank letter. The web product surfaces balance, plan, and next payment so users feel in control — that\'s the standard we design for fintech clients.'
       },
       {
         id: 'app-design',
         label: 'App design',
         title: 'Loan control in your pocket',
-        body: 'The mobile app puts financial control right in the user\'s pocket. It features a seamless onboarding process and a quick-glance dashboard so users can check their loan progress on the move.',
+        body: 'Mobile control for on-the-go checks — fast onboarding, quick-glance dashboard, repayment progress that travels with the phone.',
         shots: [
-          { k: '4.1', t: 'Onboarding', kind: 'phone', src: 'assets/projects/credigo/credigo-app-01.jpg', note: 'Welcome screen with Get Started.' },
-          { k: '4.2', t: 'Mobile step', kind: 'phone', src: 'assets/projects/credigo/credigo-app-02.jpg', note: 'Second screen in the mobile lineup.' },
-          { k: '4.3', t: 'Mobile dashboard', kind: 'phone', src: 'assets/projects/credigo/credigo-app-03.jpg', note: 'Balance and quick actions.' },
-          { k: '4.4', t: 'Loan progress', kind: 'phone', src: 'assets/projects/credigo/credigo-app-04.jpg', note: 'Circular tracker and payment timeline.' },
-          { k: '4.5', t: 'App detail', kind: 'phone', src: 'assets/projects/credigo/credigo-app-05.jpg', note: 'Additional mobile loan screen.' }
+          { k: '4.1', t: 'Onboarding', kind: 'phone', src: 'assets/projects/credigo/credigo-app-01.jpg', note: 'Welcome that gets people in without friction.' },
+          { k: '4.2', t: 'Mobile step', kind: 'phone', src: 'assets/projects/credigo/credigo-app-02.jpg', note: 'Setup steps that stay short and clear.' },
+          { k: '4.3', t: 'Mobile dashboard', kind: 'phone', src: 'assets/projects/credigo/credigo-app-03.jpg', note: 'Pocket dashboard — balance and actions ready.' },
+          { k: '4.4', t: 'Loan progress', kind: 'phone', src: 'assets/projects/credigo/credigo-app-04.jpg', note: 'Progress tracking that reduces repayment anxiety.' },
+          { k: '4.5', t: 'App detail', kind: 'phone', src: 'assets/projects/credigo/credigo-app-05.jpg', note: 'Detail screens that keep the calm tone.' }
         ],
-        guide: 'App: onboard fast, check progress anytime.',
-        pitch: 'Repayment clarity has to travel as well as the phone does.'
+        guide: 'The CrediGo app — clarity that travels.',
+        pitch: 'People check money on the bus, not at a desk. This app keeps repayment clarity small-screen friendly. Building a fintech product? This is the pocket experience we ship.'
       }
     ],
     outcome: {
@@ -198,8 +198,8 @@ window.BB_PROJECTS = [
         { value: 'One glance', label: 'Balance and next payment on the dash' },
         { value: 'Less stress', label: 'Tracking without the headache' }
       ],
-      guide: 'Outcome: clearer borrowing, calmer tracking.',
-      pitch: 'CrediGo makes borrowing feel transparent, not intimidating.'
+      guide: 'CrediGo\'s punchline — borrow without the stress.',
+      pitch: 'Transparent plans, calm tracking, zero intimidation. Brand through product, designed as one trust system. If your fintech needs that feeling, I\'m ready.'
     }
   },
   {
@@ -233,69 +233,69 @@ window.BB_PROJECTS = [
       ink: '#0A2419',
       mute: 'rgba(10,36,25,.6)'
     },
-    problem: 'Hiring crew used to be a headache. Rates were hidden, causing endless negotiations, and portfolios were scattered across Instagram and Google Drive, making it super slow to assemble a team.',
+    problem: 'Hiring crew used to be a headache. Rates were hidden, negotiations dragged, and portfolios lived in a dozen folders — assembling a team took forever.',
     phases: [
       {
         id: 'brand-identity',
         label: 'Brand identity',
-        title: 'Premium, professional, and built for African creatives',
-        body: 'Building a brand that feels premium, professional, and trustworthy for the African creative industry. The dark green aesthetic signals high production value.',
+        title: 'Premium, professional, built for African creatives',
+        body: 'A premium dark-green identity for the African creative industry — production value you can feel before you hire.',
         shots: [
-          { k: '1.1', t: 'The logo', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-01.jpg', note: 'Cue Africa logo, lockups, and app icon system.' },
-          { k: '1.2', t: 'The system', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-02.jpg', note: 'Colour palette and typography for the brand.' },
-          { k: '1.3', t: 'Brand in action', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-03.jpg', note: 'How the brand lives in the real world.' }
+          { k: '1.1', t: 'Logo system', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-01.jpg', note: 'Cue Africa mark and icon system for the marketplace.' },
+          { k: '1.2', t: 'The system', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-02.jpg', note: 'Colour and type that read as high production value.' },
+          { k: '1.3', t: 'Brand in action', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-03.jpg', note: 'Identity applied where producers and talent meet it.' }
         ],
-        guide: 'Cue Africa identity: dark green that reads as high production value.',
-        pitch: 'Producers hire people they trust. The brand has to earn that in a second.'
+        guide: 'Cue Africa\'s brand — trust for the hire.',
+        pitch: 'Cue Africa connects creators with production crews across Africa. Producers hire people they trust — so the brand had to feel premium in a second, not “another marketplace.”'
       },
       {
         id: 'graphic-design',
         label: 'Graphic design',
-        title: 'Assets that sell talent and drive the hire',
-        body: 'Creating sharp visual assets that drive engagement, push ads, and make the platform\'s talent look their absolute best.',
+        title: 'Graphics that sell talent and drive the hire',
+        body: 'We design graphic systems for platforms like Cue Africa — campaign visuals, category art, and promo frames that make talent look hire-ready. This is a teaser of that service; the full graphic suite is part of what we ship.',
         shots: [
-          { k: '2.1', t: 'Promo banner', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-01.jpg', note: 'Promotional banner and concept board for Cue Africa.' },
-          { k: '2.2', t: 'Category graphics', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-02.jpg', note: 'Category cards and crew graphics for the platform.' },
-          { k: '2.3', t: 'Talent marketing', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-03.jpg', note: 'Marketing graphics that put talent front and center.' }
+          { k: '2.1', t: 'Campaign visual', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-01.jpg', note: 'Graphic design teaser — campaign art for Cue Africa.' },
+          { k: '2.2', t: 'Category art', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-02.jpg', note: 'Category graphic work that helps producers scan faster.' },
+          { k: '2.3', t: 'Talent promo', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-03.jpg', note: 'Promo graphic design that puts talent front and centre.' }
         ],
-        guide: 'Graphics that speak to both talent and producers.',
-        pitch: 'Two audiences. One brand voice.'
+        guide: 'Graphic design for Cue Africa — teaser of the suite.',
+        pitch: 'Two audiences, one voice: talent wants to look booked, producers want to trust the hire. Our graphic design sells both. Need that craft for your platform? That\'s the offer.'
       },
       {
         id: 'web-design',
         label: 'Web design',
         title: 'Dark-mode desktop built to hire without friction',
-        body: 'A sleek, dark-mode desktop experience designed for producers to easily browse, filter, and hire talent without any friction.',
+        body: 'A sleek dark-mode desktop for producers to browse, filter, see rates, and hire — without the DM marathon.',
         shots: [
-          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-01.jpg', note: 'Hero: Showcase. Connect. Rise.' },
-          { k: '3.2', t: 'Category discovery', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-02.jpg', note: 'Category grid and talent cards with clear rates.' },
-          { k: '3.3', t: 'The vibe', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-03.jpg', note: 'Premium device mockup for the agency feel.' }
+          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-01.jpg', note: 'Hero that sells Showcase. Connect. Rise.' },
+          { k: '3.2', t: 'Category discovery', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-02.jpg', note: 'Discovery with clear rates before the conversation.' },
+          { k: '3.3', t: 'The vibe', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-03.jpg', note: 'Premium presentation for a serious booking product.' }
         ],
-        guide: 'Web: browse crew, see rates, hire fast.',
-        pitch: 'If booking takes longer than a DM thread, we failed.'
+        guide: 'Cue Africa on the web — hire without the hunt.',
+        pitch: 'If booking crew takes longer than a chat thread, the product failed. This web experience makes rates obvious and talent easy to book — marketplace UX that respects a producer\'s clock.'
       },
       {
         id: 'app-design',
         label: 'App design',
         title: 'Mobile flow for producers on set',
-        body: 'Production moves fast, and producers are always on their phones. We designed a fully responsive mobile flow so users can search and book crew on the go.',
+        body: 'Sets move fast. We designed a mobile flow so producers can search and book crew from the phone.',
         shots: [
-          { k: '01', t: 'Talent profile', kind: 'phone', src: 'assets/projects/qafrica/qafrica-app-01.jpg', note: 'Mobile talent profile: hire-ready on a small screen.' }
+          { k: '01', t: 'Talent profile', kind: 'phone', src: 'assets/projects/qafrica/qafrica-app-01.jpg', note: 'Hire-ready talent profile on a small screen.' }
         ],
-        guide: 'App: search and book crew on the go.',
-        pitch: 'Sets do not wait. The product cannot either.'
+        guide: 'Cue Africa mobile — booking that keeps up with set.',
+        pitch: 'Producers live on their phones between takes. This mobile flow keeps search and booking sharp when the set won\'t wait. Need product UX that moves that fast? Let\'s build it.'
       }
     ],
     outcome: {
       title: 'What it moved',
-      body: 'From scattered DMs and hidden rates to a clear marketplace where producers find, compare, and book verified crew in minutes.',
+      body: 'From scattered folders and hidden rates to a clear marketplace where producers find, compare, and book verified crew in minutes.',
       metrics: [
         { value: 'Minutes', label: 'From search to hire-ready crew' },
         { value: '100%', label: 'Clear rates before the conversation' },
         { value: 'BTS', label: 'Crew categories built for real sets' }
       ],
-      guide: 'Outcome: clearer rates, faster books, crew you can trust.',
-      pitch: 'Cue Africa turns a crew hunt into a checkout.'
+      guide: 'Cue Africa\'s punchline — crew hunt becomes checkout.',
+      pitch: 'Clear rates, faster books, crew you can trust. That\'s the marketplace we designed. If you\'re building something producers will actually use, I\'m your designer.'
     }
   },
   {
@@ -335,55 +335,55 @@ window.BB_PROJECTS = [
         id: 'brand-identity',
         label: 'Brand identity',
         title: 'Warm, sophisticated, editorial',
-        body: 'We created a warm, sophisticated look using earthy browns, beige, and sharp black to give the studio a modern, high-end editorial feel.',
+        body: 'Earthy browns, beige, and sharp black — a warm editorial identity that matches a premium studio before anyone books.',
         shots: [
-          { k: '1.1', t: 'The logo', kind: 'brand', src: 'assets/projects/blackgold-studio/blackgold-brand-01.jpg', note: 'Blackgold Studio logo, lockups, and app icon system.' },
-          { k: '1.2', t: 'Typography', kind: 'brand', src: 'assets/projects/blackgold-studio/blackgold-brand-02.jpg', note: 'Brand typography for the editorial voice.' },
-          { k: '1.3', t: 'Colour palette', kind: 'brand', src: 'assets/projects/blackgold-studio/blackgold-brand-03.jpg', note: 'Earthy browns, beige, and sharp black.' }
+          { k: '1.1', t: 'Logo system', kind: 'brand', src: 'assets/projects/blackgold-studio/blackgold-brand-01.jpg', note: 'Blackgold mark and lockups for a premium studio.' },
+          { k: '1.2', t: 'Typography', kind: 'brand', src: 'assets/projects/blackgold-studio/blackgold-brand-02.jpg', note: 'Editorial type that carries the studio voice.' },
+          { k: '1.3', t: 'Colour palette', kind: 'brand', src: 'assets/projects/blackgold-studio/blackgold-brand-03.jpg', note: 'Warm palette that feels as high-end as the room.' }
         ],
-        guide: 'Blackgold identity: earthy browns, beige, and sharp black.',
-        pitch: 'The room is premium. The brand has to match before anyone books.'
+        guide: 'Blackgold\'s brand — premium before the booking.',
+        pitch: 'Blackgold Studio is a photography and edit space that needed a digital presence as high-end as the room. The brand had to feel bookable at a glance — warm, editorial, zero cheap studio vibes.'
       },
       {
         id: 'graphic-design',
         label: 'Graphic design',
-        title: 'Magazine layouts that sell the space',
-        body: 'We used bold, magazine-style layouts and clean text to make their services and pricing easy to read at a glance.',
+        title: 'Graphics that sell the space and the services',
+        body: 'We design graphic systems for studios and premium services — layouts that make offers and pricing obvious without a phone call. Here’s a teaser of that craft; the full suite is ready for clients who want the same polish.',
         shots: [
-          { k: '2.1', t: 'Choose your door', kind: 'ig', src: 'assets/projects/blackgold-studio/blackgold-graphic-01.jpg', note: 'Studio vs Edit room split graphic.' },
-          { k: '2.2', t: 'Rent the space', kind: 'ig', src: 'assets/projects/blackgold-studio/blackgold-graphic-02.jpg', note: 'Dark promo card for the curated space.' },
-          { k: '2.3', t: 'Promo set', kind: 'ig', src: 'assets/projects/blackgold-studio/blackgold-graphic-03.jpg', note: 'Social and promotional graphics for Blackgold.' }
+          { k: '2.1', t: 'Service visual', kind: 'ig', src: 'assets/projects/blackgold-studio/blackgold-graphic-01.jpg', note: 'Graphic design teaser — service storytelling for Blackgold.' },
+          { k: '2.2', t: 'Space promo', kind: 'ig', src: 'assets/projects/blackgold-studio/blackgold-graphic-02.jpg', note: 'Promo graphic work that sells the curated space.' },
+          { k: '2.3', t: 'Campaign set', kind: 'ig', src: 'assets/projects/blackgold-studio/blackgold-graphic-03.jpg', note: 'Campaign graphic design for studio launches and offers.' }
         ],
-        guide: 'Graphics that make services and pricing obvious in one glance.',
-        pitch: 'If pricing needs a phone call, the layout failed.'
+        guide: 'Graphic design for Blackgold — teaser of the suite.',
+        pitch: 'If pricing needs a phone call, the layout failed. Our graphic design makes studio services obvious and desirable. Need that for your brand? That\'s the service on offer.'
       },
       {
         id: 'web-design',
         label: 'Web design',
         title: 'From the space to a locked-in booking',
-        body: 'A highly visual, beige and black website that smoothly guides users from checking out the space to locking in a booking.',
+        body: 'A visual beige-and-black site that walks clients from “see the space” to “book the slot” without back-and-forth.',
         shots: [
-          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-01.jpg', note: 'Hero: Capture. Create. Refine.' },
-          { k: '3.2', t: 'Commission the lens', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-02.jpg', note: 'Lead photographer section with clear pricing.' },
-          { k: '3.3', t: 'Booking calendar', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-03.jpg', note: 'Calendar dashboard for picking dates.' },
-          { k: '3.4', t: 'Edit suite', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-04.jpg', note: 'Post-production booking and turnaround.' }
+          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-01.jpg', note: 'Hero that sells Capture. Create. Refine.' },
+          { k: '3.2', t: 'Commission the lens', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-02.jpg', note: 'Photographer offer with pricing that\'s already clear.' },
+          { k: '3.3', t: 'Booking calendar', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-03.jpg', note: 'Calendar as the closer — pick the date, lock it in.' },
+          { k: '3.4', t: 'Edit suite', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-04.jpg', note: 'Post-production booking with the same calm clarity.' }
         ],
-        guide: 'Web: see the space, pick a service, book the slot.',
-        pitch: 'No back-and-forth. The calendar is the closer.'
+        guide: 'Blackgold on the web — see it, book it.',
+        pitch: 'No chasing availability in a chat. The site shows the space, the service, and the calendar — then closes. That\'s how we design booking products for premium studios.'
       },
       {
         id: 'app-design',
         label: 'App design',
         title: 'Mobile booking as clean as desktop',
-        body: 'Since most creators book spaces from their phones, we made sure the mobile layout was just as powerful, clean, and easy to navigate as the desktop site.',
+        body: 'Creators book from their phones — so mobile stays as clean and powerful as desktop.',
         shots: [
-          { k: '4.1', t: 'Photographer card', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-01.jpg', note: 'Vertical photographer profile card.' },
-          { k: '4.2', t: 'Three steps', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-02.jpg', note: 'Three steps, start to finish.' },
-          { k: '4.3', t: 'Get in touch', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-03.jpg', note: 'Dark get-in-touch footer block.' },
-          { k: '4.4', t: 'Clients', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-04.jpg', note: 'Mobile clients list for studio ops.' }
+          { k: '4.1', t: 'Photographer card', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-01.jpg', note: 'Mobile photographer card that still feels premium.' },
+          { k: '4.2', t: 'Three steps', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-02.jpg', note: 'Three clear steps from interest to booked.' },
+          { k: '4.3', t: 'Get in touch', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-03.jpg', note: 'Contact path that doesn\'t break the vibe.' },
+          { k: '4.4', t: 'Clients', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-04.jpg', note: 'Ops-friendly mobile views for studio clients.' }
         ],
-        guide: 'App: book the studio from a phone without losing clarity.',
-        pitch: 'Creators book on the go. The UI has to keep up.'
+        guide: 'Blackgold mobile — premium booking on the go.',
+        pitch: 'Creators don\'t wait until they\'re at a laptop. This mobile experience keeps booking premium on a small screen. Building a studio product? This is the bar.'
       }
     ],
     outcome: {
@@ -394,8 +394,8 @@ window.BB_PROJECTS = [
         { value: 'Clear rates', label: 'Pricing visible before the call' },
         { value: 'One calendar', label: 'Lens, studio, and edit in sync' }
       ],
-      guide: 'Outcome: easier books, clearer pricing, less admin.',
-      pitch: 'Blackgold feels as premium online as the room feels in person.'
+      guide: 'Blackgold\'s punchline — online feels like the room.',
+      pitch: 'Easier books, clearer pricing, less admin — and it still feels premium. Brand, graphics, web, app as one studio system. Want that for your space? Let\'s design it.'
     }
   },
   {
@@ -434,53 +434,53 @@ window.BB_PROJECTS = [
         id: 'brand-identity',
         label: 'Brand identity',
         title: 'Coded luxury in black and white',
-        body: 'A restrained identity for Velourians — typography and mark language that signals access without screaming logo.',
+        body: 'A restrained identity for Velourians — marks and type that signal access without screaming logo.',
         shots: [
-          { k: '01', t: 'Wordmark', kind: 'brand', src: 'assets/projects/nicovellor/nicovellor-brand-01.jpg', note: 'Nicovellor wordmark — quiet luxury.' },
-          { k: '02', t: 'Velourians mark', kind: 'brand', src: 'assets/projects/nicovellor/nicovellor-brand-02.jpg', note: 'Velourians — the community signal.' },
-          { k: '03', t: 'Monogram', kind: 'brand', src: 'assets/projects/nicovellor/nicovellor-brand-03.jpg', note: 'Monogram for pieces and invites.' }
+          { k: '01', t: 'Wordmark', kind: 'brand', src: 'assets/projects/nicovellor/nicovellor-brand-01.jpg', note: 'Quiet luxury wordmark for Nicovellor.' },
+          { k: '02', t: 'Velourians mark', kind: 'brand', src: 'assets/projects/nicovellor/nicovellor-brand-02.jpg', note: 'Community signal for Velourians.' },
+          { k: '03', t: 'Monogram', kind: 'brand', src: 'assets/projects/nicovellor/nicovellor-brand-03.jpg', note: 'Monogram system for pieces and access.' }
         ],
-        guide: 'Nicovellor identity — black, white, coded for Velourians.',
-        pitch: 'If everyone understands it instantly, it isn’t exclusive enough.'
+        guide: 'Nicovellor\'s brand — coded for Velourians.',
+        pitch: 'Nicovellor is a private luxury network — clothing and art for ultra-high-net-worth buyers. If everyone “gets it” instantly, it isn\'t exclusive enough. This identity keeps the door quiet on purpose.'
       },
       {
         id: 'graphic-design',
         label: 'Graphic design',
-        title: 'Lookbook and art drop systems',
-        body: 'Editorial graphics for clothing drops and art releases — same silence, same tension.',
+        title: 'Editorial graphics for drops and access',
+        body: 'We design graphic systems for luxury brands — lookbook frames, drop announcements, invite suites — same silence, same tension. A teaser of that craft lives here; the full suite ships with the engagement.',
         shots: [
-          { k: '01', t: 'Lookbook', kind: 'ig', src: 'assets/projects/nicovellor/nicovellor-graphic-01.jpg', note: 'Lookbook frames for the drop.' },
-          { k: '02', t: 'Art drop', kind: 'ig', src: 'assets/projects/nicovellor/nicovellor-graphic-02.jpg', note: 'Art drop announcement.' },
-          { k: '03', t: 'Invite suite', kind: 'ig', src: 'assets/projects/nicovellor/nicovellor-graphic-03.jpg', note: 'Invite suite for Velourians.' }
+          { k: '01', t: 'Lookbook system', kind: 'ig', src: 'assets/projects/nicovellor/nicovellor-graphic-01.jpg', note: 'Graphic design teaser — editorial lookbook craft for Nicovellor.' },
+          { k: '02', t: 'Drop announcement', kind: 'ig', src: 'assets/projects/nicovellor/nicovellor-graphic-02.jpg', note: 'Drop graphic work that sells scarcity without shouting.' },
+          { k: '03', t: 'Invite suite', kind: 'ig', src: 'assets/projects/nicovellor/nicovellor-graphic-03.jpg', note: 'Invite graphic design for Velourian access.' }
         ],
-        guide: 'Graphics for drops and access — never loud.',
-        pitch: 'The quiet is the flex.'
+        guide: 'Graphic design for Nicovellor — teaser of the quiet flex.',
+        pitch: 'Luxury graphics should whisper. We design drop and access visuals that feel exclusive without trying hard. Need that restraint for your brand? That\'s the service.'
       },
       {
         id: 'web-design',
         label: 'Web design',
         title: 'Store for pieces and art — buy only',
-        body: 'Web experience to buy clothing and art. No seller marketplace noise — curated purchase paths for the network.',
+        body: 'A curated buy path for clothing and art — no seller-marketplace noise, just access for the network.',
         shots: [
-          { k: '01', t: 'Home', kind: 'web', src: 'assets/projects/nicovellor/nicovellor-web-01.jpg', note: 'Home — entry for Velourians.' },
-          { k: '02', t: 'Clothing', kind: 'web', src: 'assets/projects/nicovellor/nicovellor-web-02.jpg', note: 'Clothing collection.' },
+          { k: '01', t: 'Home', kind: 'web', src: 'assets/projects/nicovellor/nicovellor-web-01.jpg', note: 'Entry experience for Velourians.' },
+          { k: '02', t: 'Clothing', kind: 'web', src: 'assets/projects/nicovellor/nicovellor-web-02.jpg', note: 'Clothing path designed for acquisition, not browsing noise.' },
           { k: '03', t: 'Art vault', kind: 'web', src: 'assets/projects/nicovellor/nicovellor-web-03.jpg', note: 'Art vault — buy, don’t list.' }
         ],
-        guide: 'Web — buy clothing, buy art, feel the network.',
-        pitch: 'Access is the product. The UI has to protect it.'
+        guide: 'Nicovellor on the web — access is the product.',
+        pitch: 'This isn\'t a normal storefront. Clothing and art under one coded system, built to protect exclusivity. Designing luxury commerce that still feels private? That\'s the brief we love.'
       },
       {
         id: 'app-design',
         label: 'App design',
         title: 'Member product for Velourians',
-        body: 'App surfaces for members — drops, acquisitions and network signals in the same black-and-white system.',
+        body: 'Member surfaces for drops, acquisitions, and network signals — same black-and-white system, pocket-sized.',
         shots: [
-          { k: '01', t: 'Member home', kind: 'phone', src: 'assets/projects/nicovellor/nicovellor-app-01.jpg', note: 'Member home for Velourians.' },
+          { k: '01', t: 'Member home', kind: 'phone', src: 'assets/projects/nicovellor/nicovellor-app-01.jpg', note: 'Member home for Velourians on mobile.' },
           { k: '02', t: 'Drop alert', kind: 'phone', src: 'assets/projects/nicovellor/nicovellor-app-02.jpg', note: 'Drop alert — scarce on purpose.' },
-          { k: '03', t: 'Acquisition', kind: 'phone', src: 'assets/projects/nicovellor/nicovellor-app-03.jpg', note: 'Acquisition confirm.' }
+          { k: '03', t: 'Acquisition', kind: 'phone', src: 'assets/projects/nicovellor/nicovellor-app-03.jpg', note: 'Acquisition confirm that still feels exclusive.' }
         ],
-        guide: 'App for the network — drops and acquisitions.',
-        pitch: 'Members don’t browse. They acquire.'
+        guide: 'Nicovellor app — members acquire, they don’t browse.',
+        pitch: 'Drops and acquisitions in the same quiet system. Members don\'t window-shop forever — they move. Need a member product with that energy? Let\'s design the door.'
       }
     ],
     outcome: {
@@ -491,16 +491,16 @@ window.BB_PROJECTS = [
         { value: '2 lines', label: 'Clothing + art in one identity' },
         { value: 'Velourians', label: 'Community name locked into the system' }
       ],
-      guide: 'Outcome — luxury network brand with clothing and art under one roof.',
-      pitch: 'Nicovellor isn’t a shop. It’s a door.'
+      guide: 'Nicovellor\'s punchline — not a shop, a door.',
+      pitch: 'Luxury network brand with clothing and art under one roof. Quiet on purpose. If you\'re building something exclusive, this is the standard — and I\'m available.'
     }
   },
   {
     id: 'spotlight',
     name: 'Spotlight',
     year: '2025',
-    tagline: 'Selected projects from the portfolio — Google Movie, RESJAM, Yeild Mates, and more.',
-    about: 'Spotlight is an open black folder for selected screen work. Switch projects in the top nav and swipe the shots.',
+    tagline: 'Platform-scale concepts and redesigns — Google Movie, RESJAM, Yeild Mates.',
+    about: 'Spotlight is the open black folder for selected screen work: inventing products, rewriting sites, and proving systems that feel inevitable. Switch projects in the top nav and swipe the shots.',
     solution: '',
     liveUrl: '',
     tags: ['Brand', 'App', 'Web', 'Graphic'],
@@ -528,10 +528,10 @@ window.BB_PROJECTS = [
     phases: [],
     outcome: {
       title: 'Spotlight',
-      body: 'Selected projects from the portfolio.',
+      body: 'Concept products and redesigns that sell expertise at a glance — swipe the work, switch the name.',
       metrics: [],
-      guide: 'Spotlight — selected projects.',
-      pitch: 'Swipe the work. Switch the name.'
+      guide: 'Spotlight — selected screen work that converts attention into trust.',
+      pitch: 'Swipe the work. Hire the thinking.'
     }
   }
 ];
@@ -565,9 +565,9 @@ window.BB_SERVICES = [
     id: 'graphic-design',
     label: 'Graphic design',
     title: 'Campaign and print that match the system',
-    body: 'Posters, decks, social, and kits that speak the same language as the brand and product.',
+    body: 'Campaign visuals, promo frames, decks, and kits that speak the same language as the brand and product — a full graphic design service, not a side task.',
     guide: 'Graphic design — campaigns and kits that match the system.',
-    pitch: 'If the flyer and the app disagree, trust leaks.'
+    pitch: 'If the campaign and the product disagree, trust leaks. We keep them in one voice.'
   }
 ];
 

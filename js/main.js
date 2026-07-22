@@ -23,8 +23,10 @@
   function finish(){
     if(done) return;
     done=true;
+    try{ sessionStorage.setItem('bb-preload-seen','1'); }catch(e){}
     el.classList.add('is-done');
     document.body.classList.remove('is-loading');
+    document.body.classList.add('is-ready');
     var hash=location.hash;
     if(hash&&hash.length>1) scrollToId(hash.slice(1),false);
     else if(!hash) window.scrollTo(0,0);
@@ -33,7 +35,10 @@
     },450);
   }
 
-  var wait=reduced ? 200 : 2400;
+  /* Skip long intro on return visits in the same tab session */
+  var seen=false;
+  try{ seen=sessionStorage.getItem('bb-preload-seen')==='1'; }catch(e){}
+  var wait=reduced ? 120 : (seen ? 280 : 700);
   var start=performance.now();
   function maybeFinish(){
     var left=wait-(performance.now()-start);
@@ -42,7 +47,7 @@
   }
   if(document.readyState==='complete') maybeFinish();
   else window.addEventListener('load',maybeFinish);
-  window.setTimeout(finish,reduced ? 600 : 4000);
+  window.setTimeout(finish, reduced ? 400 : (seen ? 900 : 2200));
 
   ['wheel','touchstart','keydown'].forEach(function(ev){
     window.addEventListener(ev,function(e){
@@ -163,7 +168,8 @@
     items.forEach(function(a){
       var on=a.getAttribute('href')===hash;
       a.classList.toggle('is-active',on);
-      a.setAttribute('aria-current',on?'page':'false');
+      if(on) a.setAttribute('aria-current','page');
+      else a.removeAttribute('aria-current');
     });
   }
 
@@ -476,5 +482,53 @@
   inner.addEventListener('pointerleave',function(){
     if(!locked && revealStart===null) inner.classList.remove('lens');
   });
+})();
+
+/* ---------- scroll progress (calm top bar) ---------- */
+(function(){
+  var bar=document.getElementById('scrollProgress');
+  if(!bar){
+    bar=document.createElement('div');
+    bar.id='scrollProgress';
+    bar.className='scroll-progress';
+    bar.setAttribute('aria-hidden','true');
+    document.body.appendChild(bar);
+  }
+  function update(){
+    var doc=document.documentElement;
+    var max=Math.max(1, doc.scrollHeight - window.innerHeight);
+    var p=Math.min(1, Math.max(0, window.scrollY / max));
+    bar.style.transform='scaleX('+p+')';
+  }
+  update();
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update, {passive:true});
+})();
+
+/* ---------- media fade-in when decoded ---------- */
+(function(){
+  function mark(img){
+    if(!img || img.dataset.fadeBound) return;
+    img.dataset.fadeBound='1';
+    img.classList.add('media-fade');
+    if(img.complete && img.naturalWidth) img.classList.add('is-loaded');
+    else{
+      img.addEventListener('load', function(){ img.classList.add('is-loaded'); }, {once:true});
+      img.addEventListener('error', function(){ img.classList.add('is-loaded'); }, {once:true});
+    }
+  }
+  document.querySelectorAll('img').forEach(mark);
+  if('MutationObserver' in window){
+    var mo=new MutationObserver(function(list){
+      list.forEach(function(m){
+        m.addedNodes.forEach(function(n){
+          if(n.nodeType!==1) return;
+          if(n.tagName==='IMG') mark(n);
+          else if(n.querySelectorAll) n.querySelectorAll('img').forEach(mark);
+        });
+      });
+    });
+    mo.observe(document.documentElement, {childList:true, subtree:true});
+  }
 })();
 

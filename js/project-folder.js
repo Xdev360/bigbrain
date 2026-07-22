@@ -96,7 +96,7 @@
     var kind = s.kind || 'brand';
     var ph = '<div class="shot-ph"><span>'+esc(s.k)+'</span><strong>'+esc(s.t)+'</strong></div>';
     var img = src
-      ? '<img class="shot-img" src="'+esc(src)+'" alt="'+esc(s.t)+'" loading="lazy" onerror="this.remove();var ph=this.parentNode.querySelector(\'.shot-ph\');if(ph)ph.hidden=false">'+
+      ? '<img class="shot-img media-fade" src="'+esc(src)+'" alt="'+esc(s.t)+'" loading="lazy" decoding="async" onload="this.classList.add(\'is-loaded\')" onerror="this.classList.add(\'is-loaded\');this.remove();var ph=this.parentNode.querySelector(\'.shot-ph\');if(ph)ph.hidden=false">'+
         '<div class="shot-ph" hidden><span>'+esc(s.k)+'</span><strong>'+esc(s.t)+'</strong></div>'
       : ph;
     return ''+
@@ -137,7 +137,7 @@
       ? '<img src="'+esc(cover)+'" alt="'+esc(p.name)+'" loading="eager" onerror="this.remove();this.parentNode.classList.add(\'is-empty\')">'
       : '';
     return ''+
-      '<section class="context-sec" id="context" data-guide="About the project." data-guide-pitch="'+esc(about)+'">'+
+      '<section class="context-sec" id="context" data-guide="'+esc(p.name)+' — what we were solving." data-guide-pitch="'+esc(about)+'">'+
         '<div class="context-pin wrap" data-context-pin>'+
           '<div class="context-media" data-context-media>'+
             '<div class="context-frame'+(cover?'':' is-empty')+'">'+
@@ -197,6 +197,10 @@
     '</section>'
   ) : '';
 
+  var stickyCtaHtml = (id !== 'spotlight')
+    ? '<a class="case-sticky-cta" href="'+assetRoot+'index.html#custom">Start a project</a>'
+    : '';
+
   var soloSpotlight = id === 'spotlight' && (/(?:^\?|&)solo=1(?:&|$)/.test(location.search) || location.hash === '#solo');
   if(soloSpotlight) document.body.classList.add('spotlight-solo');
 
@@ -230,14 +234,14 @@
     : (id === 'spotlight'
       ? spotlightInside
       : (contextBlock() + phasesHtml +
-        '<section class="phase-sec phase-outcome" id="outcome">'+
+        '<section class="phase-sec phase-outcome" id="outcome" data-guide="'+esc((p.outcome&&p.outcome.guide)||(p.name+' — the punchline.'))+'" data-guide-pitch="'+esc((p.outcome&&p.outcome.pitch)||(p.outcome&&p.outcome.body)||p.about||p.tagline||'')+'">'+
           '<div class="phase-in wrap">'+
             '<p class="eyebrow">Impact</p>'+
             '<h2>'+esc((p.outcome&&p.outcome.title)||'Outcome')+'</h2>'+
             '<p class="phase-body">'+esc((p.outcome&&p.outcome.body)||'')+'</p>'+
             '<div class="outcome-grid">'+metricsHtml+'</div>'+
           '</div>'+
-        '</section>' + nextHtml));
+        '</section>' + nextHtml + stickyCtaHtml));
 
   var foldersOpen = !soloSpotlight && sessionStorage.getItem('bb-folders-open') === '1';
 
@@ -248,7 +252,7 @@
           '<span class="folder-toggle-arrow" aria-hidden="true"></span>'+
         '</button>'+
       '</div>'+
-      '<section class="folder-hero" id="folderTop" data-guide="Each folder is a project." data-guide-pitch="'+esc(p.about||p.tagline)+'">'+
+      '<section class="folder-hero" id="folderTop" data-guide="'+esc(p.name)+' is open." data-guide-pitch="'+esc(p.about||p.tagline||'')+'">'+
         '<div class="folder-stage">'+
           '<div class="folder-viewport" id="folderViewport">'+
             '<div class="folder-strip-track" id="folderTrack">'+foldersHtml+'</div>'+
@@ -331,6 +335,7 @@
   document.body.style.overflowX = '';
   document.body.style.overflowY = '';
   document.body.classList.add('folder-open');
+  document.body.classList.add('is-ready');
   document.body.classList.remove('lb-open');
   if(!soloSpotlight && !foldersOpen) document.body.classList.add('folders-collapsed');
   if(p.theme){
@@ -553,6 +558,56 @@
     links.querySelectorAll('a').forEach(function(a){
       a.addEventListener('click', function(){ setOpen(false); });
     });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') setOpen(false);
+    });
+  })();
+
+  /* ---------- case polish: scroll progress + sticky CTA + media fade ---------- */
+  (function(){
+    if(document.getElementById('scrollProgress')) return;
+    var bar = document.createElement('div');
+    bar.id = 'scrollProgress';
+    bar.className = 'scroll-progress';
+    bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+    function update(){
+      var doc = document.documentElement;
+      var max = Math.max(1, doc.scrollHeight - window.innerHeight);
+      var p = Math.min(1, Math.max(0, window.scrollY / max));
+      bar.style.transform = 'scaleX(' + p + ')';
+      var cta = document.querySelector('.case-sticky-cta');
+      if(cta) cta.classList.toggle('is-on', window.scrollY > 420);
+    }
+    update();
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update, {passive:true});
+  })();
+
+  (function(){
+    function mark(img){
+      if(!img || img.dataset.fadeBound) return;
+      img.dataset.fadeBound = '1';
+      img.classList.add('media-fade');
+      if(img.complete && img.naturalWidth) img.classList.add('is-loaded');
+      else{
+        img.addEventListener('load', function(){ img.classList.add('is-loaded'); }, {once:true});
+        img.addEventListener('error', function(){ img.classList.add('is-loaded'); }, {once:true});
+      }
+    }
+    document.querySelectorAll('img').forEach(mark);
+    if('MutationObserver' in window){
+      var mo = new MutationObserver(function(list){
+        list.forEach(function(m){
+          m.addedNodes.forEach(function(n){
+            if(n.nodeType !== 1) return;
+            if(n.tagName === 'IMG') mark(n);
+            else if(n.querySelectorAll) n.querySelectorAll('img').forEach(mark);
+          });
+        });
+      });
+      mo.observe(document.documentElement, {childList:true, subtree:true});
+    }
   })();
 
   /* ---------- Locked form ---------- */

@@ -138,15 +138,25 @@
   function bindPills(){
     form.querySelectorAll('.inq-pills').forEach(function(group){
       var mode=group.getAttribute('data-inq-mode')||'multi';
+      group.querySelectorAll('.inq-pill').forEach(function(b){
+        if(!b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', b.classList.contains('is-on')?'true':'false');
+      });
       group.addEventListener('click',function(e){
         var btn=e.target.closest('.inq-pill');
         if(!btn || !group.contains(btn)) return;
         if(mode==='single'){
           var on=btn.classList.contains('is-on');
-          group.querySelectorAll('.inq-pill').forEach(function(b){ b.classList.remove('is-on'); });
-          if(!on) btn.classList.add('is-on');
+          group.querySelectorAll('.inq-pill').forEach(function(b){
+            b.classList.remove('is-on');
+            b.setAttribute('aria-pressed','false');
+          });
+          if(!on){
+            btn.classList.add('is-on');
+            btn.setAttribute('aria-pressed','true');
+          }
         }else{
           btn.classList.toggle('is-on');
+          btn.setAttribute('aria-pressed', btn.classList.contains('is-on') ? 'true' : 'false');
         }
       });
     });
