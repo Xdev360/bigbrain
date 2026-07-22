@@ -1,4 +1,4 @@
-/* Five real projects — GOLDEN, WinTech Studio, QAfrica, Lumia Essence, Nicovellor */
+/* Five real projects — GOLDEN, WinTech Studio, Cue Africa, Lumia Essence, Nicovellor */
 window.BB_PROJECTS = [
   {
     id: 'golden',
@@ -192,20 +192,23 @@ window.BB_PROJECTS = [
   },
   {
     id: 'qafrica',
-    name: 'QAfrica',
-    year: '2025',
-    tagline: 'Crew marketplace — hire models, makeup, photography and full production teams fast.',
-    about: 'A crew marketplace to hire models, makeup, photography and full production teams fast.',
-    solution: 'Dark-green brand and product flows that make finding and booking crew feel as fast as messaging a friend.',
+    name: 'Cue Africa',
+    year: '2024',
+    tagline: 'Connecting creators with production teams in Africa, easily.',
+    about: 'Connecting creators with production teams in Africa easily. Finding good behind-the-scenes crew usually relies on who you know. Cue Africa changes that by letting producers easily find and hire top talent in minutes.',
+    solution: 'We built a centralized space where pricing is 100% clear. Now, producers can search by category, see hourly rates upfront, and book verified pros without the stress.',
     liveUrl: '',
     tags: ['Brand', 'App', 'Web', 'Graphic'],
-    industry: 'Creator economy / casting',
-    productType: 'Brand + web app + product',
+    industry: 'Creator economy / production',
+    productType: 'Brand + web + product',
+    role: 'Lead UI/UX & Brand Designer',
+    client: 'Cue Africa',
     stage: 'Shipped',
     roles: ['Brand identity', 'App design', 'Web design', 'Graphic design'],
     href: 'works/qafrica.html',
     image: 'assets/projects/qafrica/qafrica-cover.jpg',
     cover: 'assets/projects/qafrica/qafrica-cover.jpg',
+    logo: 'assets/projects/qafrica/qafrica-logo-mark.svg',
     next: 'lumia-essence',
     theme: {
       id: 'qafrica',
@@ -218,30 +221,30 @@ window.BB_PROJECTS = [
       ink: '#0A2419',
       mute: 'rgba(10,36,25,.6)'
     },
-    problem: 'Shooting a commercial meant endless DMs for makeup, models, photographers and crew. QAfrica needed a marketplace where production teams get hired fast — search, book, pay.',
+    problem: 'Hiring crew used to be a headache. Rates were hidden, causing endless negotiations, and portfolios were scattered across Instagram and Google Drive, making it super slow to assemble a team.',
     phases: [
       {
         id: 'brand-identity',
         label: 'Brand identity',
-        title: 'Dark green for trust on set',
-        body: 'A deeper green system for a casting and crew platform — professional enough for producers, alive enough for talent.',
+        title: 'Premium, professional, and built for African creatives',
+        body: 'Building a brand that feels premium, professional, and trustworthy for the African creative industry. The dark green aesthetic signals high production value.',
         shots: [
-          { k: '01', t: 'Wordmark', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-01.jpg', note: 'QAfrica wordmark — Que + Africa, dark green.' },
-          { k: '02', t: 'Colour system', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-02.jpg', note: 'Dark-to-light green for crew categories.' },
-          { k: '03', t: 'Talent badges', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-03.jpg', note: 'Badges for roles on set.' }
+          { k: '1.1', t: 'The logo', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-01.jpg', note: 'Cue Africa logo, lockups, and app icon system.' },
+          { k: '1.2', t: 'The system', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-02.jpg', note: 'Colour palette and typography for the brand.' },
+          { k: '1.3', t: 'Brand in action', kind: 'brand', src: 'assets/projects/qafrica/qafrica-brand-03.jpg', note: 'How the brand lives in the real world.' }
         ],
-        guide: 'QAfrica identity — crew trust in a dark green system.',
+        guide: 'Cue Africa identity: dark green that reads as high production value.',
         pitch: 'Producers hire people they trust. The brand has to earn that in a second.'
       },
       {
         id: 'graphic-design',
         label: 'Graphic design',
-        title: 'Casting campaign and role kits',
-        body: 'Launch campaign and role graphics for models, MUAs, photographers and behind-the-scenes crew.',
+        title: 'Assets that sell talent and drive the hire',
+        body: 'Creating sharp visual assets that drive engagement, push ads, and make the platform\'s talent look their absolute best.',
         shots: [
-          { k: '01', t: 'Launch campaign', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-01.jpg', note: 'Launch campaign for the crew marketplace.' },
-          { k: '02', t: 'Role posters', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-02.jpg', note: 'Role posters — makeup, photo, talent.' },
-          { k: '03', t: 'Social set', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-03.jpg', note: 'Social set for hiring calls.' }
+          { k: '2.1', t: 'Promo banner', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-01.jpg', note: 'Promotional banner and concept board for Cue Africa.' },
+          { k: '2.2', t: 'Category graphics', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-02.jpg', note: 'Category cards and crew graphics for the platform.' },
+          { k: '2.3', t: 'Talent marketing', kind: 'ig', src: 'assets/projects/qafrica/qafrica-graphic-03.jpg', note: 'Marketing graphics that put talent front and center.' }
         ],
         guide: 'Graphics that speak to both talent and producers.',
         pitch: 'Two audiences. One brand voice.'
@@ -249,40 +252,38 @@ window.BB_PROJECTS = [
       {
         id: 'web-design',
         label: 'Web design',
-        title: 'Web app for browse, book, pay',
-        body: 'Web application surfaces for discovering crew, viewing profiles and starting hires — fast path from need to booked.',
+        title: 'Dark-mode desktop built to hire without friction',
+        body: 'A sleek, dark-mode desktop experience designed for producers to easily browse, filter, and hire talent without any friction.',
         shots: [
-          { k: '01', t: 'Marketplace home', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-01.jpg', note: 'Marketplace home — find your crew.' },
-          { k: '02', t: 'Talent profile', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-02.jpg', note: 'Talent profile that sells the book.' },
-          { k: '03', t: 'Hire checkout', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-03.jpg', note: 'Hire + pay flow.' }
+          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-01.jpg', note: 'Hero: Showcase. Connect. Rise.' },
+          { k: '3.2', t: 'Category discovery', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-02.jpg', note: 'Category grid and talent cards with clear rates.' },
+          { k: '3.3', t: 'The vibe', kind: 'web', src: 'assets/projects/qafrica/qafrica-web-03.jpg', note: 'Premium device mockup for the agency feel.' }
         ],
-        guide: 'Web app — browse crew, book, pay.',
+        guide: 'Web: browse crew, see rates, hire fast.',
         pitch: 'If booking takes longer than a DM thread, we failed.'
       },
       {
         id: 'app-design',
         label: 'App design',
-        title: 'Mobile hire and talent tools',
-        body: 'App flows for producers on the go and talent managing availability, rates and bookings.',
+        title: 'Mobile flow for producers on set',
+        body: 'Production moves fast, and producers are always on their phones. We designed a fully responsive mobile flow so users can search and book crew on the go.',
         shots: [
-          { k: '01', t: 'Producer home', kind: 'phone', src: 'assets/projects/qafrica/qafrica-app-01.jpg', note: 'Producer home — crew search on mobile.' },
-          { k: '02', t: 'Talent inbox', kind: 'phone', src: 'assets/projects/qafrica/qafrica-app-02.jpg', note: 'Talent inbox for hire requests.' },
-          { k: '03', t: 'Booking confirm', kind: 'phone', src: 'assets/projects/qafrica/qafrica-app-03.jpg', note: 'Booking confirmation — locked in.' }
+          { k: '01', t: 'Talent profile', kind: 'phone', src: 'assets/projects/qafrica/qafrica-app-01.jpg', note: 'Mobile talent profile: hire-ready on a small screen.' }
         ],
-        guide: 'App — producers hire; talent gets booked.',
-        pitch: 'Sets don’t wait. The product can’t either.'
+        guide: 'App: search and book crew on the go.',
+        pitch: 'Sets do not wait. The product cannot either.'
       }
     ],
     outcome: {
       title: 'What it moved',
-      body: 'Faster crew assembly — from scattered DMs to a marketplace producers and talent both return to.',
+      body: 'From scattered DMs and hidden rates to a clear marketplace where producers find, compare, and book verified crew in minutes.',
       metrics: [
-        { value: '3×', label: 'Faster time-to-book vs DM workflow' },
-        { value: '+70%', label: 'Talent profiles completed' },
-        { value: '200+', label: 'Crew roles listed in first wave' }
+        { value: 'Minutes', label: 'From search to hire-ready crew' },
+        { value: '100%', label: 'Clear rates before the conversation' },
+        { value: 'BTS', label: 'Crew categories built for real sets' }
       ],
-      guide: 'Outcome — faster books, fuller profiles, real crew supply.',
-      pitch: 'QAfrica turns a crew hunt into a checkout.'
+      guide: 'Outcome: clearer rates, faster books, crew you can trust.',
+      pitch: 'Cue Africa turns a crew hunt into a checkout.'
     }
   },
   {

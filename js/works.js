@@ -22,11 +22,12 @@
       href:'works/wintech-studio.html'
     },
     {
-      name:'QAfrica',
-      year:'2025',
-      info:'Crew marketplace: hire models, makeup, photography and production teams fast.',
+      name:'Cue Africa',
+      year:'2024',
+      info:'Connecting creators with production teams in Africa: find and hire top talent in minutes.',
       roles:['Brand identity','App design','Web design','Graphic design'],
       theme:{id:'qafrica',primary:'#0F3D2E',secondary:'#6BB08A'},
+      logo:'assets/projects/qafrica/qafrica-logo-mark.svg',
       href:'works/qafrica.html'
     },
     {
@@ -62,11 +63,14 @@
     }).join('');
   }
 
-  function folderMark(theme){
+  function folderMark(theme, logoSrc){
     var t=theme||{};
     var primary=t.primary||'#2F80ED';
     var secondary=t.secondary||'#7EC8F0';
     var id=(t.id||'x').replace(/[^a-z0-9]/gi,'');
+    var logo=logoSrc
+      ? '<span class="work-folder-logo"><img src="'+logoSrc+'" alt=""></span>'
+      : '';
     return ''+
       '<span class="work-folder" aria-hidden="true">'+
         '<svg class="work-folder-svg" viewBox="0 0 200 158" xmlns="http://www.w3.org/2000/svg">'+
@@ -91,6 +95,7 @@
             '<path d="M38 126h124" stroke="rgba(0,0,0,.07)" stroke-width="2" stroke-linecap="round" fill="none"/>'+
           '</g>'+
         '</svg>'+
+        logo+
       '</span>';
   }
 
@@ -109,7 +114,7 @@
           '</a>'+
         '</div>'+
         '<div class="work-card-folder" style="--fld:'+tint+'">'+
-          folderMark(p.theme)+
+          folderMark(p.theme, p.logo)+
         '</div>'+
       '</article>';
   }

@@ -35,9 +35,12 @@
     };
   }
 
-  function folderMark(theme){
+  function folderMark(theme, logoSrc){
     var c = folderColors(theme);
     var tid = esc((theme && theme.id) || 'x');
+    var logo = logoSrc
+      ? '<span class="folder-logo-slot is-on"><img src="'+esc(mediaUrl(logoSrc))+'" alt=""></span>'
+      : '<span class="folder-logo-slot"></span>';
     return ''+
       '<span class="os-folder" aria-hidden="true">'+
         '<svg class="os-folder-svg" viewBox="0 0 200 158" xmlns="http://www.w3.org/2000/svg">'+
@@ -62,8 +65,7 @@
             '<path d="M38 126h124" stroke="rgba(0,0,0,.07)" stroke-width="2" stroke-linecap="round" fill="none"/>'+
           '</g>'+
         '</svg>'+
-        /* reserved center slot for project logo later */
-        '<span class="folder-logo-slot"></span>'+
+        logo+
       '</span>';
   }
 
@@ -73,7 +75,7 @@
     return ''+
       '<article class="folder-card'+(isActive?' is-active':'')+(locked?' is-locked':'')+'" data-folder-id="'+esc(proj.id)+'"'+(isActive?' aria-current="page"':'')+'>'+
         '<button type="button" class="folder-hit" data-go="'+esc(proj.id)+'" aria-label="Open '+esc(proj.name)+(locked?' (locked)':'')+'">'+
-          folderMark(theme)+
+          folderMark(theme, proj.logo)+
           (locked ? '<span class="folder-lock-badge" aria-hidden="true">Locked</span>' : '')+
           '<h2 class="folder-title">'+esc(proj.name)+'</h2>'+
         '</button>'+
@@ -153,8 +155,8 @@
             '</div>'+
             (solution ? '<div class="context-block"><h3>The solution</h3><p>'+esc(solution)+'</p></div>' : '')+
             '<div class="meta-rows">'+
-              '<div class="meta-row"><div class="k">Product</div><div class="v">'+esc(p.productType)+'</div></div>'+
-              '<div class="meta-row"><div class="k">Industry</div><div class="v">'+esc(p.industry)+'</div></div>'+
+              '<div class="meta-row"><div class="k">'+(p.role ? 'Role' : 'Product')+'</div><div class="v">'+esc(p.role || p.productType)+'</div></div>'+
+              '<div class="meta-row"><div class="k">'+(p.client ? 'Client' : 'Industry')+'</div><div class="v">'+esc(p.client || p.industry)+'</div></div>'+
               '<div class="meta-row"><div class="k">Year</div><div class="v">'+esc(p.year)+'</div></div>'+
               '<div class="meta-row"><div class="k">Live</div><div class="v">'+viewLiveHtml()+'</div></div>'+
             '</div>'+

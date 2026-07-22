@@ -35,7 +35,7 @@
           image:'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=640&q=80'
         },
         {
-          name:'QAfrica',
+          name:'Cue Africa',
           blurb:'Crew marketplace — browse, book, pay.',
           image:'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=640&q=80'
         }
@@ -65,7 +65,7 @@
           image:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=640&q=80'
         },
         {
-          name:'QAfrica',
+          name:'Cue Africa',
           blurb:'Casting and crew role kits.',
           image:'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=640&q=80'
         }

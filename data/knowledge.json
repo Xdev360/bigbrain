@@ -26,7 +26,7 @@
     "selected_work": [
       {"name": "GOLDEN", "type": "Consistency / goals app", "year": "2025", "url": "works/golden.html"},
       {"name": "WinTech Studio", "type": "Agency brand + web", "year": "2024", "url": "works/wintech-studio.html"},
-      {"name": "QAfrica", "type": "Crew marketplace", "year": "2025", "url": "works/qafrica.html"},
+      {"name": "Cue Africa", "type": "Crew marketplace", "year": "2024", "url": "works/qafrica.html"},
       {"name": "Lumia Essence", "type": "Skincare commerce app", "year": "2025", "url": "works/lumia-essence.html"},
       {"name": "Nicovellor", "type": "Luxury network brand", "year": "2025", "url": "works/nicovellor.html"}
     ],
@@ -51,7 +51,7 @@
     },
     {
       "q": "Show selected work",
-      "a": "Five projects: GOLDEN (goals/consistency), WinTech Studio (agency), QAfrica (crew marketplace), Lumia Essence (skincare commerce), and Nicovellor (luxury network for Velourians). Open any folder to walk brand → graphics → web → app → outcome."
+      "a": "Five projects: GOLDEN (goals/consistency), WinTech Studio (agency), Cue Africa (crew marketplace), Lumia Essence (skincare commerce), and Nicovellor (luxury network for Velourians). Open any folder to walk brand → graphics → web → app → outcome."
     },
     {
       "q": "How do I buy a template?",

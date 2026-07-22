@@ -448,14 +448,26 @@ body.folder-open{
 .folder-card.is-near:hover .os-folder{transform:translateY(-6px) scale(.95)}
 .folder-card.is-active:hover .os-folder{transform:translateY(-12px) scale(1)}
 .os-folder-svg{display:block;width:100%;height:auto}
-/* reserved center slot for project logo (add later) */
+/* project logo sits on the folder face (transparent SVG mark) */
 .folder-logo-slot{
   position:absolute;
-  left:50%;top:58%;
+  left:50%;top:56%;
   transform:translate(-50%,-50%);
-  width:28%;height:28%;
-  border-radius:10px;
+  width:18%;
+  aspect-ratio:1;
+  border-radius:0;
   pointer-events:none;
+  overflow:visible;
+  background:transparent;
+  box-shadow:none;
+  color:#2B453C;
+}
+.folder-logo-slot:empty{display:none}
+.folder-logo-slot.is-on{display:block;background:transparent}
+.folder-logo-slot img,
+.folder-logo-slot svg{
+  width:100%;height:100%;
+  object-fit:contain;display:block;
 }
 .folder-title{
   font-size:clamp(18px,2vw,24px);font-weight:600;letter-spacing:-.035em;line-height:1.1;
@@ -619,11 +631,14 @@ body[data-project-theme="nicovellor"] .phase-outcome{background:#111}
   aspect-ratio:4/5;
   border-radius:12px;
 }
-/* Web — desktop landscape, large enough to read */
+/* Web — frame width follows the image, no letterbox bars */
 .frame-web{
-  width:min(920px,88vw);
-  aspect-ratio:16/10;
+  width:auto;
+  max-width:min(920px,88vw);
+  height:auto;
+  aspect-ratio:auto;
   border-radius:12px;
+  background:transparent;
 }
 /* App phones — grouped on one row */
 .frame-phone{
@@ -640,15 +655,31 @@ body[data-project-theme="nicovellor"] .phase-outcome{background:#111}
 .shot-frame .shot-img{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center;
+  z-index:1;
+}
+/* web: image defines the frame size */
+.frame-web .shot-img{
+  position:static;
+  inset:auto;
+  display:block;
+  width:auto;
+  max-width:min(920px,88vw);
+  height:auto;
+  max-height:min(72vh,780px);
+  object-fit:unset;
+  background:transparent;
 }
 .shot-frame .shot-ph{
-  position:absolute;inset:0;
+  position:absolute;inset:0;z-index:0;
   display:flex;flex-direction:column;justify-content:flex-end;
   padding:16px 18px;
   background:
     linear-gradient(160deg,rgba(12,12,12,.02),rgba(12,12,12,.14)),
     #ebe6de;
 }
+/* `hidden` must win over display:flex or placeholders cover real images */
+.shot-frame .shot-ph[hidden]{display:none!important}
+.shot-frame:has(.shot-img) .shot-ph{display:none!important}
 .shot-frame .shot-ph span{
   font-family:"IBM Plex Mono",monospace;
   font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5a5a5a;
@@ -692,9 +723,21 @@ body[data-project-theme="nicovellor"] .phase-outcome{background:#111}
   border-radius:16px;
 }
 .shot-lb-media.lb-frame-web{
-  width:min(94vw,1400px);
-  aspect-ratio:16/10;
+  width:fit-content;
+  max-width:min(94vw,1400px);
+  aspect-ratio:auto;
+  height:auto;
+  max-height:min(82vh,920px);
   border-radius:14px;
+  background:transparent;
+}
+.shot-lb-media.lb-frame-web img{
+  position:static;
+  width:auto;
+  max-width:min(94vw,1400px);
+  height:auto;
+  max-height:min(82vh,920px);
+  background:transparent;
 }
 .shot-lb-media.lb-frame-ig{
   width:min(420px,86vw,calc(72vh * 0.8));
@@ -810,33 +853,61 @@ body.lb-open{overflow:hidden}
   .os-folder{max-width:min(180px,52vw)}
   .folder-strip-hint{display:block}
   .shot-lb-guide{align-items:flex-start}
-  /* mobile: no pin / no parallax — each row is a manual horizontal swipe */
+  /* mobile: manual swipe — cards snap to the same left margin as the text */
   .phase-sec{padding-block:48px}
   .phase-pin{height:auto!important}
   .phase-pin.is-scrub .phase-pin-sticky,
   .phase-pin-sticky{position:relative;top:auto;min-height:0;display:block}
   .phase-pin .phase-in{margin-bottom:22px}
+  .phase-row-clip.wrap{
+    max-width:none;
+    margin:0;
+    padding-inline:0;
+  }
   .phase-row-clip{
     overflow-x:auto;
     overflow-y:hidden;
     -webkit-overflow-scrolling:touch;
     overscroll-behavior-x:contain;
     touch-action:pan-x pan-y;
-    scroll-snap-type:x proximity;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:var(--pad);
     scrollbar-width:none;
   }
   .phase-row-clip::-webkit-scrollbar{display:none}
   .phase-row{
-    gap:24px;
+    gap:16px;
+    padding-inline:var(--pad);
     transform:none!important;
   }
-  .phase-row > *{scroll-snap-align:start}
-  .frame-brand{width:min(520px,88vw)}
-  .frame-ig{width:min(260px,64vw)}
-  .frame-web{width:min(860px,92vw)}
-  .frame-phone{width:min(170px,38vw)}
-  .phase-row-phones{gap:24px}
-  .shot-lb-media.lb-frame-web{width:min(96vw,1400px)}
+  .phase-row > *{
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+  }
+  /* one card fills margin → margin, so one swipe lands the next on the text edge */
+  .frame-brand{
+    width:calc(100vw - (2 * var(--pad)));
+  }
+  .frame-web{
+    width:auto;
+    max-width:calc(100vw - (2 * var(--pad)));
+  }
+  .frame-web .shot-img{
+    max-width:calc(100vw - (2 * var(--pad)));
+    max-height:none;
+  }
+  .frame-ig{
+    width:min(280px, calc(100vw - (2 * var(--pad))));
+  }
+  .frame-phone{width:min(168px,42vw)}
+  .phase-row-phones{gap:14px}
+  .shot-lb-media.lb-frame-web{
+    width:fit-content;
+    max-width:min(96vw,1400px);
+  }
+  .shot-lb-media.lb-frame-web img{
+    max-width:min(96vw,1400px);
+  }
   .shot-lb-media.lb-frame-brand{width:min(96vw,1280px)}
 }
 
