@@ -499,7 +499,7 @@ window.BB_PROJECTS = [
     id: 'spotlight',
     name: 'Spotlight',
     year: '2025',
-    tagline: 'Selected projects from the portfolio — Google Movie, Rest Jam, You\'d Mates, and more.',
+    tagline: 'Selected projects from the portfolio — Google Movie, RESJAM, Yeild Mates, and more.',
     about: 'Spotlight is an open black folder for selected screen work. Switch projects in the top nav and swipe the shots.',
     solution: '',
     liveUrl: '',

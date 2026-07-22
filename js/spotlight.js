@@ -71,36 +71,36 @@
     },
     {
       id: 'rest-jam',
-      name: 'Rest Jam',
+      name: 'RESJAM',
       productType: 'Brand + product design',
       industry: 'Lifestyle / wellness',
       date: '2024',
       stage: 'Completed',
-      body: 'Rest Jam is a calm product and brand system for slowing down without losing clarity. Screens and graphics share one paced rhythm so rest feels intentional, not empty.',
+      body: 'RESJAM is a calm product and brand system for slowing down without losing clarity. Screens and graphics share one paced rhythm so rest feels intentional, not empty.',
       images: [
         {
           type: 'cover',
           src: 'assets/projects/spotlight/rest-jam/cover.jpg',
-          title: 'Rest Jam — cover',
-          note: 'Hero cover for the Rest Jam redesign.'
+          title: 'RESJAM — cover',
+          note: 'Hero cover for the RESJAM redesign.'
         },
         {
           type: 'compare-y',
           old: 'assets/projects/spotlight/rest-jam/old.jpg',
           new: 'assets/projects/spotlight/rest-jam/new.jpg',
-          title: 'Rest Jam — site transform',
-          note: 'Tap to unlock, then drag the line down to reveal the new site. Or hit Transform.'
+          title: 'RESJAM — site transform',
+          note: 'Tap Old or New to animate fully between the two sites — or drag the line.'
         }
       ]
     },
     {
       id: 'youd-mates',
-      name: "You'd Mates",
+      name: 'Yeild Mates',
       productType: 'Social product design',
       industry: 'Social / community',
       date: '2025',
       stage: 'Completed',
-      body: "You'd Mates is a social product built around real groups, not endless feeds. The interface keeps hangouts, plans, and shared moments close while cutting the noise that usually kills follow-through.",
+      body: 'Yeild Mates is a social product built around real groups, not endless feeds. The interface keeps hangouts, plans, and shared moments close while cutting the noise that usually kills follow-through.',
       images: []
     }
   ];
@@ -228,14 +228,11 @@
               : '<span class="sp-compare-chev is-v">‹</span><span class="sp-compare-chev is-v">›</span>')+
           '</span>'+
         '</div>'+
-        '<div class="sp-compare-labels" aria-hidden="true">'+
-          '<span class="sp-compare-label is-old">Old</span>'+
-          '<span class="sp-compare-label is-new">New</span>'+
+        '<div class="sp-compare-labels">'+
+          '<button type="button" class="sp-compare-label is-old'+(unlocked?'':'')+'" data-go-old>Old</button>'+
+          '<button type="button" class="sp-compare-label is-new" data-go-new>New</button>'+
         '</div>'+
-        '<button type="button" class="sp-compare-unlock" data-unlock>'+(unlocked?'Drag to compare':'Tap to unlock compare')+'</button>'+
-        (axis==='y'
-          ? '<button type="button" class="sp-compare-transform" data-transform>Transform</button>'
-          : '')+
+        (unlocked ? '' : '<button type="button" class="sp-compare-unlock" data-unlock>Tap to unlock compare</button>')+
       '</div>';
 
     bindCompare(wrap, item, inLightbox);
@@ -250,9 +247,11 @@
     var newImg = wrap.querySelector('.sp-compare-new img');
     var handle = wrap.querySelector('[data-handle]');
     var unlockBtn = wrap.querySelector('[data-unlock]');
-    var transformBtn = wrap.querySelector('[data-transform]');
+    var goOldBtn = wrap.querySelector('[data-go-old]');
+    var goNewBtn = wrap.querySelector('[data-go-new]');
     var pos = 50;
     var active = false;
+    var animating = false;
     var k = keyFor(idx, shot);
 
     function syncImgSize(){
@@ -282,8 +281,15 @@
       }
     }
 
-    function setPos(pct){
-      pos = Math.max(4, Math.min(96, pct));
+    function syncLabels(){
+      if(goOldBtn) goOldBtn.classList.toggle('is-on', pos >= 92);
+      if(goNewBtn) goNewBtn.classList.toggle('is-on', pos <= 8);
+    }
+
+    function setPos(pct, allowFull){
+      var min = allowFull ? 0 : 4;
+      var max = allowFull ? 100 : 96;
+      pos = Math.max(min, Math.min(max, pct));
       if(axis === 'x'){
         oldLayer.style.width = pos + '%';
         oldLayer.style.height = '100%';
@@ -295,13 +301,32 @@
         handle.style.top = pos + '%';
         handle.style.left = '';
       }
+      syncLabels();
+    }
+
+    function animateTo(to){
+      unlock();
+      animating = true;
+      var from = pos;
+      var t0 = performance.now();
+      function tick(now){
+        var t = Math.min(1, (now - t0) / 560);
+        var eased = 1 - Math.pow(1 - t, 3);
+        setPos(from + (to - from) * eased, true);
+        if(t < 1) requestAnimationFrame(tick);
+        else animating = false;
+      }
+      requestAnimationFrame(tick);
     }
 
     function unlock(){
       compareUnlocked[k] = true;
       view.classList.add('is-unlocked');
       handle.classList.remove('is-nudge');
-      if(unlockBtn) unlockBtn.textContent = 'Drag to compare';
+      if(unlockBtn){
+        unlockBtn.remove();
+        unlockBtn = null;
+      }
       try{ if(navigator.vibrate) navigator.vibrate(12); }catch(e){}
     }
 
@@ -311,20 +336,16 @@
         unlock();
       });
     }
-    if(transformBtn){
-      transformBtn.addEventListener('click', function(e){
+    if(goOldBtn){
+      goOldBtn.addEventListener('click', function(e){
         e.stopPropagation();
-        unlock();
-        var from = pos;
-        var to = 8;
-        var t0 = performance.now();
-        function tick(now){
-          var t = Math.min(1, (now - t0) / 520);
-          var eased = 1 - Math.pow(1 - t, 3);
-          setPos(from + (to - from) * eased);
-          if(t < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
+        animateTo(100);
+      });
+    }
+    if(goNewBtn){
+      goNewBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        animateTo(0);
       });
     }
 
@@ -336,6 +357,7 @@
 
     function onDown(e){
       if(e.pointerType === 'mouse' && e.button !== 0) return;
+      if(animating) return;
       if(!compareUnlocked[k] && !inLightbox){
         unlock();
         return;
@@ -346,12 +368,12 @@
       view.classList.add('is-dragging');
       handle.classList.remove('is-nudge');
       try{ view.setPointerCapture(e.pointerId); }catch(err){}
-      setPos(pointerPos(e));
+      setPos(pointerPos(e), true);
       e.preventDefault();
     }
     function onMove(e){
       if(!active) return;
-      setPos(pointerPos(e));
+      setPos(pointerPos(e), true);
     }
     function onUp(){
       if(!active) return;
@@ -362,7 +384,7 @@
 
     handle.addEventListener('pointerdown', onDown);
     view.addEventListener('pointerdown', function(e){
-      if(e.target.closest('[data-unlock],[data-transform],.sp-compare-expand')) return;
+      if(e.target.closest('[data-unlock],[data-go-old],[data-go-new],.sp-compare-expand')) return;
       if(!compareUnlocked[k] && !inLightbox){
         unlock();
         return;
@@ -387,7 +409,7 @@
       });
     }
 
-    setPos(50);
+    setPos(50, true);
     syncImgSize();
     window.addEventListener('resize', syncImgSize, {passive:true});
     oldImg.addEventListener('load', syncImgSize);

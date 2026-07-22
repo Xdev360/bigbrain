@@ -222,7 +222,7 @@
     '</section>';
 
   var spotlightInside = id === 'spotlight'
-    ? ('<div id="spotlightRoot" class="spotlight-mount"></div>' + nextHtml)
+    ? '<div id="spotlightRoot" class="spotlight-mount"></div>'
     : '';
 
   var insideHtml = !isUnlocked

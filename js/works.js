@@ -52,7 +52,7 @@
     {
       name:'Spotlight',
       year:'2025',
-      info:'Open black folder — selected screen work: Google Movie, Rest Jam, You\'d Mates.',
+      info:'Open black folder — selected screen work: Google Movie, RESJAM, Yeild Mates.',
       roles:['Brand identity','Web design','Graphic design','App design'],
       theme:{id:'spotlight',primary:'#0A0A0A',secondary:'#2A2A2A'},
       href:'works/spotlight.html'
