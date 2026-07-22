@@ -84,10 +84,23 @@ img{display:block;max-width:100%;height:auto}
 .mark{font-size:19px;font-weight:600;letter-spacing:-.035em}
 .mark sup{font-size:9px;font-weight:400;top:-.85em;left:1px;position:relative}
 .case-back{
+  position:relative;
   font-size:14px;color:#3d3d3d;
-  border-bottom:1px solid transparent;padding-bottom:1px;transition:.2s;
+  padding-bottom:2px;
+  transition:color .2s;
 }
-.case-back:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.case-back::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:1.5px;background:currentColor;
+  transform:scaleX(0);
+  transform-origin:left center;
+}
+.case-back:hover{color:var(--ink)}
+@media(min-width:901px){
+  .case-back:hover::after{animation:navLineFill .55s ease forwards}
+}
 
 /* ---------- hero title ---------- */
 .case-hero{
@@ -244,52 +257,87 @@ img{display:block;max-width:100%;height:auto}
 .case-next-label a:hover{opacity:.55}
 .case-next-label .arrow{font-size:.7em;opacity:.45}
 
-/* ---------- next project card ---------- */
+/* ---------- next project (simple text control) ---------- */
 .next-project{
-  background:#f3f3f3;
-  padding:clamp(28px,5vw,56px) 0 clamp(56px,8vw,96px);
+  background:var(--paper);
+  padding:clamp(36px,6vw,72px) 0;
+  border-top:1px solid var(--line);
 }
 .next-project-in{
-  max-width:1100px;margin:0 auto;padding-inline:var(--pad);
+  max-width:var(--max);margin:0 auto;padding-inline:var(--pad);
+  display:flex;justify-content:flex-end;
 }
-.next-card{
-  display:block;
+.next-project-btn{
   position:relative;
-  border-radius:18px;
-  overflow:hidden;
-  background:#1a1a1a;
-  aspect-ratio:16/9;
-  max-height:520px;
-  box-shadow:0 30px 60px -28px rgba(0,0,0,.45);
-  transition:transform .35s ease;
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:clamp(18px,2.2vw,28px);
+  font-weight:600;letter-spacing:-.03em;
+  color:var(--ink);
+  padding-bottom:4px;
+  transition:opacity .2s ease;
 }
-.next-card:hover{transform:translateY(-4px)}
-.next-card-art{
-  position:absolute;inset:0;
-  display:grid;
-  grid-template-columns:1.1fr 1fr 1fr;
-  gap:14px;
-  padding:clamp(20px,3vw,40px);
+.next-project-btn::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:1.5px;background:currentColor;
+  transform:scaleX(0);
+  transform-origin:left center;
 }
-.next-card-art .tile{
-  border-radius:12px;
-  background:linear-gradient(160deg,#2a2a2a,#111);
+.next-project-btn:hover{opacity:.7}
+@media(min-width:901px){
+  .next-project-btn:hover::after{animation:navLineFill .55s ease forwards}
 }
-.next-card-art .tile:nth-child(1){grid-row:span 2}
-.next-card-meta{
-  margin-top:22px;
-  display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 18px;
+.next-project-btn span{font-size:.75em;opacity:.5}
+
+/* ---------- folder collapse toggle ---------- */
+.folder-dock{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
-.next-card-meta h3{
-  font-size:clamp(18px,2vw,24px);font-weight:500;letter-spacing:-.025em;
+.folder-toggle-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  padding:12px 0 4px;
+  position:relative;
+  z-index:3;
 }
-.next-card-meta .stage{
-  font-size:12px;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--ash);border:1px solid var(--line);padding:5px 9px;background:#fff;
+.folder-toggle{
+  width:48px;height:32px;
+  border:0;background:transparent;
+  cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;
+  color:var(--ink);
+  opacity:.5;
+  margin:0;
+  transition:opacity .2s ease;
 }
-.next-card-meta p{
-  width:100%;font-size:16px;line-height:24px;color:var(--mute);max-width:52ch;
+.folder-toggle:hover{opacity:.9}
+.folder-toggle-arrow{
+  width:11px;height:11px;
+  border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;
+  transform:rotate(-135deg);
+  transition:transform .28s ease;
+  margin-top:4px;
 }
+/* collapsed = arrow points down (tap to expand) */
+body.folders-collapsed .folder-toggle-arrow{
+  transform:rotate(45deg);
+  margin-top:-4px;
+}
+/* expanded = arrow points up (tap to collapse) */
+body:not(.folders-collapsed) .folder-toggle-arrow{
+  transform:rotate(-135deg);
+  margin-top:4px;
+}
+body.folders-collapsed .folder-strip-hint{display:none}
+body.spotlight-solo .folder-toggle-row,
+body.spotlight-solo .folder-dock{display:none}
 
 /* ---------- footer ---------- */
 .case-foot{
@@ -309,8 +357,21 @@ img{display:block;max-width:100%;height:auto}
   transition:transform .2s ease;
 }
 .btn:hover{transform:translateY(-2px)}
-.btn-ghost{font-size:15px;color:#5c5c5c;border-bottom:1px solid var(--line);padding-bottom:2px}
-.btn-ghost:hover{color:var(--ink);border-color:var(--ink)}
+.btn-ghost{
+  position:relative;
+  font-size:15px;color:#5c5c5c;
+  padding-bottom:2px;
+}
+.btn-ghost::after{
+  content:"";
+  position:absolute;left:0;right:0;bottom:0;
+  height:1.5px;background:currentColor;
+  transform:scaleX(0);transform-origin:left center;
+}
+.btn-ghost:hover{color:var(--ink)}
+@media(min-width:901px){
+  .btn-ghost:hover::after{animation:navLineFill .55s ease forwards}
+}
 .case-foot footer{
   margin-top:clamp(40px,6vw,72px);padding-top:22px;border-top:1px solid var(--line);
   display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
@@ -335,7 +396,6 @@ img{display:block;max-width:100%;height:auto}
   .meta-stick{position:static}
   .meta-row .v{text-align:left}
   .case-copy .lede{max-width:none;font-size:20px;line-height:28px}
-  .next-card{aspect-ratio:4/3;max-height:none}
 }
 @media(max-width:640px){
   .gallery-grid{grid-template-columns:1fr}
@@ -343,8 +403,6 @@ img{display:block;max-width:100%;height:auto}
   .case-next-label{justify-content:flex-start}
   .case-foot footer,.case-foot .cta-row{justify-content:center}
   .case-foot h2{margin-inline:auto;text-align:center}
-  .next-card-art{grid-template-columns:1fr 1fr}
-  .next-card-art .tile:nth-child(1){grid-row:auto;grid-column:1 / -1}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -364,14 +422,26 @@ body.folder-open{
 
 /* ---------- Project cards — same wrap margin as content below ---------- */
 .folder-hero{
-  padding:clamp(28px,5vw,56px) 0 12px;
+  padding:8px 0 12px;
   position:relative;z-index:2;
-  /* isolate swipe transforms from nav / page chrome */
   isolation:isolate;
   contain:layout style;
+  max-height:520px;
+  overflow:hidden;
+  width:100%;
+  transition:max-height .4s ease, padding .35s ease, opacity .25s ease;
+}
+body.folders-collapsed .folder-hero{
+  max-height:0;
+  padding-top:0;
+  padding-bottom:0;
+  opacity:0;
+  pointer-events:none;
 }
 .folder-stage{
-  max-width:var(--max);margin:0 auto;
+  width:100%;
+  max-width:none;
+  margin:0;
 }
 .folder-viewport{
   position:relative;
@@ -381,9 +451,8 @@ body.folder-open{
   cursor:grab;
   user-select:none;
   -webkit-user-select:none;
-  /* allow peeks without clipping the lift */
-  margin-inline:calc(-1 * min(24px, var(--pad)));
-  padding-inline:min(24px, var(--pad));
+  width:100%;
+  margin:0;
 }
 .folder-viewport.is-dragging{cursor:grabbing}
 .folder-viewport::-webkit-scrollbar{display:none}
@@ -395,6 +464,7 @@ body.folder-open{
   width:max-content;
   transform:translate3d(0,0,0);
   transition:transform .42s cubic-bezier(.22,.61,.36,1);
+  will-change:transform;
 }
 .folder-viewport.is-dragging .folder-strip-track{
   transition:none;
@@ -489,8 +559,9 @@ body[data-project-theme="golden"] .phase-outcome,
 body[data-project-theme="qafrica"] .phase-outcome{
   background:var(--project-accent, #111);
 }
-body[data-project-theme="lumia"] .phase-outcome{background:#6B1E3A}
-body[data-project-theme="wintech"] .phase-outcome,
+body[data-project-theme="blackgold"] .phase-outcome{background:#3D2914}
+body[data-project-theme="credigo"] .phase-outcome{background:#0B2E65}
+body[data-project-theme="spotlight"] .phase-outcome{background:#0A0A0A}
 body[data-project-theme="nicovellor"] .phase-outcome{background:#111}
 
 /* Context — left image pins, right copy scrolls until its end */
@@ -562,7 +633,7 @@ body[data-project-theme="nicovellor"] .phase-outcome{background:#111}
 }
 .phase-body{margin-top:14px;font-size:15px;line-height:1.6;color:var(--mute);max-width:58ch}
 
-/* Locked Nicovellor gate */
+/* Locked project gate */
 .phase-locked{background:#0f0f0f;color:#fff;border-top:0}
 .phase-locked .eyebrow{color:rgba(255,255,255,.4)}
 .phase-locked .phase-body{color:rgba(255,255,255,.62)}

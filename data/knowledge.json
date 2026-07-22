@@ -24,11 +24,12 @@
     "Graphic design"
   ],
     "selected_work": [
-      {"name": "GOLDEN", "type": "Consistency / goals app", "year": "2025", "url": "works/golden.html"},
-      {"name": "WinTech Studio", "type": "Agency brand + web", "year": "2024", "url": "works/wintech-studio.html"},
+      {"name": "Goalden", "type": "Goals / habits app", "year": "2024", "url": "works/golden.html"},
+      {"name": "CrediGo", "type": "Fintech lending platform", "year": "2024", "url": "works/credigo.html"},
       {"name": "Cue Africa", "type": "Crew marketplace", "year": "2024", "url": "works/qafrica.html"},
-      {"name": "Lumia Essence", "type": "Skincare commerce app", "year": "2025", "url": "works/lumia-essence.html"},
-      {"name": "Nicovellor", "type": "Luxury network brand", "year": "2025", "url": "works/nicovellor.html"}
+      {"name": "Blackgold Studio", "type": "Photography studio booking", "year": "2024", "url": "works/blackgold-studio.html"},
+      {"name": "Nicovellor", "type": "Luxury network brand", "year": "2025", "url": "works/nicovellor.html"},
+      {"name": "Spotlight", "type": "Selected screen work", "year": "2025", "url": "works/spotlight.html"}
     ],
   "studio": {
     "name": "Wintech Studio",
@@ -47,11 +48,11 @@
     },
     {
       "q": "What services do you offer?",
-      "a": "Brand identity, web design, app design, and graphic design — each phase shows up inside the five project folders."
+      "a": "Brand identity, web design, app design, and graphic design — each phase shows up inside the project folders."
     },
     {
       "q": "Show selected work",
-      "a": "Five projects: GOLDEN (goals/consistency), WinTech Studio (agency), Cue Africa (crew marketplace), Lumia Essence (skincare commerce), and Nicovellor (luxury network for Velourians). Open any folder to walk brand → graphics → web → app → outcome."
+      "a": "Six projects: Goalden (goals/habits), CrediGo (fintech lending), Cue Africa (crew marketplace), Blackgold Studio (photography booking), Nicovellor (luxury network for Velourians), and Spotlight (selected screen work — Google Movie, Rest Jam, You'd Mates)."
     },
     {
       "q": "How do I buy a template?",

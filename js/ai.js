@@ -60,7 +60,7 @@
       var services=(k.services||[]).join(', ');
       return services ? ('Services: '+services+'.') : null;
     }
-    if(/\b(work|project|portfolio|case|golden|wintech|qafrica|cue\s*africa|lumia|nicovellor|velourian)\b/.test(n)){
+    if(/\b(work|project|portfolio|case|golden|goalden|credigo|wintech|qafrica|cue\s*africa|blackgold|spotlight|nicovellor|velourian)\b/.test(n)){
       var works=(k.selected_work||[]).map(function(w){
         return w.name+' ('+w.type+', '+w.year+')';
       }).join('; ');

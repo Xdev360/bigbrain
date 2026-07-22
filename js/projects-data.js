@@ -1,193 +1,205 @@
-/* Five real projects — GOLDEN, WinTech Studio, Cue Africa, Lumia Essence, Nicovellor */
+/* Projects — Goalden, CrediGo, Cue Africa, Blackgold Studio, Nicovellor, Spotlight */
 window.BB_PROJECTS = [
   {
     id: 'golden',
-    name: 'GOLDEN',
-    year: '2025',
-    tagline: 'Consistency app — one master goal broken into yearly, monthly, weekly and daily discipline.',
-    about: 'A consistency app that breaks one master goal into yearly, monthly, weekly and daily moves — so discipline feels inevitable.',
-    solution: 'We built a calm green system and product UI where the cascade is the product: set a master goal, live it through every timebox, and return daily without motivational noise.',
+    name: 'Goalden',
+    year: '2024',
+    tagline: 'Turning big yearly goals into daily, actionable habits without the overwhelm.',
+    about: 'Turning big yearly goals into daily, actionable habits. Goalden is a mobile app and platform that helps users track their progress without feeling overwhelmed.',
+    solution: 'We designed a self-correcting, simple system. It starts with one goal, uses beautiful color-coded categories, and features a clean interface with a rewarding "slide to confirm" action that makes users actually want to check in daily.',
     liveUrl: '',
     tags: ['Brand', 'App', 'Web', 'Graphic'],
-    industry: 'Productivity / wellness',
+    industry: 'Productivity / habits',
     productType: 'Brand + app + web',
+    role: 'Lead Product & Web Designer',
+    client: 'Goalden',
     stage: 'Shipped',
     roles: ['Brand identity', 'App design', 'Web design', 'Graphic design'],
     href: 'works/golden.html',
     image: 'assets/projects/golden/golden-cover.jpg',
     cover: 'assets/projects/golden/golden-cover.jpg',
-    next: 'wintech-studio',
+    logo: 'assets/projects/golden/golden-logo-mark.svg',
+    next: 'credigo',
     theme: {
       id: 'golden',
-      primary: '#1B7A4E',
+      primary: '#009254',
       secondary: '#8FD4A8',
-      accent: '#1B7A4E',
+      accent: '#009254',
       accentSoft: '#8FD4A8',
       folderBg: '#E7F3EC',
       folderTab: '#CDE5D6',
       ink: '#0F2E1C',
       mute: 'rgba(15,46,28,.62)'
     },
-    problem: 'People set big goals and lose them in noise. GOLDEN needed a system where one master goal cascades into yearly, monthly, weekly and daily moves — so consistency feels inevitable, not motivational.',
+    problem: 'Most goal-tracking apps are too complex or feel like a chore. People plan their whole year in January but drop off by February because the app doesn\'t fit into their daily lives smoothly.',
     phases: [
       {
         id: 'brand-identity',
         label: 'Brand identity',
-        title: 'Green that means growth, not generic wellness',
-        body: 'A calm green system built for focus — mark, type and UI tokens that feel disciplined and alive, never loud self-help.',
+        title: 'Fresh, motivating, and disciplined',
+        body: 'We created a fresh, motivating brand system for Goalden. We used vibrant, energetic colors grounded by a calming, disciplined green to balance excitement with focus.',
         shots: [
-          { k: '01', t: 'Wordmark', kind: 'brand', src: 'assets/projects/golden/golden-brand-01.jpg', note: 'GOLDEN wordmark — growth green, built to feel steady.' },
-          { k: '02', t: 'Colour system', kind: 'brand', src: 'assets/projects/golden/golden-brand-02.jpg', note: 'Green palette for focus states and progress.' },
-          { k: '03', t: 'App icon', kind: 'brand', src: 'assets/projects/golden/golden-brand-03.jpg', note: 'Icon that reads as discipline at a glance.' }
+          { k: '1.1', t: 'The logo', kind: 'brand', src: 'assets/projects/golden/golden-brand-01.jpg', note: 'Goalden logo, app icon, and brand sketches.' },
+          { k: '1.2', t: 'Design system', kind: 'brand', src: 'assets/projects/golden/golden-brand-02.jpg', note: 'Color and typography guide for the product.' },
+          { k: '1.3', t: 'Color your year', kind: 'brand', src: 'assets/projects/golden/golden-brand-03.jpg', note: 'Category colors that make the year feel alive.' }
         ],
-        guide: 'GOLDEN identity — green, calm, built for daily return.',
+        guide: 'Goalden identity: energetic color, grounded by disciplined green.',
         pitch: 'The brand has to feel like a habit you trust.'
       },
       {
         id: 'graphic-design',
         label: 'Graphic design',
-        title: 'Campaign that sells the habit loop',
-        body: 'Launch graphics and social frames that explain master → year → month → week → day without a tutorial wall.',
+        title: 'Tracking that feels like a game',
+        body: 'We used friendly illustrations and clean, satisfying UI cards to make tracking habits feel like a game rather than a boring task.',
         shots: [
-          { k: '01', t: 'Launch poster', kind: 'ig', src: 'assets/projects/golden/golden-graphic-01.jpg', note: 'Launch art — one master goal, many timeboxes.' },
-          { k: '02', t: 'Social frames', kind: 'ig', src: 'assets/projects/golden/golden-graphic-02.jpg', note: 'Social frames for the consistency story.' },
-          { k: '03', t: 'Goal diagrams', kind: 'ig', src: 'assets/projects/golden/golden-graphic-03.jpg', note: 'Diagram of the cascade from master to daily.' }
+          { k: '2.1', t: 'Landscape launch', kind: 'ig', src: 'assets/projects/golden/golden-graphic-01.jpg', note: 'Green landscape with balloon and floating phone.' },
+          { k: '2.2', t: 'Self-correcting plan', kind: 'ig', src: 'assets/projects/golden/golden-graphic-02.jpg', note: 'A plan that corrects itself checklist card.' },
+          { k: '2.3', t: 'Start living it', kind: 'ig', src: 'assets/projects/golden/golden-graphic-03.jpg', note: 'Stop planning the year. Start living it.' }
         ],
-        guide: 'Graphics that teach the cascade before the download.',
-        pitch: 'If people don’t get the system in one glance, they bounce.'
+        guide: 'Graphics that make daily check-ins feel rewarding.',
+        pitch: 'If it feels like homework, people quit by February.'
       },
       {
         id: 'web-design',
         label: 'Web design',
-        title: 'Site that converts belief into install',
-        body: 'Marketing site with a clear path: what GOLDEN is, how the goal cascade works, then download.',
+        title: 'A landing page that walks the habit',
+        body: 'A high-converting landing page that tells a story. Instead of just listing features, the site walks users through the actual steps of building better habits.',
         shots: [
-          { k: '01', t: 'Landing', kind: 'web', src: 'assets/projects/golden/golden-web-01.jpg', note: 'Landing — promise of consistency up front.' },
-          { k: '02', t: 'How it works', kind: 'web', src: 'assets/projects/golden/golden-web-02.jpg', note: 'How the master goal breaks down.' },
-          { k: '03', t: 'Download CTA', kind: 'web', src: 'assets/projects/golden/golden-web-03.jpg', note: 'CTA that closes the loop.' }
+          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/golden/golden-web-01.jpg', note: 'Hero with floating app UI and main headline.' },
+          { k: '3.2', t: 'Start with one goal', kind: 'web', src: 'assets/projects/golden/golden-web-02.jpg', note: 'Set your reading goal card section.' },
+          { k: '3.3', t: 'Slide to begin', kind: 'web', src: 'assets/projects/golden/golden-web-03.jpg', note: 'Update Portfolio slide-to-confirm interaction.' }
         ],
-        guide: 'Web — explain the system, then get the install.',
+        guide: 'Web: story first, then the install.',
         pitch: 'The site sells the method; the app keeps the habit.'
       },
       {
         id: 'app-design',
         label: 'App design',
-        title: 'Master goal → daily execution',
-        body: 'Product UI for setting a master goal and living it through yearly, monthly, weekly and daily layers — progress you can feel.',
+        title: 'Quick daily check-ins, no clutter',
+        body: 'The core product. A beautifully simple mobile app designed for quick daily check-ins. No clutter, just clear goals and satisfying progress trackers.',
         shots: [
-          { k: '01', t: 'Master goal', kind: 'phone', src: 'assets/projects/golden/golden-app-01.jpg', note: 'Master goal screen — the north star.' },
-          { k: '02', t: 'Weekly view', kind: 'phone', src: 'assets/projects/golden/golden-app-02.jpg', note: 'Weekly layer — discipline without overwhelm.' },
-          { k: '03', t: 'Daily check-in', kind: 'phone', src: 'assets/projects/golden/golden-app-03.jpg', note: 'Daily check-in — where consistency actually happens.' }
+          { k: '4.1', t: 'Onboarding home', kind: 'phone', src: 'assets/projects/golden/golden-app-01.jpg', note: 'Onboarding and home screen.' },
+          { k: '4.2', t: 'Goal setup', kind: 'phone', src: 'assets/projects/golden/golden-app-02.jpg', note: 'Second screen in the mobile lineup.' },
+          { k: '4.3', t: 'Goal dashboard', kind: 'phone', src: 'assets/projects/golden/golden-app-03.jpg', note: 'Goal tracking dashboard.' },
+          { k: '4.4', t: 'Progress', kind: 'phone', src: 'assets/projects/golden/golden-app-04.jpg', note: 'Analytics and progress screen.' },
+          { k: '4.5', t: 'Check-in', kind: 'phone', src: 'assets/projects/golden/golden-app-05.jpg', note: 'Daily check-in flow.' }
         ],
-        guide: 'App — cascade from master goal down to today.',
+        guide: 'App: one goal, clear progress, slide to confirm.',
         pitch: 'This is the product people open every morning.'
       }
     ],
     outcome: {
       title: 'What it moved',
-      body: 'A clearer habit loop: users understand the cascade faster and return daily with less friction.',
+      body: 'A clearer habit loop: users start with one goal, check in daily, and stay past February without the chore feeling.',
       metrics: [
-        { value: '+52%', label: 'Day-7 retention after onboarding redesign' },
-        { value: '4.1×', label: 'Goals completed vs prior freeform setup' },
-        { value: '-31%', label: 'Drop-off during first goal setup' }
+        { value: 'Daily', label: 'Check-ins that feel rewarding' },
+        { value: 'One goal', label: 'Start simple, stay consistent' },
+        { value: 'Slide', label: 'Confirm action users want to repeat' }
       ],
-      guide: 'Outcome — stronger retention, more completed goals, cleaner setup.',
-      pitch: 'Consistency is the product. The numbers prove the system works.'
+      guide: 'Outcome: simpler setup, stickier daily return.',
+      pitch: 'Consistency is the product. Goalden makes it feel light.'
     }
   },
   {
-    id: 'wintech-studio',
-    name: 'WinTech Studio',
+    id: 'credigo',
+    name: 'CrediGo',
     year: '2024',
-    tagline: 'Agency system — brand identity, websites, motion and delivery for clients who need to look sharp and ship.',
-    about: 'My studio system — black-and-white identity, sites and delivery tools for clients who need to look sharp and ship.',
-    solution: 'A stark B&W brand and web system that sells brand, web, motion and product without looking like every other Lagos agency template.',
+    tagline: 'The smarter way to borrow money: clear plans, calm dashboards, no hidden stress.',
+    about: 'A modern fintech platform that provides "The Smarter Way to Borrow Money." CrediGo simplifies the loan process, giving users clear plans and an easy way to track their finances.',
+    solution: 'We designed a clean, transparent digital experience. With a calming blue aesthetic, users can easily select a loan plan, view their active balances on a clear dashboard, and track their repayment progress without the headache.',
     liveUrl: '',
-    tags: ['Brand', 'Web', 'Graphic', 'App'],
-    industry: 'Agency / studio',
-    productType: 'Brand + web + motion',
+    tags: ['Brand', 'App', 'Web', 'Graphic'],
+    industry: 'Fintech / lending',
+    productType: 'Brand + web + app',
+    role: 'Lead UI/UX & Brand Designer',
+    client: 'CrediGo',
     stage: 'Shipped',
-    roles: ['Brand identity', 'Web design', 'Graphic design', 'App design'],
-    href: 'works/wintech-studio.html',
-    image: 'assets/projects/wintech-studio/wintech-cover.jpg',
-    cover: 'assets/projects/wintech-studio/wintech-cover.jpg',
+    roles: ['Brand identity', 'App design', 'Web design', 'Graphic design'],
+    href: 'works/credigo.html',
+    image: 'assets/projects/credigo/credigo-cover.jpg',
+    cover: 'assets/projects/credigo/credigo-cover.jpg',
+    logo: 'assets/projects/credigo/credigo-logo-mark.svg',
     next: 'qafrica',
     theme: {
-      id: 'wintech',
-      primary: '#1A1A1A',
-      secondary: '#F0F0F0',
-      accent: '#0A0A0A',
-      accentSoft: '#F0F0F0',
-      folderBg: '#F2F2F2',
-      folderTab: '#E4E4E4',
-      ink: '#0A0A0A',
-      mute: 'rgba(10,10,10,.55)'
+      id: 'credigo',
+      primary: '#0B2E65',
+      secondary: '#93C5FD',
+      accent: '#3B82F6',
+      accentSoft: '#93C5FD',
+      folderBg: '#E8EEF8',
+      folderTab: '#D0DBF0',
+      ink: '#0B2E65',
+      mute: 'rgba(11,46,101,.58)'
     },
-    problem: 'As founder of WinTech Studio, I needed a black-and-white identity and web system that could sell brand, websites, motion and product work — without looking like every other Lagos agency template.',
+    problem: 'Getting a loan is usually a stressful process filled with confusing terms, hidden fees, and clunky interfaces that make it hard to understand how much you owe or when your next payment is due.',
     phases: [
       {
         id: 'brand-identity',
         label: 'Brand identity',
-        title: 'Black, white, zero fluff',
-        body: 'A stark studio mark and type system — high contrast, print-ready, built to sit next to client logos without competing.',
+        title: 'Trustworthy blue, built for finance',
+        body: 'We went with a highly trustworthy and professional visual identity. Using clean typography (DM Sans) and deep, reliable shades of blue to build instant financial trust with the users.',
         shots: [
-          { k: '01', t: 'Studio mark', kind: 'brand', src: 'assets/projects/wintech-studio/wintech-brand-01.jpg', note: 'WinTech mark — black and white, no noise.' },
-          { k: '02', t: 'Type system', kind: 'brand', src: 'assets/projects/wintech-studio/wintech-brand-02.jpg', note: 'Type that works in proposals and on site.' },
-          { k: '03', t: 'Stationery', kind: 'brand', src: 'assets/projects/wintech-studio/wintech-brand-03.jpg', note: 'Letterhead and deck covers.' }
+          { k: '1.1', t: 'The logo', kind: 'brand', src: 'assets/projects/credigo/credigo-brand-01.jpg', note: 'CrediGo logo on white and blue backgrounds.' },
+          { k: '1.2', t: 'Construction & icons', kind: 'brand', src: 'assets/projects/credigo/credigo-brand-02.jpg', note: 'C mark breakdown and mobile app icons.' },
+          { k: '1.3', t: 'Type & colour', kind: 'brand', src: 'assets/projects/credigo/credigo-brand-03.jpg', note: 'DM Sans and deep blue palette.' }
         ],
-        guide: 'WinTech identity — sharp, founder-led, black and white.',
-        pitch: 'An agency brand has to look as serious as the invoices.'
+        guide: 'CrediGo identity: calm blue that reads as financial trust.',
+        pitch: 'In fintech, trust has to land before the first number does.'
       },
       {
         id: 'graphic-design',
         label: 'Graphic design',
-        title: 'Pitch decks and campaign kits',
-        body: 'Proposal templates, case slides and social kits so every client touchpoint feels like one studio.',
+        title: 'Friendly charts, not intimidating finance',
+        body: 'We incorporated smooth 3D illustrations, clear data visualization charts, and modern UI cards to make financial data look friendly instead of intimidating.',
         shots: [
-          { k: '01', t: 'Pitch deck', kind: 'ig', src: 'assets/projects/wintech-studio/wintech-graphic-01.jpg', note: 'Pitch deck system for client closes.' },
-          { k: '02', t: 'Case slides', kind: 'ig', src: 'assets/projects/wintech-studio/wintech-graphic-02.jpg', note: 'Case slides that sell process.' },
-          { k: '03', t: 'Social kit', kind: 'ig', src: 'assets/projects/wintech-studio/wintech-graphic-03.jpg', note: 'Social kit — same voice, every post.' }
+          { k: '2.1', t: 'Design system', kind: 'ig', src: 'assets/projects/credigo/credigo-graphic-01.jpg', note: 'UI components, buttons, and type hierarchy.' },
+          { k: '2.2', t: 'Login illustration', kind: 'ig', src: 'assets/projects/credigo/credigo-graphic-02.jpg', note: 'Login with 3D pie chart and coins.' },
+          { k: '2.3', t: 'Loan journey', kind: 'ig', src: 'assets/projects/credigo/credigo-graphic-03.jpg', note: 'Start Your Loan Journey Today promo.' }
         ],
-        guide: 'Graphics for how an agency actually wins work.',
-        pitch: 'Decks close deals. Design them like it.'
+        guide: 'Graphics that make money data feel approachable.',
+        pitch: 'If the charts feel scary, people bounce before they borrow.'
       },
       {
         id: 'web-design',
         label: 'Web design',
-        title: 'Studio site that books work',
-        body: 'Website for services, selected work and contact — built to turn visitors into briefs.',
+        title: 'Dashboard-first loan management',
+        body: 'A fully responsive web platform that makes managing loans straightforward. The dashboard surfaces the most important data—like active loan balance and upcoming payments—immediately.',
         shots: [
-          { k: '01', t: 'Home', kind: 'web', src: 'assets/projects/wintech-studio/wintech-web-01.jpg', note: 'Home — studio presence, clear CTA.' },
-          { k: '02', t: 'Services', kind: 'web', src: 'assets/projects/wintech-studio/wintech-web-02.jpg', note: 'Services — brand, web, motion, product.' },
-          { k: '03', t: 'Contact', kind: 'web', src: 'assets/projects/wintech-studio/wintech-web-03.jpg', note: 'Contact path for new briefs.' }
+          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/credigo/credigo-web-01.jpg', note: 'Hero: The Smarter Way to Borrow Money.' },
+          { k: '3.2', t: 'Web dashboard', kind: 'web', src: 'assets/projects/credigo/credigo-web-02.jpg', note: 'Balance, charts, and recent transactions.' },
+          { k: '3.3', t: 'Select a plan', kind: 'web', src: 'assets/projects/credigo/credigo-web-03.jpg', note: 'Choose loan amount and terms.' },
+          { k: '3.4', t: 'Web flow', kind: 'web', src: 'assets/projects/credigo/credigo-web-04.jpg', note: 'Additional web loan flow screen.' },
+          { k: '3.5', t: 'Web detail', kind: 'web', src: 'assets/projects/credigo/credigo-web-05.jpg', note: 'Additional web platform detail.' }
         ],
-        guide: 'Website that books the next client.',
-        pitch: 'If the site can’t sell the studio, nothing else will.'
+        guide: 'Web: see balance, pick a plan, repay with clarity.',
+        pitch: 'The dashboard has to answer money questions in one glance.'
       },
       {
         id: 'app-design',
         label: 'App design',
-        title: 'Client delivery surfaces',
-        body: 'Lightweight product UI for project status and client reviews — same black-and-white language as the public brand.',
+        title: 'Loan control in your pocket',
+        body: 'The mobile app puts financial control right in the user\'s pocket. It features a seamless onboarding process and a quick-glance dashboard so users can check their loan progress on the move.',
         shots: [
-          { k: '01', t: 'Dashboard', kind: 'phone', src: 'assets/projects/wintech-studio/wintech-app-01.jpg', note: 'Internal dashboard for active jobs.' },
-          { k: '02', t: 'Review flow', kind: 'phone', src: 'assets/projects/wintech-studio/wintech-app-02.jpg', note: 'Client review flow.' },
-          { k: '03', t: 'Status', kind: 'phone', src: 'assets/projects/wintech-studio/wintech-app-03.jpg', note: 'Status that clients actually understand.' }
+          { k: '4.1', t: 'Onboarding', kind: 'phone', src: 'assets/projects/credigo/credigo-app-01.jpg', note: 'Welcome screen with Get Started.' },
+          { k: '4.2', t: 'Mobile step', kind: 'phone', src: 'assets/projects/credigo/credigo-app-02.jpg', note: 'Second screen in the mobile lineup.' },
+          { k: '4.3', t: 'Mobile dashboard', kind: 'phone', src: 'assets/projects/credigo/credigo-app-03.jpg', note: 'Balance and quick actions.' },
+          { k: '4.4', t: 'Loan progress', kind: 'phone', src: 'assets/projects/credigo/credigo-app-04.jpg', note: 'Circular tracker and payment timeline.' },
+          { k: '4.5', t: 'App detail', kind: 'phone', src: 'assets/projects/credigo/credigo-app-05.jpg', note: 'Additional mobile loan screen.' }
         ],
-        guide: 'Product UI for how the studio delivers.',
-        pitch: 'Delivery tools should look as sharp as the marketing.'
+        guide: 'App: onboard fast, check progress anytime.',
+        pitch: 'Repayment clarity has to travel as well as the phone does.'
       }
     ],
     outcome: {
       title: 'What it moved',
-      body: 'A coherent founder-led studio system — brand, site and delivery speaking one language.',
+      body: 'From confusing loan jargon to a calm blue system where plans, balances, and repayments are obvious.',
       metrics: [
-        { value: '+60%', label: 'Qualified inbound briefs' },
-        { value: '1 system', label: 'Brand across site, deck, delivery' },
-        { value: '-40%', label: 'Time to assemble a proposal' }
+        { value: 'Clear plans', label: 'Loan terms before the commit' },
+        { value: 'One glance', label: 'Balance and next payment on the dash' },
+        { value: 'Less stress', label: 'Tracking without the headache' }
       ],
-      guide: 'Outcome — more briefs, one system, faster proposals.',
-      pitch: 'WinTech is the studio behind the work — this is its face.'
+      guide: 'Outcome: clearer borrowing, calmer tracking.',
+      pitch: 'CrediGo makes borrowing feel transparent, not intimidating.'
     }
   },
   {
@@ -209,7 +221,7 @@ window.BB_PROJECTS = [
     image: 'assets/projects/qafrica/qafrica-cover.jpg',
     cover: 'assets/projects/qafrica/qafrica-cover.jpg',
     logo: 'assets/projects/qafrica/qafrica-logo-mark.svg',
-    next: 'lumia-essence',
+    next: 'blackgold-studio',
     theme: {
       id: 'qafrica',
       primary: '#0F3D2E',
@@ -287,98 +299,103 @@ window.BB_PROJECTS = [
     }
   },
   {
-    id: 'lumia-essence',
-    name: 'Lumia Essence',
-    year: '2025',
-    tagline: 'Skincare commerce — P2P products, subscriptions, and pay-small-small plans.',
-    about: 'Skincare commerce with P2P products, subscriptions, and pay-small-small plans.',
-    solution: 'A burgundy-and-pink world where subscribe, buy outright, or pay small-small all feel premium — not confusing.',
+    id: 'blackgold-studio',
+    name: 'Blackgold Studio',
+    year: '2024',
+    tagline: 'A premium creative space for photography and editing, with booking that feels as high-end as the room.',
+    about: 'A premium creative space for photography and editing. We needed to create a digital presence that feels just as high-end as their physical studio while making bookings super easy.',
+    solution: 'We designed a sleek, automated booking website. Now, clients can easily choose their service, see the lead photographer\'s work, check the studio calendar, and book their spot without any back-and-forth.',
     liveUrl: '',
     tags: ['Brand', 'App', 'Web', 'Graphic'],
-    industry: 'Beauty / commerce',
-    productType: 'Brand + app + web',
+    industry: 'Photography / studio rental',
+    productType: 'Brand + web + product',
+    role: 'Lead Brand & Web Designer',
+    client: 'Blackgold Studio',
     stage: 'Shipped',
     roles: ['Brand identity', 'App design', 'Web design', 'Graphic design'],
-    href: 'works/lumia-essence.html',
-    image: 'assets/projects/lumia-essence/lumia-cover.jpg',
-    cover: 'assets/projects/lumia-essence/lumia-cover.jpg',
+    href: 'works/blackgold-studio.html',
+    image: 'assets/projects/blackgold-studio/blackgold-cover.jpg',
+    cover: 'assets/projects/blackgold-studio/blackgold-cover.jpg',
+    logo: 'assets/projects/blackgold-studio/blackgold-logo-mark.svg',
     next: 'nicovellor',
     theme: {
-      id: 'lumia',
-      primary: '#6B1E3A',
-      secondary: '#F0B3C4',
-      accent: '#6B1E3A',
-      accentSoft: '#F0B3C4',
-      folderBg: '#F8E8EE',
-      folderTab: '#F0D0DC',
-      ink: '#3A1020',
-      mute: 'rgba(58,16,32,.58)'
+      id: 'blackgold',
+      primary: '#3D2914',
+      secondary: '#D4C4B0',
+      accent: '#3D2914',
+      accentSoft: '#D4C4B0',
+      folderBg: '#F0E8DC',
+      folderTab: '#E2D4C2',
+      ink: '#2A1C0E',
+      mute: 'rgba(42,28,14,.58)'
     },
-    problem: 'Skincare buyers wanted flexibility — subscribe, buy outright, or pay small-small. Lumia Essence needed a burgundy-and-pink product world that made every path feel premium, not confusing.',
+    problem: 'Managing studio rentals and photography sessions manually was messy. Clients didn\'t have a clear way to see availability, pricing, or what the space actually looked like before trying to book.',
     phases: [
       {
         id: 'brand-identity',
         label: 'Brand identity',
-        title: 'Burgundy and pink, soft but serious',
-        body: 'Identity for a skincare brand that sells care and commerce — warm pink accents on deep burgundy trust.',
+        title: 'Warm, sophisticated, editorial',
+        body: 'We created a warm, sophisticated look using earthy browns, beige, and sharp black to give the studio a modern, high-end editorial feel.',
         shots: [
-          { k: '01', t: 'Wordmark', kind: 'brand', src: 'assets/projects/lumia-essence/lumia-brand-01.jpg', note: 'Lumia wordmark — burgundy meets soft pink.' },
-          { k: '02', t: 'Colour system', kind: 'brand', src: 'assets/projects/lumia-essence/lumia-brand-02.jpg', note: 'Colour system for product and UI.' },
-          { k: '03', t: 'Packaging cues', kind: 'brand', src: 'assets/projects/lumia-essence/lumia-brand-03.jpg', note: 'Packaging language for the shelf and the feed.' }
+          { k: '1.1', t: 'The logo', kind: 'brand', src: 'assets/projects/blackgold-studio/blackgold-brand-01.jpg', note: 'Blackgold Studio logo, lockups, and app icon system.' },
+          { k: '1.2', t: 'Typography', kind: 'brand', src: 'assets/projects/blackgold-studio/blackgold-brand-02.jpg', note: 'Brand typography for the editorial voice.' },
+          { k: '1.3', t: 'Colour palette', kind: 'brand', src: 'assets/projects/blackgold-studio/blackgold-brand-03.jpg', note: 'Earthy browns, beige, and sharp black.' }
         ],
-        guide: 'Lumia identity — burgundy trust, pink warmth.',
-        pitch: 'Skincare brands live or die on how the first unbox feels.'
+        guide: 'Blackgold identity: earthy browns, beige, and sharp black.',
+        pitch: 'The room is premium. The brand has to match before anyone books.'
       },
       {
         id: 'graphic-design',
         label: 'Graphic design',
-        title: 'Product stories and plan explainers',
-        body: 'Campaign art for subscriptions and pay-small-small — so payment plans feel empowering, not cheap.',
+        title: 'Magazine layouts that sell the space',
+        body: 'We used bold, magazine-style layouts and clean text to make their services and pricing easy to read at a glance.',
         shots: [
-          { k: '01', t: 'Campaign', kind: 'ig', src: 'assets/projects/lumia-essence/lumia-graphic-01.jpg', note: 'Campaign for the Lumia launch.' },
-          { k: '02', t: 'Plan cards', kind: 'ig', src: 'assets/projects/lumia-essence/lumia-graphic-02.jpg', note: 'Subscribe vs pay-small-small explained.' },
-          { k: '03', t: 'Product stills', kind: 'ig', src: 'assets/projects/lumia-essence/lumia-graphic-03.jpg', note: 'Product stills in brand colour.' }
+          { k: '2.1', t: 'Choose your door', kind: 'ig', src: 'assets/projects/blackgold-studio/blackgold-graphic-01.jpg', note: 'Studio vs Edit room split graphic.' },
+          { k: '2.2', t: 'Rent the space', kind: 'ig', src: 'assets/projects/blackgold-studio/blackgold-graphic-02.jpg', note: 'Dark promo card for the curated space.' },
+          { k: '2.3', t: 'Promo set', kind: 'ig', src: 'assets/projects/blackgold-studio/blackgold-graphic-03.jpg', note: 'Social and promotional graphics for Blackgold.' }
         ],
-        guide: 'Graphics that sell the routine and the plan.',
-        pitch: 'Pay-small-small only works if it still feels premium.'
+        guide: 'Graphics that make services and pricing obvious in one glance.',
+        pitch: 'If pricing needs a phone call, the layout failed.'
       },
       {
         id: 'web-design',
         label: 'Web design',
-        title: 'Storefront for subscribe and instalments',
-        body: 'Web experience for browsing skincare, choosing subscription or pay-small-small, and checking out cleanly.',
+        title: 'From the space to a locked-in booking',
+        body: 'A highly visual, beige and black website that smoothly guides users from checking out the space to locking in a booking.',
         shots: [
-          { k: '01', t: 'Shop home', kind: 'web', src: 'assets/projects/lumia-essence/lumia-web-01.jpg', note: 'Shop home — products first.' },
-          { k: '02', t: 'Product page', kind: 'web', src: 'assets/projects/lumia-essence/lumia-web-02.jpg', note: 'Product page with plan options.' },
-          { k: '03', t: 'Checkout plans', kind: 'web', src: 'assets/projects/lumia-essence/lumia-web-03.jpg', note: 'Checkout — subscribe or pay small-small.' }
+          { k: '3.1', t: 'The hook', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-01.jpg', note: 'Hero: Capture. Create. Refine.' },
+          { k: '3.2', t: 'Commission the lens', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-02.jpg', note: 'Lead photographer section with clear pricing.' },
+          { k: '3.3', t: 'Booking calendar', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-03.jpg', note: 'Calendar dashboard for picking dates.' },
+          { k: '3.4', t: 'Edit suite', kind: 'web', src: 'assets/projects/blackgold-studio/blackgold-web-04.jpg', note: 'Post-production booking and turnaround.' }
         ],
-        guide: 'Web storefront with flexible payment paths.',
-        pitch: 'The plan choice is part of the product.'
+        guide: 'Web: see the space, pick a service, book the slot.',
+        pitch: 'No back-and-forth. The calendar is the closer.'
       },
       {
         id: 'app-design',
         label: 'App design',
-        title: 'P2P skincare app',
-        body: 'Application UI for buying, subscriptions, instalment tracking and reorders — burgundy/pink throughout.',
+        title: 'Mobile booking as clean as desktop',
+        body: 'Since most creators book spaces from their phones, we made sure the mobile layout was just as powerful, clean, and easy to navigate as the desktop site.',
         shots: [
-          { k: '01', t: 'Home feed', kind: 'phone', src: 'assets/projects/lumia-essence/lumia-app-01.jpg', note: 'App home — skincare to reorder.' },
-          { k: '02', t: 'Pay small-small', kind: 'phone', src: 'assets/projects/lumia-essence/lumia-app-02.jpg', note: 'Pay-small-small tracker.' },
-          { k: '03', t: 'Subscription', kind: 'phone', src: 'assets/projects/lumia-essence/lumia-app-03.jpg', note: 'Subscription management.' }
+          { k: '4.1', t: 'Photographer card', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-01.jpg', note: 'Vertical photographer profile card.' },
+          { k: '4.2', t: 'Three steps', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-02.jpg', note: 'Three steps, start to finish.' },
+          { k: '4.3', t: 'Get in touch', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-03.jpg', note: 'Dark get-in-touch footer block.' },
+          { k: '4.4', t: 'Clients', kind: 'phone', src: 'assets/projects/blackgold-studio/blackgold-app-04.jpg', note: 'Mobile clients list for studio ops.' }
         ],
-        guide: 'App — buy, subscribe, pay little by little.',
-        pitch: 'This is where the routine becomes revenue.'
+        guide: 'App: book the studio from a phone without losing clarity.',
+        pitch: 'Creators book on the go. The UI has to keep up.'
       }
     ],
     outcome: {
       title: 'What it moved',
-      body: 'More buyers finishing checkout because they could choose how to pay — without the brand feeling discounted.',
+      body: 'From messy manual rentals to a clear booking path: see the space, pick a service, lock the date.',
       metrics: [
-        { value: '+45%', label: 'Checkout completion with plan choice' },
-        { value: '+38%', label: 'Subscription starts in first month' },
-        { value: '2.4×', label: 'Repeat purchase rate' }
+        { value: 'Self-serve', label: 'Bookings without back-and-forth' },
+        { value: 'Clear rates', label: 'Pricing visible before the call' },
+        { value: 'One calendar', label: 'Lens, studio, and edit in sync' }
       ],
-      guide: 'Outcome — higher checkout, more subs, stronger repeats.',
-      pitch: 'Flexibility is a feature. We designed it like one.'
+      guide: 'Outcome: easier books, clearer pricing, less admin.',
+      pitch: 'Blackgold feels as premium online as the room feels in person.'
     }
   },
   {
@@ -397,7 +414,7 @@ window.BB_PROJECTS = [
     href: 'works/nicovellor.html',
     image: 'assets/projects/nicovellor/nicovellor-cover.jpg',
     cover: 'assets/projects/nicovellor/nicovellor-cover.jpg',
-    next: 'golden',
+    next: 'spotlight',
     locked: true,
     unlockPassword: 'velourians',
     theme: {
@@ -476,6 +493,45 @@ window.BB_PROJECTS = [
       ],
       guide: 'Outcome — luxury network brand with clothing and art under one roof.',
       pitch: 'Nicovellor isn’t a shop. It’s a door.'
+    }
+  },
+  {
+    id: 'spotlight',
+    name: 'Spotlight',
+    year: '2025',
+    tagline: 'Selected projects from the portfolio — Google Movie, Rest Jam, You\'d Mates, and more.',
+    about: 'Spotlight is an open black folder for selected screen work. Switch projects in the top nav and swipe the shots.',
+    solution: '',
+    liveUrl: '',
+    tags: ['Brand', 'App', 'Web', 'Graphic'],
+    industry: 'Selected work',
+    productType: 'Spotlight reel',
+    stage: 'Live',
+    roles: ['Brand identity', 'Web design', 'Graphic design', 'App design'],
+    href: 'works/spotlight.html',
+    image: '',
+    cover: '',
+    next: 'golden',
+    locked: false,
+    theme: {
+      id: 'spotlight',
+      primary: '#0A0A0A',
+      secondary: '#2A2A2A',
+      accent: '#0A0A0A',
+      accentSoft: '#3A3A3A',
+      folderBg: '#141414',
+      folderTab: '#1F1F1F',
+      ink: '#F5F5F5',
+      mute: 'rgba(245,245,245,.55)'
+    },
+    problem: '',
+    phases: [],
+    outcome: {
+      title: 'Spotlight',
+      body: 'Selected projects from the portfolio.',
+      metrics: [],
+      guide: 'Spotlight — selected projects.',
+      pitch: 'Swipe the work. Switch the name.'
     }
   }
 ];

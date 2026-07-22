@@ -1,4 +1,4 @@
-/* Project folder page — larger cards, straight image rows, pinned context, locked Nicovellor */
+/* Project folder page — larger cards, straight image rows, pinned context, locked projects */
 (function(){
   var root = document.getElementById('projectRoot');
   var id = document.body.getAttribute('data-project');
@@ -192,65 +192,109 @@
   var nextHtml = nextProj ? (
     '<section class="next-project">'+
       '<div class="next-project-in">'+
-        '<a class="next-card reveal" href="'+esc(nextProj.id)+'.html" aria-label="Next project: '+esc(nextProj.name)+'">'+
-          '<div class="next-card-art" style="background:linear-gradient(160deg,'+esc((nextProj.theme&&nextProj.theme.secondary)||'#555')+','+esc((nextProj.theme&&nextProj.theme.primary)||'#111')+')"></div>'+
-        '</a>'+
-        '<div class="next-card-meta reveal d1">'+
-          '<h3>'+esc(nextProj.name)+'</h3>'+
-          '<p>'+esc(nextProj.about || nextProj.tagline)+'</p>'+
-        '</div>'+
+        '<a class="next-project-btn reveal" href="'+esc(nextProj.id)+'.html">Next project <span aria-hidden="true">→</span></a>'+
       '</div>'+
     '</section>'
   ) : '';
 
+  var soloSpotlight = id === 'spotlight' && (/(?:^\?|&)solo=1(?:&|$)/.test(location.search) || location.hash === '#solo');
+  if(soloSpotlight) document.body.classList.add('spotlight-solo');
+
+  var hasPass = !!(p.unlockPassword && String(p.unlockPassword).trim());
   var lockedGateHtml = ''+
     '<section class="phase-sec phase-locked" id="locked">'+
       '<div class="wrap locked-panel">'+
-        '<p class="eyebrow">Private project</p>'+
-        '<h2>This project is locked</h2>'+
-        '<p class="phase-body">Nicovellor is a private ultra-high-net-worth luxury brand for Velourians. You cannot view the work unless you have the password.</p>'+
-        '<p class="locked-note">If you were invited, enter the password below. If you need access, request the password from BigBrain.</p>'+
-        '<form class="locked-form" id="lockedForm">'+
-          '<label class="sr-only" for="lockedPass">Password</label>'+
-          '<input id="lockedPass" type="password" autocomplete="current-password" placeholder="Enter password" required>'+
-          '<button type="submit" class="btn">Unlock project</button>'+
-        '</form>'+
-        '<p class="locked-err" id="lockedErr" hidden>Wrong password. Request access if you don’t have it.</p>'+
-        '<a class="locked-request" href="'+assetRoot+'index.html#custom">Request the password →</a>'+
+        '<p class="eyebrow">'+(hasPass ? 'Private project' : 'Coming soon')+'</p>'+
+        '<h2>'+(hasPass ? 'This project is locked' : esc(p.name)+' is reserved')+'</h2>'+
+        '<p class="phase-body">'+esc(p.about || (p.name+' is not open yet.'))+'</p>'+
+        (hasPass
+          ? '<p class="locked-note">If you were invited, enter the password below. If you need access, request it from BigBrain.</p>'+
+            '<form class="locked-form" id="lockedForm">'+
+              '<label class="sr-only" for="lockedPass">Password</label>'+
+              '<input id="lockedPass" type="password" autocomplete="current-password" placeholder="Enter password" required>'+
+              '<button type="submit" class="btn">Unlock project</button>'+
+            '</form>'+
+            '<p class="locked-err" id="lockedErr" hidden>Wrong password. Request access if you don’t have it.</p>'+
+            '<a class="locked-request" href="'+assetRoot+'index.html#custom">Request the password →</a>'
+          : '<p class="locked-note">The full case study lands when the brief is ready. Watch this folder.</p>'+
+            '<a class="locked-request" href="'+assetRoot+'index.html#custom">Ask about '+esc(p.name)+' →</a>')+
       '</div>'+
     '</section>';
 
-  var insideHtml = isUnlocked
-    ? (contextBlock() + phasesHtml +
-      '<section class="phase-sec phase-outcome" id="outcome">'+
-        '<div class="phase-in wrap">'+
-          '<p class="eyebrow">Impact</p>'+
-          '<h2>'+esc((p.outcome&&p.outcome.title)||'Outcome')+'</h2>'+
-          '<p class="phase-body">'+esc((p.outcome&&p.outcome.body)||'')+'</p>'+
-          '<div class="outcome-grid">'+metricsHtml+'</div>'+
+  var spotlightInside = id === 'spotlight'
+    ? ('<div id="spotlightRoot" class="spotlight-mount"></div>' + nextHtml)
+    : '';
+
+  var insideHtml = !isUnlocked
+    ? (lockedGateHtml + nextHtml)
+    : (id === 'spotlight'
+      ? spotlightInside
+      : (contextBlock() + phasesHtml +
+        '<section class="phase-sec phase-outcome" id="outcome">'+
+          '<div class="phase-in wrap">'+
+            '<p class="eyebrow">Impact</p>'+
+            '<h2>'+esc((p.outcome&&p.outcome.title)||'Outcome')+'</h2>'+
+            '<p class="phase-body">'+esc((p.outcome&&p.outcome.body)||'')+'</p>'+
+            '<div class="outcome-grid">'+metricsHtml+'</div>'+
+          '</div>'+
+        '</section>' + nextHtml));
+
+  var foldersOpen = !soloSpotlight && sessionStorage.getItem('bb-folders-open') === '1';
+
+  var folderBlock = soloSpotlight ? '' : (
+    '<div class="folder-dock">'+
+      '<div class="folder-toggle-row">'+
+        '<button type="button" class="folder-toggle" id="folderToggle" aria-expanded="'+(foldersOpen?'true':'false')+'" aria-controls="folderTop" aria-label="'+(foldersOpen?'Collapse folders':'Expand folders')+'">'+
+          '<span class="folder-toggle-arrow" aria-hidden="true"></span>'+
+        '</button>'+
+      '</div>'+
+      '<section class="folder-hero" id="folderTop" data-guide="Each folder is a project." data-guide-pitch="'+esc(p.about||p.tagline)+'">'+
+        '<div class="folder-stage">'+
+          '<div class="folder-viewport" id="folderViewport">'+
+            '<div class="folder-strip-track" id="folderTrack">'+foldersHtml+'</div>'+
+          '</div>'+
         '</div>'+
-      '</section>' + nextHtml)
-    : (lockedGateHtml + nextHtml);
+        '<p class="folder-strip-hint" id="folderHint">Swipe</p>'+
+      '</section>'+
+    '</div>'
+  );
+
+  var topChrome = soloSpotlight
+    ? (
+      '<nav class="nav nav-spotlight" id="nav">'+
+        '<div class="wrap nav-in">'+
+          '<a href="'+assetRoot+'index.html" class="mark">BigBrain<sup>®</sup></a>'+
+          '<div class="nav-links" id="navLinks">'+
+            '<a href="'+assetRoot+'about.html">About</a>'+
+            '<a href="'+assetRoot+'index.html#work">Work</a>'+
+            '<a href="'+assetRoot+'works/spotlight.html?solo=1" class="is-active" aria-current="page">Spotlight</a>'+
+            '<a href="'+assetRoot+'index.html#services">Services</a>'+
+            '<a href="'+assetRoot+'index.html#contact">Contact</a>'+
+          '</div>'+
+          '<button type="button" class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">'+
+            '<span></span><span></span><span></span>'+
+          '</button>'+
+        '</div>'+
+      '</nav>'+
+      '<div class="nav-dim" id="navDim" aria-hidden="true"></div>'
+    )
+    : (
+      '<header class="case-bar" id="caseBar">'+
+        '<div class="case-bar-in">'+
+          '<a href="'+assetRoot+'index.html" class="mark">BigBrain<sup>®</sup></a>'+
+          '<a class="case-back" href="'+assetRoot+'index.html#work">← Back to work</a>'+
+        '</div>'+
+      '</header>'
+    );
 
   root.innerHTML = ''+
-    '<header class="case-bar" id="caseBar">'+
-      '<div class="case-bar-in">'+
-        '<a href="'+assetRoot+'index.html" class="mark">BigBrain<sup>®</sup></a>'+
-        '<a class="case-back" href="'+assetRoot+'index.html#work">← Back to work</a>'+
-      '</div>'+
-    '</header>'+
+    topChrome+
 
-    '<section class="folder-hero" id="folderTop" data-guide="Each folder is a project." data-guide-pitch="'+esc(p.about||p.tagline)+'">'+
-      '<div class="folder-stage wrap">'+
-        '<div class="folder-viewport" id="folderViewport">'+
-          '<div class="folder-strip-track" id="folderTrack">'+foldersHtml+'</div>'+
-        '</div>'+
-      '</div>'+
-      '<p class="folder-strip-hint" id="folderHint">Swipe</p>'+
-    '</section>'+
+    folderBlock+
 
     '<div class="folder-inside">'+
       insideHtml+
+      (soloSpotlight ? '' : (
       '<section class="contact case-contact" id="contact">'+
         '<div class="wrap">'+
           '<p class="eyebrow reveal">Next</p>'+
@@ -260,7 +304,8 @@
             '<a class="btn btn-outline" href="'+assetRoot+'index.html#work">See all work</a>'+
           '</div>'+
         '</div>'+
-      '</section>'+
+      '</section>'
+      ))+
     '</div>'+
 
     '<div class="shot-lightbox" id="shotLightbox" aria-hidden="true">'+
@@ -287,6 +332,7 @@
   document.body.style.overflowY = '';
   document.body.classList.add('folder-open');
   document.body.classList.remove('lb-open');
+  if(!soloSpotlight && !foldersOpen) document.body.classList.add('folders-collapsed');
   if(p.theme){
     document.body.setAttribute('data-project-theme', p.theme.id || '');
     document.documentElement.style.setProperty('--project-accent', p.theme.primary || p.theme.accent || '#111');
@@ -365,6 +411,7 @@
     paintFolder(true);
     hapticSnap();
     navigating = true;
+    try{ sessionStorage.setItem('bb-folders-open', '1'); }catch(err){}
     setTimeout(function(){
       location.href = target.id + '.html';
     }, 280);
@@ -373,16 +420,18 @@
   paintFolder(false);
   window.addEventListener('resize', function(){ paintFolder(false); }, {passive:true});
 
-  track.querySelectorAll('[data-go]').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      /* only ignore click if this gesture was a real swipe */
-      if(swipedAway){ e.preventDefault(); e.stopPropagation(); return; }
-      var go = btn.getAttribute('data-go');
-      var i = all.findIndex(function(x){ return x.id === go; });
-      if(i < 0) return;
-      goProject(i, false);
+  if(track){
+    track.querySelectorAll('[data-go]').forEach(function(btn){
+      btn.addEventListener('click', function(e){
+        /* only ignore click if this gesture was a real swipe */
+        if(swipedAway){ e.preventDefault(); e.stopPropagation(); return; }
+        var go = btn.getAttribute('data-go');
+        var i = all.findIndex(function(x){ return x.id === go; });
+        if(i < 0) return;
+        goProject(i, false);
+      });
     });
-  });
+  }
 
   /* pointer drag — desktop + mobile, only transforms #folderTrack */
   var dragging = false;
@@ -394,7 +443,7 @@
   var pointerId = null;
 
   function onPointerDown(e){
-    if(navigating || e.button === 2) return;
+    if(!track || !viewport || navigating || e.button === 2) return;
     /* allow normal clicks on the hit button — only start drag tracking */
     dragging = true;
     swipedAway = false;
@@ -406,7 +455,7 @@
   }
 
   function onPointerMove(e){
-    if(!dragging || (pointerId !== null && e.pointerId !== pointerId)) return;
+    if(!track || !viewport || !dragging || (pointerId !== null && e.pointerId !== pointerId)) return;
     var dx = e.clientX - startPX;
     var dy = e.clientY - startPY;
 
@@ -430,7 +479,7 @@
   }
 
   function onPointerUp(e){
-    if(pointerId !== null && e.pointerId !== pointerId) return;
+    if(!viewport || (pointerId !== null && e.pointerId !== pointerId)) return;
     var dx = dragX;
     var wasX = axis === 'x';
     dragging = false;
@@ -465,6 +514,46 @@
     viewport.addEventListener('pointerup', onPointerUp);
     viewport.addEventListener('pointercancel', onPointerUp);
   }
+
+  /* ---------- Folder strip collapse / expand ---------- */
+  (function(){
+    var toggle = document.getElementById('folderToggle');
+    var hero = document.getElementById('folderTop');
+    if(!toggle || !hero) return;
+    toggle.addEventListener('click', function(){
+      var closed = document.body.classList.toggle('folders-collapsed');
+      toggle.setAttribute('aria-expanded', closed ? 'false' : 'true');
+      toggle.setAttribute('aria-label', closed ? 'Expand folders' : 'Collapse folders');
+      try{ sessionStorage.setItem('bb-folders-open', closed ? '0' : '1'); }catch(err){}
+      if(!closed){
+        requestAnimationFrame(function(){ paintFolder(false); });
+      }
+    });
+  })();
+
+  /* ---------- Spotlight solo: homepage-style mobile nav ---------- */
+  (function(){
+    if(!soloSpotlight) return;
+    var burger = document.getElementById('navBurger');
+    var links = document.getElementById('navLinks');
+    var dim = document.getElementById('navDim');
+    if(!burger || !links) return;
+    function setOpen(on){
+      links.classList.toggle('is-open', on);
+      burger.classList.toggle('is-open', on);
+      burger.setAttribute('aria-expanded', on ? 'true' : 'false');
+      if(dim){
+        dim.classList.toggle('is-on', on);
+        dim.setAttribute('aria-hidden', on ? 'false' : 'true');
+      }
+      document.body.classList.toggle('nav-open', on);
+    }
+    burger.addEventListener('click', function(){ setOpen(!links.classList.contains('is-open')); });
+    if(dim) dim.addEventListener('click', function(){ setOpen(false); });
+    links.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ setOpen(false); });
+    });
+  })();
 
   /* ---------- Locked form ---------- */
   var lockedForm = document.getElementById('lockedForm');

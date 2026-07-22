@@ -13,25 +13,25 @@ Per phase image also write one short guide line (what BigBrain says on open).
 
 
 --------------------------------------------------------------------
-1) GOLDEN (green)   assets/projects/golden/
+1) Goalden (green)   assets/projects/golden/
 --------------------------------------------------------------------
-[ ] golden-cover.jpg
-[ ] golden-brand-01.jpg … golden-brand-03.jpg
-[ ] golden-graphic-01.jpg … golden-graphic-03.jpg
-[ ] golden-web-01.jpg … golden-web-03.jpg
-[ ] golden-app-01.jpg … golden-app-03.jpg
-Guide lines / outcomes: _________________________________
+[x] golden-cover.jpg
+[x] golden-brand-01.jpg … golden-brand-03.jpg
+[x] golden-graphic-01.jpg … golden-graphic-03.jpg
+[x] golden-web-01.jpg … golden-web-03.jpg
+[x] golden-app-01.jpg … golden-app-05.jpg
+Guide lines / outcomes: habits app + brand system
 
 
 --------------------------------------------------------------------
-2) WinTech Studio (black & white)   assets/projects/wintech-studio/
+2) CrediGo (fintech blue)   assets/projects/credigo/
 --------------------------------------------------------------------
-[ ] wintech-cover.jpg
-[ ] wintech-brand-01.jpg … wintech-brand-03.jpg
-[ ] wintech-graphic-01.jpg … wintech-graphic-03.jpg
-[ ] wintech-web-01.jpg … wintech-web-03.jpg
-[ ] wintech-app-01.jpg … wintech-app-03.jpg
-Guide lines / outcomes: _________________________________
+[x] credigo-cover.jpg
+[x] credigo-brand-01.jpg … credigo-brand-03.jpg
+[x] credigo-graphic-01.jpg … credigo-graphic-03.jpg
+[x] credigo-web-01.jpg … credigo-web-05.jpg
+[x] credigo-app-01.jpg … credigo-app-05.jpg
+Guide lines / outcomes: lending platform + brand system
 
 
 --------------------------------------------------------------------
@@ -46,14 +46,14 @@ Guide lines / outcomes: _________________________________
 
 
 --------------------------------------------------------------------
-4) Lumia Essence (burgundy + pink)   assets/projects/lumia-essence/
+4) Blackgold Studio (earth brown + beige)   assets/projects/blackgold-studio/
 --------------------------------------------------------------------
-[ ] lumia-cover.jpg
-[ ] lumia-brand-01.jpg … lumia-brand-03.jpg
-[ ] lumia-graphic-01.jpg … lumia-graphic-03.jpg
-[ ] lumia-web-01.jpg … lumia-web-03.jpg
-[ ] lumia-app-01.jpg … lumia-app-03.jpg
-Guide lines / outcomes: _________________________________
+[x] blackgold-cover.jpg
+[x] blackgold-brand-01.jpg … blackgold-brand-03.jpg
+[x] blackgold-graphic-01.jpg … blackgold-graphic-03.jpg
+[x] blackgold-web-01.jpg … blackgold-web-04.jpg
+[x] blackgold-app-01.jpg … blackgold-app-04.jpg
+Guide lines / outcomes: booking studio site + brand system
 
 
 --------------------------------------------------------------------

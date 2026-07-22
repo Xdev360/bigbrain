@@ -15,12 +15,12 @@
       label:'App design',
       items:[
         {
-          name:'GOLDEN',
+          name:'Goalden',
           blurb:'Master goals → yearly, monthly, weekly, daily.',
           image:'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=640&q=80'
         },
         {
-          name:'Lumia Essence',
+          name:'Blackgold Studio',
           blurb:'Skincare P2P with subscribe and pay-small-small.',
           image:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=640&q=80'
         }
@@ -30,7 +30,7 @@
       label:'Web design',
       items:[
         {
-          name:'WinTech Studio',
+          name:'CrediGo',
           blurb:'Agency site that books brand and web work.',
           image:'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=640&q=80'
         },
@@ -50,7 +50,7 @@
           image:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=640&q=80'
         },
         {
-          name:'GOLDEN',
+          name:'Goalden',
           blurb:'Green system for consistency and focus.',
           image:'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=640&q=80'
         }
@@ -60,7 +60,7 @@
       label:'Graphic design',
       items:[
         {
-          name:'Lumia Essence',
+          name:'Blackgold Studio',
           blurb:'Burgundy and pink campaign + plan explainers.',
           image:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=640&q=80'
         },

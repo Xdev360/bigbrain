@@ -6,20 +6,22 @@
 
   var projects=[
     {
-      name:'GOLDEN',
-      year:'2025',
-      info:'Consistency app: one master goal broken into yearly, monthly, weekly and daily discipline.',
+      name:'Goalden',
+      year:'2024',
+      info:'Turning big yearly goals into daily habits with a clean check-in people actually open.',
       roles:['Brand identity','App design','Web design','Graphic design'],
-      theme:{id:'golden',primary:'#1B7A4E',secondary:'#8FD4A8'},
+      theme:{id:'golden',primary:'#009254',secondary:'#8FD4A8'},
+      logo:'assets/projects/golden/golden-logo-mark.svg',
       href:'works/golden.html'
     },
     {
-      name:'WinTech Studio',
+      name:'CrediGo',
       year:'2024',
-      info:'Agency system: brand identity, websites, motion and delivery.',
-      roles:['Brand identity','Web design','Graphic design','App design'],
-      theme:{id:'wintech',primary:'#1A1A1A',secondary:'#F0F0F0'},
-      href:'works/wintech-studio.html'
+      info:'Fintech lending: clear loan plans, calm dashboards, and repayment tracking without the stress.',
+      roles:['Brand identity','App design','Web design','Graphic design'],
+      theme:{id:'credigo',primary:'#0B2E65',secondary:'#93C5FD'},
+      logo:'assets/projects/credigo/credigo-logo-mark.svg',
+      href:'works/credigo.html'
     },
     {
       name:'Cue Africa',
@@ -31,20 +33,29 @@
       href:'works/qafrica.html'
     },
     {
-      name:'Lumia Essence',
-      year:'2025',
-      info:'Skincare commerce: P2P products, subscriptions and pay-small-small.',
+      name:'Blackgold Studio',
+      year:'2024',
+      info:'Premium photography and editing studio: see the space, pick a service, book without back-and-forth.',
       roles:['Brand identity','App design','Web design','Graphic design'],
-      theme:{id:'lumia',primary:'#6B1E3A',secondary:'#F0B3C4'},
-      href:'works/lumia-essence.html'
+      theme:{id:'blackgold',primary:'#3D2914',secondary:'#D4C4B0'},
+      logo:'assets/projects/blackgold-studio/blackgold-logo-mark.svg',
+      href:'works/blackgold-studio.html'
     },
     {
       name:'Nicovellor',
       year:'2025',
-      info:'Ultra-wealthy network brand: clothing and art for Velourians.',
+      info:'Private luxury network brand — clothing and art for Velourians.',
       roles:['Brand identity','Web design','Graphic design','App design'],
       theme:{id:'nicovellor',primary:'#111111',secondary:'#F2F2F2'},
       href:'works/nicovellor.html'
+    },
+    {
+      name:'Spotlight',
+      year:'2025',
+      info:'Open black folder — selected screen work: Google Movie, Rest Jam, You\'d Mates.',
+      roles:['Brand identity','Web design','Graphic design','App design'],
+      theme:{id:'spotlight',primary:'#0A0A0A',secondary:'#2A2A2A'},
+      href:'works/spotlight.html'
     }
   ];
 
@@ -159,7 +170,10 @@
     var view=stage.querySelector('.work-view');
     var folder=stage.querySelector('.work-card-folder');
     if(view){
-      view.addEventListener('click',function(e){ e.stopPropagation(); });
+      view.addEventListener('click',function(e){
+        e.stopPropagation();
+        try{ sessionStorage.setItem('bb-folders-open', '0'); }catch(err){}
+      });
     }
     /* clicking the folder opens the project (same as View Project) */
     if(folder){
@@ -170,6 +184,7 @@
       var openProject=function(e){
         e.preventDefault();
         e.stopPropagation();
+        try{ sessionStorage.setItem('bb-folders-open', '0'); }catch(err){}
         window.location.href=projects[index].href;
       };
       folder.addEventListener('click',openProject);
