@@ -117,6 +117,7 @@
   var track = null;
   var frame = null;
   var compareUnlocked = {};
+  var comparePos = {};
 
   function esc(s){
     return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
@@ -210,17 +211,21 @@
 
     var oldSrc = url(item.old);
     var newSrc = url(item.new);
-    var unlocked = !!compareUnlocked[keyFor(idx, shot)] || inLightbox;
+    var k0 = keyFor(idx, shot);
+    var unlocked = !!compareUnlocked[k0] || inLightbox;
+    var saved = typeof comparePos[k0] === 'number' ? comparePos[k0] : 50;
+    var oldStyle = axis === 'x' ? ('width:'+saved+'%') : ('height:'+saved+'%');
+    var handleStyle = axis === 'x' ? ('left:'+saved+'%') : ('top:'+saved+'%');
 
     wrap.innerHTML = ''+
       '<div class="sp-compare-view'+(unlocked?' is-unlocked':'')+'" data-compare-view>'+
         '<div class="sp-compare-layer sp-compare-new">'+
           '<img src="'+esc(newSrc)+'" alt="New" draggable="false">'+
         '</div>'+
-        '<div class="sp-compare-layer sp-compare-old" data-old-layer style="'+(axis==='x'?'width:50%':'height:50%')+'">'+
+        '<div class="sp-compare-layer sp-compare-old" data-old-layer style="'+oldStyle+'">'+
           '<img src="'+esc(oldSrc)+'" alt="Old" draggable="false">'+
         '</div>'+
-        '<div class="sp-compare-handle'+(axis==='y'?' is-nudge':'')+'" data-handle style="'+(axis==='x'?'left:50%':'top:50%')+'">'+
+        '<div class="sp-compare-handle'+(axis==='y' && saved===50?' is-nudge':'')+'" data-handle style="'+handleStyle+'">'+
           '<span class="sp-compare-line" aria-hidden="true"></span>'+
           '<span class="sp-compare-knob" aria-hidden="true">'+
             (axis==='x'
@@ -229,7 +234,7 @@
           '</span>'+
         '</div>'+
         '<div class="sp-compare-labels">'+
-          '<button type="button" class="sp-compare-label is-old'+(unlocked?'':'')+'" data-go-old>Old</button>'+
+          '<button type="button" class="sp-compare-label is-old" data-go-old>Old</button>'+
           '<button type="button" class="sp-compare-label is-new" data-go-new>New</button>'+
         '</div>'+
         (unlocked ? '' : '<button type="button" class="sp-compare-unlock" data-unlock>Tap to unlock compare</button>')+
@@ -249,10 +254,11 @@
     var unlockBtn = wrap.querySelector('[data-unlock]');
     var goOldBtn = wrap.querySelector('[data-go-old]');
     var goNewBtn = wrap.querySelector('[data-go-new]');
-    var pos = 50;
+    var k = keyFor(idx, shot);
+    var pos = typeof comparePos[k] === 'number' ? comparePos[k] : 50;
     var active = false;
     var animating = false;
-    var k = keyFor(idx, shot);
+    var moved = false;
 
     function syncImgSize(){
       if(inLightbox) return;
@@ -290,6 +296,7 @@
       var min = allowFull ? 0 : 4;
       var max = allowFull ? 100 : 96;
       pos = Math.max(min, Math.min(max, pct));
+      comparePos[k] = pos;
       if(axis === 'x'){
         oldLayer.style.width = pos + '%';
         oldLayer.style.height = '100%';
@@ -355,47 +362,44 @@
       return ((e.clientY - r.top) / r.height) * 100;
     }
 
-    function onDown(e){
+    /* Only the handle moves the line — scrolling the image/page must not snap it */
+    function onHandleDown(e){
       if(e.pointerType === 'mouse' && e.button !== 0) return;
       if(animating) return;
-      if(!compareUnlocked[k] && !inLightbox){
-        unlock();
-        return;
-      }
-      if(!compareUnlocked[k] && inLightbox) unlock();
+      if(!compareUnlocked[k]) unlock();
       active = true;
+      moved = false;
       didSwipe = true;
       view.classList.add('is-dragging');
       handle.classList.remove('is-nudge');
-      try{ view.setPointerCapture(e.pointerId); }catch(err){}
-      setPos(pointerPos(e), true);
+      try{ handle.setPointerCapture(e.pointerId); }catch(err){}
       e.preventDefault();
+      e.stopPropagation();
     }
-    function onMove(e){
+    function onHandleMove(e){
       if(!active) return;
+      moved = true;
       setPos(pointerPos(e), true);
     }
-    function onUp(){
+    function onHandleUp(){
       if(!active) return;
       active = false;
       view.classList.remove('is-dragging');
       setTimeout(function(){ didSwipe = false; }, 50);
     }
 
-    handle.addEventListener('pointerdown', onDown);
+    handle.addEventListener('pointerdown', onHandleDown);
+    handle.addEventListener('pointermove', onHandleMove);
+    handle.addEventListener('pointerup', onHandleUp);
+    handle.addEventListener('pointercancel', onHandleUp);
+
+    /* Unlock on empty tap of the view, but never start a drag from the layers */
     view.addEventListener('pointerdown', function(e){
-      if(e.target.closest('[data-unlock],[data-go-old],[data-go-new],.sp-compare-expand')) return;
+      if(e.target.closest('[data-handle],[data-unlock],[data-go-old],[data-go-new],.sp-compare-expand')) return;
       if(!compareUnlocked[k] && !inLightbox){
         unlock();
-        return;
-      }
-      if(e.target.closest('[data-handle]') || (compareUnlocked[k] && (e.target === view || e.target.closest('.sp-compare-layer')))){
-        onDown(e);
       }
     });
-    view.addEventListener('pointermove', onMove);
-    view.addEventListener('pointerup', onUp);
-    view.addEventListener('pointercancel', onUp);
 
     if(inLightbox){
       var layers = wrap.querySelectorAll('.sp-compare-layer');
@@ -409,7 +413,7 @@
       });
     }
 
-    setPos(50, true);
+    setPos(pos, true);
     syncImgSize();
     window.addEventListener('resize', syncImgSize, {passive:true});
     oldImg.addEventListener('load', syncImgSize);

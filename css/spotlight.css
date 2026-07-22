@@ -266,12 +266,13 @@ body:not(.spotlight-solo) .sp-solo-head{display:none}
   width:100%;
   height:100%;
   overflow:hidden;
-  touch-action:none;
+  touch-action:pan-y;
 }
 .sp-compare-layer{
   position:absolute;
   inset:0;
   overflow:hidden;
+  touch-action:pan-y;
 }
 .sp-compare-new{z-index:1}
 .sp-compare-old{
@@ -324,6 +325,11 @@ body:not(.spotlight-solo) .sp-solo-head{display:none}
   transform:translateX(-50%);
   pointer-events:auto;
   cursor:ew-resize;
+  touch-action:none;
+}
+.sp-compare-handle .sp-compare-knob,
+.sp-compare-handle .sp-compare-line{
+  touch-action:none;
 }
 .sp-compare-y .sp-compare-handle{
   left:0;right:0;
