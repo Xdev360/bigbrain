@@ -1,17 +1,7 @@
-/* Spotlight reel — mounts into #spotlightRoot (folder page or solo) */
+/* Spotlight reel — cover / framed shots, compare sliders, lightbox */
 (function(){
   var root = document.getElementById('spotlightRoot');
   if(!root) return;
-
-  function slots(name, notes){
-    return notes.map(function(note, i){
-      return {
-        src: '',
-        title: name + ' — ' + (i + 1),
-        note: note
-      };
-    });
-  }
 
   var projects = [
     {
@@ -22,14 +12,62 @@
       date: '2024',
       stage: 'Completed',
       body: 'Google Movie is a streaming product experience focused on discovery, watchlists, and a clean path from browse to play. The work covers product screens, motion cues, and a visual system that stays quiet while the titles do the talking.',
-      images: slots('Google Movie', [
-        'Hero and browse — titles lead, chrome stays quiet.',
-        'Watchlist — save without breaking the flow.',
-        'Detail screen — cast, synopsis, and play in one beat.',
-        'Player chrome — controls when you need them.',
-        'Search — find a title without noise.',
-        'Profile picks — continue watching, made personal.'
-      ])
+      images: [
+        {
+          type: 'cover',
+          src: 'assets/projects/spotlight/google-movie/cover.jpg',
+          title: 'Google Movie — cover',
+          note: 'Hero cover for the Google Movie redesign.'
+        },
+        {
+          type: 'frame',
+          src: 'assets/projects/spotlight/google-movie/page.jpg',
+          title: 'Google Movie — homepage',
+          note: 'Full homepage — scroll in the lightbox to walk the page.'
+        },
+        {
+          type: 'frame',
+          src: 'assets/projects/spotlight/google-movie/shot-01.jpg',
+          title: 'Player + Smart Lens',
+          note: 'Playback chrome with Smart Lens on the Spider-Verse frame.'
+        },
+        {
+          type: 'frame',
+          src: 'assets/projects/spotlight/google-movie/shot-02.jpg',
+          title: 'Browse + Today’s Pick',
+          note: 'Home browse with category pills and today’s pick row.'
+        },
+        {
+          type: 'frame',
+          src: 'assets/projects/spotlight/google-movie/shot-03.jpg',
+          title: 'Continue watching',
+          note: 'Progress cards that make return visits obvious.'
+        },
+        {
+          type: 'frame',
+          src: 'assets/projects/spotlight/google-movie/shot-04.jpg',
+          title: 'Discovery',
+          note: 'Discovery layouts for the next watch.'
+        },
+        {
+          type: 'frame',
+          src: 'assets/projects/spotlight/google-movie/shot-05.jpg',
+          title: 'Library',
+          note: 'Library and lists in the same quiet system.'
+        },
+        {
+          type: 'frame',
+          src: 'assets/projects/spotlight/google-movie/shot-06.jpg',
+          title: 'Watch Party Hub',
+          note: 'Live rooms and upcoming parties in one hub.'
+        },
+        {
+          type: 'frame',
+          src: 'assets/projects/spotlight/google-movie/shot-07.jpg',
+          title: 'Host a Watch Party',
+          note: 'Schedule, invite, and pick an interactive feature.'
+        }
+      ]
     },
     {
       id: 'rest-jam',
@@ -39,14 +77,21 @@
       date: '2024',
       stage: 'Completed',
       body: 'Rest Jam is a calm product and brand system for slowing down without losing clarity. Screens and graphics share one paced rhythm so rest feels intentional, not empty.',
-      images: slots('Rest Jam', [
-        'Brand mark — rest without looking sleepy.',
-        'Home — today’s pace at a glance.',
-        'Session start — one clear next step.',
-        'Timer — calm motion, no guilt.',
-        'Journal — short notes after the jam.',
-        'Share kit — graphics that match the product.'
-      ])
+      images: [
+        {
+          type: 'cover',
+          src: 'assets/projects/spotlight/rest-jam/cover.jpg',
+          title: 'Rest Jam — cover',
+          note: 'Hero cover for the Rest Jam redesign.'
+        },
+        {
+          type: 'compare-y',
+          old: 'assets/projects/spotlight/rest-jam/old.jpg',
+          new: 'assets/projects/spotlight/rest-jam/new.jpg',
+          title: 'Rest Jam — site transform',
+          note: 'Tap to unlock, then drag the line down to reveal the new site. Or hit Transform.'
+        }
+      ]
     },
     {
       id: 'youd-mates',
@@ -56,14 +101,7 @@
       date: '2025',
       stage: 'Completed',
       body: "You'd Mates is a social product built around real groups, not endless feeds. The interface keeps hangouts, plans, and shared moments close while cutting the noise that usually kills follow-through.",
-      images: slots("You'd Mates", [
-        'Group home — who’s in, what’s next.',
-        'Plan a hang — date, place, done.',
-        'Chat — talk without the feed sprawl.',
-        'Moments — shared photos in the group.',
-        'Invites — bring people in cleanly.',
-        'Settings — privacy without a maze.'
-      ])
+      images: []
     }
   ];
 
@@ -78,6 +116,7 @@
   var didSwipe = false;
   var track = null;
   var frame = null;
+  var compareUnlocked = {};
 
   function esc(s){
     return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
@@ -87,100 +126,305 @@
     if(/^https?:\/\//i.test(src)) return src;
     return assetRoot + src.replace(/^\.\//,'');
   }
+  function keyFor(i, s){ return i + ':' + s; }
+
+  function currentImages(){
+    var p = projects[idx];
+    if(p.images && p.images.length) return p.images;
+    return [{ type:'ph', title:p.name, note:'Screen images coming soon.' }];
+  }
 
   function ensureLightbox(){
-    if(document.getElementById('shotLightbox')) return;
-    var wrap = document.createElement('div');
-    wrap.innerHTML = ''+
-      '<div class="shot-lightbox" id="shotLightbox" aria-hidden="true">'+
-        '<button type="button" class="shot-lb-backdrop" id="shotLbCloseBg" aria-label="Close"></button>'+
-        '<div class="shot-lb-panel" role="dialog" aria-modal="true" aria-labelledby="shotLbTitle">'+
-          '<button type="button" class="shot-lb-x" id="shotLbClose" aria-label="Close">×</button>'+
-          '<div class="shot-lb-media lb-frame-brand" id="shotLbMedia"><img id="shotLbImg" alt=""></div>'+
-          '<div class="shot-lb-guide">'+
-            '<img class="shot-lb-pfp" src="'+esc(portrait)+'" alt="" width="48" height="48">'+
-            '<div class="shot-lb-bubble">'+
-              '<p class="shot-lb-name">BigBrain</p>'+
-              '<p id="shotLbTitle" class="shot-lb-title"></p>'+
-              '<p id="shotLbNote" class="shot-lb-note"></p>'+
-            '</div>'+
+    if(document.getElementById('spLightbox')) return;
+    var el = document.createElement('div');
+    el.id = 'spLightbox';
+    el.className = 'sp-lb';
+    el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = ''+
+      '<button type="button" class="sp-lb-backdrop" id="spLbCloseBg" aria-label="Close"></button>'+
+      '<div class="sp-lb-panel" role="dialog" aria-modal="true" aria-labelledby="spLbTitle">'+
+        '<button type="button" class="sp-lb-x" id="spLbClose" aria-label="Close">×</button>'+
+        '<div class="sp-lb-stage" id="spLbStage"></div>'+
+        '<div class="sp-lb-guide">'+
+          '<img class="sp-lb-pfp" src="'+esc(portrait)+'" alt="" width="48" height="48">'+
+          '<div class="sp-lb-bubble">'+
+            '<p class="sp-lb-name">BigBrain</p>'+
+            '<p id="spLbTitle" class="sp-lb-title"></p>'+
+            '<p id="spLbNote" class="sp-lb-note"></p>'+
           '</div>'+
         '</div>'+
       '</div>';
-    document.body.appendChild(wrap.firstChild);
+    document.body.appendChild(el);
+    document.getElementById('spLbClose').addEventListener('click', closeLightbox);
+    document.getElementById('spLbCloseBg').addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeLightbox();
+    });
+  }
+
+  function closeLightbox(){
+    var lb = document.getElementById('spLightbox');
+    if(!lb) return;
+    lb.classList.remove('is-on');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lb-open');
+    var stage = document.getElementById('spLbStage');
+    if(stage) stage.innerHTML = '';
   }
 
   function openLightbox(item){
     ensureLightbox();
-    var lb = document.getElementById('shotLightbox');
-    var lbMedia = document.getElementById('shotLbMedia');
-    var lbImg = document.getElementById('shotLbImg');
-    var lbTitle = document.getElementById('shotLbTitle');
-    var lbNote = document.getElementById('shotLbNote');
-    if(!lb || !lbMedia) return;
-    lbMedia.className = 'shot-lb-media lb-frame-brand';
-    var src = url(item && item.src);
-    if(src){
-      lbImg.style.display = '';
-      lbImg.src = src;
-      lbImg.alt = (item && item.title) || '';
-    }else{
-      lbImg.removeAttribute('src');
-      lbImg.style.display = 'none';
-      lbMedia.classList.add('is-empty');
+    var lb = document.getElementById('spLightbox');
+    var stage = document.getElementById('spLbStage');
+    var title = document.getElementById('spLbTitle');
+    var note = document.getElementById('spLbNote');
+    title.textContent = item.title || projects[idx].name;
+    note.textContent = item.note || '';
+    stage.innerHTML = '';
+    stage.className = 'sp-lb-stage';
+
+    if(item.type === 'compare-x' || item.type === 'compare-y'){
+      stage.classList.add('is-compare');
+      stage.appendChild(buildCompare(item, true));
+    } else {
+      var scroll = document.createElement('div');
+      scroll.className = 'sp-lb-scroll';
+      var img = document.createElement('img');
+      img.src = url(item.src);
+      img.alt = item.title || '';
+      img.draggable = false;
+      scroll.appendChild(img);
+      stage.appendChild(scroll);
     }
-    lbTitle.textContent = (item && item.title) || projects[idx].name;
-    lbNote.textContent = (item && item.note) || 'Swipe the strip for more shots from this project.';
+
     lb.classList.add('is-on');
     lb.setAttribute('aria-hidden', 'false');
     document.body.classList.add('lb-open');
   }
 
-  function closeLightbox(){
-    var lb = document.getElementById('shotLightbox');
-    if(!lb) return;
-    lb.classList.remove('is-on');
-    lb.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('lb-open');
-    var lbMedia = document.getElementById('shotLbMedia');
-    if(lbMedia) lbMedia.classList.remove('is-empty');
+  function buildCompare(item, inLightbox){
+    var axis = item.type === 'compare-y' ? 'y' : 'x';
+    var wrap = document.createElement('div');
+    wrap.className = 'sp-compare sp-compare-' + axis + (inLightbox ? ' is-lb' : '');
+    wrap.dataset.axis = axis;
+
+    var oldSrc = url(item.old);
+    var newSrc = url(item.new);
+    var unlocked = !!compareUnlocked[keyFor(idx, shot)] || inLightbox;
+
+    wrap.innerHTML = ''+
+      '<div class="sp-compare-view'+(unlocked?' is-unlocked':'')+'" data-compare-view>'+
+        '<div class="sp-compare-layer sp-compare-new">'+
+          '<img src="'+esc(newSrc)+'" alt="New" draggable="false">'+
+        '</div>'+
+        '<div class="sp-compare-layer sp-compare-old" data-old-layer style="'+(axis==='x'?'width:50%':'height:50%')+'">'+
+          '<img src="'+esc(oldSrc)+'" alt="Old" draggable="false">'+
+        '</div>'+
+        '<div class="sp-compare-handle'+(axis==='y'?' is-nudge':'')+'" data-handle style="'+(axis==='x'?'left:50%':'top:50%')+'">'+
+          '<span class="sp-compare-line" aria-hidden="true"></span>'+
+          '<span class="sp-compare-knob" aria-hidden="true">'+
+            (axis==='x'
+              ? '<span class="sp-compare-chev">‹</span><span class="sp-compare-chev">›</span>'
+              : '<span class="sp-compare-chev is-v">‹</span><span class="sp-compare-chev is-v">›</span>')+
+          '</span>'+
+        '</div>'+
+        '<div class="sp-compare-labels" aria-hidden="true">'+
+          '<span class="sp-compare-label is-old">Old</span>'+
+          '<span class="sp-compare-label is-new">New</span>'+
+        '</div>'+
+        '<button type="button" class="sp-compare-unlock" data-unlock>'+(unlocked?'Drag to compare':'Tap to unlock compare')+'</button>'+
+        (axis==='y'
+          ? '<button type="button" class="sp-compare-transform" data-transform>Transform</button>'
+          : '')+
+      '</div>';
+
+    bindCompare(wrap, item, inLightbox);
+    return wrap;
   }
 
-  function bindLightboxChrome(){
-    ensureLightbox();
-    var closeBtn = document.getElementById('shotLbClose');
-    var bg = document.getElementById('shotLbCloseBg');
-    if(closeBtn && !closeBtn._spBound){
-      closeBtn.addEventListener('click', closeLightbox);
-      closeBtn._spBound = true;
+  function bindCompare(wrap, item, inLightbox){
+    var axis = wrap.dataset.axis;
+    var view = wrap.querySelector('[data-compare-view]');
+    var oldLayer = wrap.querySelector('[data-old-layer]');
+    var oldImg = oldLayer.querySelector('img');
+    var newImg = wrap.querySelector('.sp-compare-new img');
+    var handle = wrap.querySelector('[data-handle]');
+    var unlockBtn = wrap.querySelector('[data-unlock]');
+    var transformBtn = wrap.querySelector('[data-transform]');
+    var pos = 50;
+    var active = false;
+    var k = keyFor(idx, shot);
+
+    function syncImgSize(){
+      if(inLightbox) return;
+      var w = view.clientWidth;
+      var h = view.clientHeight;
+      if(axis === 'x'){
+        oldImg.style.width = w + 'px';
+        oldImg.style.height = h + 'px';
+        oldImg.style.objectFit = 'cover';
+        oldImg.style.objectPosition = 'top left';
+        newImg.style.width = w + 'px';
+        newImg.style.height = h + 'px';
+        newImg.style.objectFit = 'cover';
+        newImg.style.objectPosition = 'top left';
+      } else {
+        oldImg.style.width = w + 'px';
+        oldImg.style.height = 'auto';
+        oldImg.style.minHeight = h + 'px';
+        oldImg.style.objectFit = 'cover';
+        oldImg.style.objectPosition = 'top center';
+        newImg.style.width = w + 'px';
+        newImg.style.height = 'auto';
+        newImg.style.minHeight = h + 'px';
+        newImg.style.objectFit = 'cover';
+        newImg.style.objectPosition = 'top center';
+      }
     }
-    if(bg && !bg._spBound){
-      bg.addEventListener('click', closeLightbox);
-      bg._spBound = true;
+
+    function setPos(pct){
+      pos = Math.max(4, Math.min(96, pct));
+      if(axis === 'x'){
+        oldLayer.style.width = pos + '%';
+        oldLayer.style.height = '100%';
+        handle.style.left = pos + '%';
+        handle.style.top = '';
+      } else {
+        oldLayer.style.height = pos + '%';
+        oldLayer.style.width = '100%';
+        handle.style.top = pos + '%';
+        handle.style.left = '';
+      }
     }
-    if(!window._spLbEsc){
-      window._spLbEsc = true;
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape') closeLightbox();
+
+    function unlock(){
+      compareUnlocked[k] = true;
+      view.classList.add('is-unlocked');
+      handle.classList.remove('is-nudge');
+      if(unlockBtn) unlockBtn.textContent = 'Drag to compare';
+      try{ if(navigator.vibrate) navigator.vibrate(12); }catch(e){}
+    }
+
+    if(unlockBtn){
+      unlockBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        unlock();
       });
     }
+    if(transformBtn){
+      transformBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        unlock();
+        var from = pos;
+        var to = 8;
+        var t0 = performance.now();
+        function tick(now){
+          var t = Math.min(1, (now - t0) / 520);
+          var eased = 1 - Math.pow(1 - t, 3);
+          setPos(from + (to - from) * eased);
+          if(t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }
+
+    function pointerPos(e){
+      var r = view.getBoundingClientRect();
+      if(axis === 'x') return ((e.clientX - r.left) / r.width) * 100;
+      return ((e.clientY - r.top) / r.height) * 100;
+    }
+
+    function onDown(e){
+      if(e.pointerType === 'mouse' && e.button !== 0) return;
+      if(!compareUnlocked[k] && !inLightbox){
+        unlock();
+        return;
+      }
+      if(!compareUnlocked[k] && inLightbox) unlock();
+      active = true;
+      didSwipe = true;
+      view.classList.add('is-dragging');
+      handle.classList.remove('is-nudge');
+      try{ view.setPointerCapture(e.pointerId); }catch(err){}
+      setPos(pointerPos(e));
+      e.preventDefault();
+    }
+    function onMove(e){
+      if(!active) return;
+      setPos(pointerPos(e));
+    }
+    function onUp(){
+      if(!active) return;
+      active = false;
+      view.classList.remove('is-dragging');
+      setTimeout(function(){ didSwipe = false; }, 50);
+    }
+
+    handle.addEventListener('pointerdown', onDown);
+    view.addEventListener('pointerdown', function(e){
+      if(e.target.closest('[data-unlock],[data-transform],.sp-compare-expand')) return;
+      if(!compareUnlocked[k] && !inLightbox){
+        unlock();
+        return;
+      }
+      if(e.target.closest('[data-handle]') || (compareUnlocked[k] && (e.target === view || e.target.closest('.sp-compare-layer')))){
+        onDown(e);
+      }
+    });
+    view.addEventListener('pointermove', onMove);
+    view.addEventListener('pointerup', onUp);
+    view.addEventListener('pointercancel', onUp);
+
+    if(inLightbox){
+      var layers = wrap.querySelectorAll('.sp-compare-layer');
+      layers.forEach(function(layer){
+        layer.addEventListener('scroll', function(){
+          var y = layer.scrollTop;
+          layers.forEach(function(other){
+            if(other !== layer) other.scrollTop = y;
+          });
+        }, {passive:true});
+      });
+    }
+
+    setPos(50);
+    syncImgSize();
+    window.addEventListener('resize', syncImgSize, {passive:true});
+    oldImg.addEventListener('load', syncImgSize);
+    newImg.addEventListener('load', syncImgSize);
+  }
+
+  function slideHtml(item, i){
+    var type = item.type || 'frame';
+    if(type === 'ph'){
+      return '<button type="button" class="sp-slide" data-shot="'+i+'"><div class="sp-ph"><strong>'+esc(item.title||'')+'</strong><span>Coming soon</span></div></button>';
+    }
+    if(type === 'cover'){
+      return '<button type="button" class="sp-slide sp-slide-cover" data-shot="'+i+'" aria-label="Open '+esc(item.title||'')+'">'+
+        '<img class="sp-cover-img" src="'+esc(url(item.src))+'" alt="'+esc(item.title||'')+'" draggable="false">'+
+      '</button>';
+    }
+    if(type === 'compare-x' || type === 'compare-y'){
+      return '<div class="sp-slide sp-slide-compare" data-shot="'+i+'" data-compare="1"></div>';
+    }
+    return '<button type="button" class="sp-slide sp-slide-frame" data-shot="'+i+'" aria-label="Open '+esc(item.title||'')+'">'+
+      '<div class="sp-frame-card">'+
+        '<img src="'+esc(url(item.src))+'" alt="'+esc(item.title||'')+'" draggable="false">'+
+      '</div>'+
+    '</button>';
   }
 
   function renderShell(){
     root.innerHTML = ''+
       '<div class="sp-reel'+(solo?' is-solo':'')+'">'+
-        (solo
-          ? '<div class="sp-solo-head"><h1 class="sp-solo-title">Spotlight</h1></div>'
-          : '')+
+        (solo ? '<div class="sp-solo-head"><h1 class="sp-solo-title">Spotlight</h1></div>' : '')+
         '<p class="sp-intro">Selected projects from our portfolio</p>'+
-        '<div class="sp-nav-wrap">'+
-          '<div class="sp-nav" id="spNav" role="tablist" aria-label="Spotlight projects"></div>'+
-        '</div>'+
+        '<div class="sp-nav-wrap"><div class="sp-nav" id="spNav" role="tablist" aria-label="Spotlight projects"></div></div>'+
         '<div class="sp-stage">'+
           '<div class="sp-frame" id="spFrame" role="region" aria-roledescription="carousel" aria-label="Project screens">'+
             '<div class="sp-track" id="spTrack"></div>'+
           '</div>'+
-          '<div class="sp-dots" id="spDots" data-count="0"></div>'+
+          '<div class="sp-dots" id="spDots"></div>'+
         '</div>'+
         '<div class="sp-info wrap">'+
           '<dl class="sp-meta" id="spMeta"></dl>'+
@@ -190,7 +434,6 @@
     track = document.getElementById('spTrack');
     frame = document.getElementById('spFrame');
     bindSwipe();
-    bindLightboxChrome();
   }
 
   function renderNav(){
@@ -207,17 +450,10 @@
         renderNav();
         renderShots(true);
         renderInfo();
-        scrollNavIntoView();
+        var active = nav.querySelector('.sp-nav-btn.is-active');
+        if(active && active.scrollIntoView) active.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
       });
     });
-  }
-
-  function scrollNavIntoView(){
-    var nav = document.getElementById('spNav');
-    var active = nav && nav.querySelector('.sp-nav-btn.is-active');
-    if(active && active.scrollIntoView){
-      active.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
-    }
   }
 
   function renderInfo(){
@@ -234,85 +470,80 @@
     document.getElementById('spBody').textContent = p.body || '';
   }
 
-  function currentImages(){
-    var p = projects[idx];
-    return (p.images && p.images.length) ? p.images : [{ src:'', title:p.name, note:'Screen images coming soon.' }];
-  }
-
   function renderShots(animate){
-    var p = projects[idx];
     var imgs = currentImages();
-    track.innerHTML = imgs.map(function(item, i){
-      var src = url(item.src);
-      if(src){
-        return '<button type="button" class="sp-slide" data-shot="'+i+'" aria-label="Open '+esc(item.title || p.name)+'">'+
-          '<img src="'+esc(src)+'" alt="'+esc(item.title || p.name)+'" draggable="false">'+
-        '</button>';
-      }
-      return '<button type="button" class="sp-slide" data-shot="'+i+'" aria-label="Open '+esc(item.title || p.name)+'">'+
-        '<div class="sp-ph"><strong>'+esc(p.name)+'</strong><span>Shot '+(i+1)+' · tap to open</span></div>'+
-      '</button>';
-    }).join('');
+    track.innerHTML = imgs.map(slideHtml).join('');
 
-    track.querySelectorAll('.sp-slide').forEach(function(btn){
+    /* mount compare widgets */
+    track.querySelectorAll('[data-compare]').forEach(function(slot){
+      var i = Number(slot.getAttribute('data-shot'));
+      var item = imgs[i];
+      slot.innerHTML = '';
+      slot.appendChild(buildCompare(item, false));
+      /* open lightbox on double intent: long press not needed — button under */
+      var openLb = document.createElement('button');
+      openLb.type = 'button';
+      openLb.className = 'sp-compare-expand';
+      openLb.textContent = 'Open full view';
+      openLb.addEventListener('click', function(e){
+        e.stopPropagation();
+        openLightbox(item);
+      });
+      slot.appendChild(openLb);
+    });
+
+    track.querySelectorAll('.sp-slide[data-shot]').forEach(function(btn){
+      if(btn.hasAttribute('data-compare')) return;
       btn.addEventListener('click', function(e){
         if(didSwipe){ e.preventDefault(); return; }
         var i = Number(btn.getAttribute('data-shot'));
-        openLightbox(imgs[i] || imgs[0]);
+        openLightbox(imgs[i]);
       });
     });
 
     var dots = document.getElementById('spDots');
-    var count = imgs.length;
-    dots.setAttribute('data-count', String(count));
     dots.innerHTML = imgs.map(function(_, i){
       return '<button type="button" class="sp-dot'+(i===shot?' is-on':'')+'" aria-label="Shot '+(i+1)+'" data-s="'+i+'"></button>';
     }).join('');
     dots.querySelectorAll('.sp-dot').forEach(function(d){
-      d.addEventListener('click', function(){
-        goShot(Number(d.getAttribute('data-s')));
-      });
+      d.addEventListener('click', function(){ goShot(Number(d.getAttribute('data-s'))); });
     });
 
     if(!animate) track.classList.add('is-dragging');
     applyTransform(0);
-    if(!animate){
-      requestAnimationFrame(function(){ track.classList.remove('is-dragging'); });
-    }
-    frame.setAttribute('aria-label', p.name + ' screens');
+    if(!animate) requestAnimationFrame(function(){ track.classList.remove('is-dragging'); });
+    frame.setAttribute('aria-label', projects[idx].name + ' screens');
   }
 
   function applyTransform(extra){
-    var x = (-shot * 100) + (extra || 0);
-    track.style.transform = 'translate3d('+x+'%,0,0)';
+    track.style.transform = 'translate3d('+((-shot * 100) + (extra || 0))+'%,0,0)';
   }
 
   function goShot(n){
     var max = Math.max(0, currentImages().length - 1);
     shot = Math.max(0, Math.min(max, n));
     applyTransform(0);
-    var dots = document.getElementById('spDots');
-    dots.querySelectorAll('.sp-dot').forEach(function(d, i){
+    document.querySelectorAll('#spDots .sp-dot').forEach(function(d, i){
       d.classList.toggle('is-on', i === shot);
     });
   }
 
   function bindSwipe(){
     var threshold = 48;
-
-    function onStart(clientX){
+    function onStart(x){
       dragging = true;
       didSwipe = false;
-      startX = clientX;
+      startX = x;
       dragX = 0;
       track.classList.add('is-dragging');
     }
-    function onMove(clientX){
+    function onMove(x){
       if(!dragging || !frame) return;
-      dragX = clientX - startX;
-      if(Math.abs(dragX) > 10) didSwipe = true;
-      var pct = (dragX / frame.offsetWidth) * 100;
-      applyTransform(pct);
+      /* don't hijack compare drags */
+      if(document.querySelector('.sp-compare-view.is-dragging')) return;
+      dragX = x - startX;
+      if(Math.abs(dragX) > 12) didSwipe = true;
+      applyTransform((dragX / frame.offsetWidth) * 100);
     }
     function onEnd(){
       if(!dragging) return;
@@ -324,21 +555,18 @@
         if(dragX < 0 && shot < max) goShot(shot + 1);
         else if(dragX > 0 && shot > 0) goShot(shot - 1);
         else applyTransform(0);
-      } else {
-        applyTransform(0);
-      }
+      } else applyTransform(0);
       dragX = 0;
       setTimeout(function(){ didSwipe = false; }, 40);
     }
 
     frame.addEventListener('pointerdown', function(e){
       if(e.pointerType === 'mouse' && e.button !== 0) return;
+      if(e.target.closest('.sp-compare, .sp-compare-expand')) return;
       frame.setPointerCapture(e.pointerId);
       onStart(e.clientX);
     });
-    frame.addEventListener('pointermove', function(e){
-      onMove(e.clientX);
-    });
+    frame.addEventListener('pointermove', function(e){ onMove(e.clientX); });
     frame.addEventListener('pointerup', onEnd);
     frame.addEventListener('pointercancel', onEnd);
 
@@ -349,6 +577,7 @@
     });
   }
 
+  /* If google-movie/old.jpg is missing, keep compare but fall back image via onerror */
   renderShell();
   renderNav();
   renderShots(false);
