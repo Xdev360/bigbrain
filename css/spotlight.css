@@ -633,14 +633,22 @@ body:not(.spotlight-solo) .sp-solo-head{display:none}
   }
   .sp-body{max-width:none}
 }
+@media(max-width:900px){
+  /* Mobile menu uses white pills — keep dark label text (not solo white) */
+  body.spotlight-solo .nav-spotlight .nav-links a{
+    color:#0a0a0a;
+    opacity:1;
+    border-bottom-color:transparent;
+  }
+  body.spotlight-solo .nav-spotlight .nav-links a:hover,
+  body.spotlight-solo .nav-spotlight .nav-links a.is-active{
+    color:#0a0a0a;
+    opacity:1;
+  }
+}
 @media(max-width:720px){
   body.spotlight-solo .nav-spotlight .nav-links{
-    background:#0e0e0e;
-  }
-  body.spotlight-solo .nav-spotlight .nav-links a{
-    color:#f5f5f5;
-    opacity:1;
-    border-bottom-color:rgba(255,255,255,.08);
+    background:transparent;
   }
   .sp-intro{padding:14px 16px 16px;font-size:13.5px;text-align:center}
   .sp-nav-wrap{padding:0 12px 20px}
