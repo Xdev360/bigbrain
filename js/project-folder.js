@@ -37,7 +37,7 @@
 
   function folderMark(theme, logoSrc){
     var c = folderColors(theme);
-    var tid = esc((theme && theme.id) || 'x');
+    var tid = ((theme && theme.id) || 'x').replace(/[^a-z0-9_-]/gi,'') || 'x';
     var logo = logoSrc
       ? '<span class="folder-logo-slot is-on"><img src="'+esc(mediaUrl(logoSrc))+'" alt=""></span>'
       : '<span class="folder-logo-slot"></span>';

@@ -43,8 +43,13 @@ body.spotlight-solo .nav-spotlight .nav-links a.is-active{
 body.spotlight-solo .nav-spotlight .nav-links a::after{
   background:#fff;
 }
+/* Burger keeps a light plate on the dark bar so the icon stays clickable/visible */
+body.spotlight-solo .nav-spotlight .nav-burger{
+  background:#fff;
+  border-color:rgba(255,255,255,.28);
+}
 body.spotlight-solo .nav-spotlight .nav-burger span{
-  background:#f5f5f5;
+  background:#0a0a0a;
 }
 body.spotlight-solo .nav-dim.is-on{
   background:rgba(0,0,0,.55);

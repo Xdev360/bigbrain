@@ -17,12 +17,17 @@
         {
           name:'Goalden',
           blurb:'Master goals → yearly, monthly, weekly, daily.',
-          image:'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=640&q=80'
+          image:'assets/projects/golden/golden-cover.jpg'
         },
         {
           name:'Blackgold Studio',
           blurb:'Skincare P2P with subscribe and pay-small-small.',
-          image:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=640&q=80'
+          image:'assets/projects/blackgold-studio/blackgold-cover.jpg'
+        },
+        {
+          name:'RESJAM',
+          blurb:'Restaurant booking — before and after redesign.',
+          image:'assets/projects/spotlight/rest-jam/cover.jpg'
         }
       ]
     },
@@ -32,12 +37,17 @@
         {
           name:'CrediGo',
           blurb:'Agency site that books brand and web work.',
-          image:'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=640&q=80'
+          image:'assets/projects/credigo/credigo-cover.jpg'
         },
         {
           name:'Cue Africa',
           blurb:'Crew marketplace — browse, book, pay.',
-          image:'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=640&q=80'
+          image:'assets/projects/qafrica/qafrica-cover.jpg'
+        },
+        {
+          name:'Google Movie',
+          blurb:'Platform-scale concept for film discovery.',
+          image:'assets/projects/spotlight/google-movie/cover.jpg'
         }
       ]
     },
@@ -45,14 +55,19 @@
       label:'Brand identity',
       items:[
         {
-          name:'Nicovellor',
-          blurb:'Coded luxury for Velourians — black and white.',
-          image:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=640&q=80'
-        },
-        {
           name:'Goalden',
           blurb:'Green system for consistency and focus.',
-          image:'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=640&q=80'
+          image:'assets/projects/golden/golden-cover.jpg'
+        },
+        {
+          name:'Blackgold Studio',
+          blurb:'Burgundy and pink brand system.',
+          image:'assets/projects/blackgold-studio/blackgold-cover.jpg'
+        },
+        {
+          name:'Cue Africa',
+          blurb:'Casting and crew identity system.',
+          image:'assets/projects/qafrica/qafrica-cover.jpg'
         }
       ]
     },
@@ -60,14 +75,19 @@
       label:'Graphic design',
       items:[
         {
-          name:'Blackgold Studio',
-          blurb:'Burgundy and pink campaign + plan explainers.',
-          image:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=640&q=80'
+          name:'CrediGo',
+          blurb:'Campaign and product graphics.',
+          image:'assets/projects/credigo/credigo-cover.jpg'
         },
         {
-          name:'Cue Africa',
-          blurb:'Casting and crew role kits.',
-          image:'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=640&q=80'
+          name:'RESJAM',
+          blurb:'Restaurant product redesign visuals.',
+          image:'assets/projects/spotlight/rest-jam/cover.jpg'
+        },
+        {
+          name:'Google Movie',
+          blurb:'Film platform concept frames.',
+          image:'assets/projects/spotlight/google-movie/cover.jpg'
         }
       ]
     }
