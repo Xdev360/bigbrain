@@ -1395,6 +1395,110 @@ body:has(.guide.on-dark) .music-dock-close{
   .dm-row{padding:18px 0}
 }
 
+/* ---------- fast mvp: preview cards ---------- */
+.mvp-hero{border-top:0;padding-top:clamp(104px,12vw,152px);padding-bottom:clamp(24px,4vw,40px)}
+.mvp-head h1{
+  margin-top:12px;
+  font-size:clamp(34px,5.4vw,62px);
+  font-weight:600;letter-spacing:-.035em;line-height:1.02;
+  color:var(--ink);
+}
+.mvp-head .sec-note{margin-top:16px;max-width:52ch;font-size:15px}
+.mvp-grid-sec{border-top:0;padding-top:clamp(24px,4vw,40px)}
+.mvp-grid{
+  list-style:none;margin:0;padding:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(16px,2.2vw,28px);
+}
+.mvp-card{min-width:0}
+.mvp-card:first-child{grid-column:1 / -1}
+.mvp-card-link{
+  display:flex;flex-direction:column;height:100%;
+  background:#fff;color:inherit;text-decoration:none;
+  border:1px solid var(--line);border-radius:22px;
+  padding:10px;
+  transition:transform .38s cubic-bezier(.22,.61,.36,1),box-shadow .38s ease,border-color .3s ease;
+}
+.mvp-card-link:hover{
+  transform:translateY(-4px);
+  border-color:rgba(10,10,10,.14);
+  box-shadow:0 22px 50px -24px rgba(0,0,0,.35);
+}
+.mvp-card-link:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.mvp-shot{
+  position:relative;margin:0;
+  border-radius:14px;overflow:hidden;
+  background:#f4f4f5;
+  border:1px solid var(--line);
+}
+.mvp-chrome{
+  display:flex;align-items:center;gap:6px;
+  height:30px;padding:0 12px;
+  background:#fafafa;border-bottom:1px solid var(--line);
+  font-size:11px;color:var(--smoke);letter-spacing:.01em;
+}
+.mvp-chrome i{width:8px;height:8px;border-radius:999px;background:rgba(10,10,10,.12)}
+.mvp-chrome b{
+  font-weight:400;margin-left:auto;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60%;
+}
+.mvp-shot img{
+  display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:top;
+  transform:scale(1.001);
+  transition:transform .6s cubic-bezier(.22,.61,.36,1);
+}
+.mvp-card-link:hover .mvp-shot img{transform:scale(1.03)}
+.mvp-card:first-child .mvp-shot img{aspect-ratio:21/9}
+.mvp-copy{
+  display:flex;flex-direction:column;gap:8px;
+  padding:18px 12px 12px;
+  flex:1;
+}
+.mvp-kicker{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ash);
+}
+.mvp-live{width:7px;height:7px;border-radius:999px;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.18)}
+.mvp-copy h3{
+  font-size:clamp(19px,2vw,24px);
+  font-weight:500;letter-spacing:-.03em;line-height:1.15;
+  color:var(--ink);
+}
+.mvp-copy p{font-size:14px;line-height:1.55;color:var(--ash);max-width:56ch}
+.mvp-open{
+  margin-top:auto;padding-top:10px;
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:500;color:var(--ink);
+}
+.mvp-open i{font-style:normal;transition:transform .3s cubic-bezier(.22,.61,.36,1)}
+.mvp-card-link:hover .mvp-open i{transform:translate(2px,-2px)}
+.mvp-credit{margin-top:24px}
+.mvp-deliver{padding-top:clamp(56px,7vw,96px)}
+.mvp-steps{
+  list-style:none;margin:44px 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  border-top:1px solid var(--line);
+}
+.mvp-steps li{
+  position:relative;padding:24px 32px 24px 0;border-bottom:1px solid var(--line);
+}
+.mvp-steps li:nth-child(even){padding-left:32px;padding-right:0;border-left:1px solid var(--line)}
+.mvp-steps span{display:block;font-size:11px;letter-spacing:.08em;color:var(--smoke);margin-bottom:10px}
+.mvp-steps h3{font-size:17px;font-weight:500;letter-spacing:-.02em;color:var(--ink)}
+.mvp-steps p{margin-top:6px;font-size:13.5px;line-height:1.55;color:var(--ash);max-width:40ch}
+.mvp-cta{margin-top:36px}
+@media(max-width:900px){
+  .mvp-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+  .mvp-card:first-child .mvp-shot img{aspect-ratio:16/9}
+  .mvp-steps{grid-template-columns:minmax(0,1fr)}
+  .mvp-steps li:nth-child(even){padding-left:0;border-left:0}
+  .mvp-steps li{padding-right:0}
+  .mvp-copy{padding:16px 8px 8px}
+}
+
 /* ---------- no-code builds ---------- */
 .build-sec{background:var(--paper)}
 .build-list{
