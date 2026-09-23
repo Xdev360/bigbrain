@@ -20,9 +20,19 @@
   "services": [
     "Brand identity",
     "Web design",
+    "Web development (no-code)",
     "App design",
     "Graphic design"
   ],
+  "no_code": {
+    "tool": "Framer",
+    "offer": "Design and build in one head — live Framer sites with a CMS the client's team edits themselves. No developer handoff, live in days rather than months.",
+    "covers": ["Figma to Framer builds", "CMS setup and handover", "responsive breakpoints", "custom domain connection", "form routing"],
+    "builds": [
+      {"name": "Milly Expression", "type": "Creative director portfolio — designed and built", "year": "2025", "url": "https://millyexpressionportfolio.framer.website/"},
+      {"name": "TandF Technology", "type": "ICT and electrical engineering — rapid build on a licensed template base, fully customised", "year": "2025", "url": "https://tandf-tecnology.framer.website/"}
+    ]
+  },
     "selected_work": [
       {"name": "Goalden", "type": "Goals / habits app", "year": "2024", "url": "works/golden.html"},
       {"name": "CrediGo", "type": "Fintech lending platform", "year": "2024", "url": "works/credigo.html"},

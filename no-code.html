@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>No-code development · Oladele Ibraheem</title>
+<meta name="description" content="Framer builds by Oladele Ibraheem — designed and shipped from one head. Live sites with a CMS your team edits, delivered in days.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="mark">BigBrain<sup>®</sup></a>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="index.html#work">Work</a>
+      <a href="works/spotlight.html?solo=1">Spotlight</a>
+      <a href="index.html#services">Services</a>
+      <a href="no-code.html" class="is-active" aria-current="page">No-code</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button type="button" class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-dim" id="navDim" aria-hidden="true"></div>
+
+<main>
+
+<section class="sec dm-sec" id="nocode" aria-label="No-code development">
+  <div class="wrap">
+
+    <div class="dm-top reveal">
+      <h1>No-code development</h1>
+    </div>
+
+    <div class="dm-cols">
+
+      <div class="dm-col dm-left reveal">
+        <p class="dm-eyebrow">When you need this:</p>
+        <p class="dm-lead">You need a polished site live fast. A modern website you or your team can update yourselves — without turning every small change into a developer ticket.</p>
+
+        <a class="dm-link" href="#builds">
+          <span class="dm-link-text">See the live builds</span>
+          <span class="dm-underline" aria-hidden="true"><i class="dm-u2"></i><i class="dm-u1"></i></span>
+        </a>
+
+        <p class="dm-eyebrow dm-eyebrow-related" id="builds">Related work:</p>
+        <div class="dm-tiles">
+          <a class="dm-tile" href="https://millyexpressionportfolio.framer.website/" target="_blank" rel="noopener">Milly Expression</a>
+          <a class="dm-tile" href="https://tandf-tecnology.framer.website/" target="_blank" rel="noopener">TandF Technology</a>
+        </div>
+      </div>
+
+      <div class="dm-col dm-right reveal">
+        <p class="dm-eyebrow">What I deliver:</p>
+        <ul class="dm-rows">
+          <li><a class="dm-row" href="index.html#contact"><span class="dm-num">01</span><span class="dm-label">Framer development</span></a></li>
+          <li><a class="dm-row" href="index.html#contact"><span class="dm-num">02</span><span class="dm-label">Figma to Framer builds</span></a></li>
+          <li><a class="dm-row" href="index.html#contact"><span class="dm-num">03</span><span class="dm-label">CMS collections setup</span></a></li>
+          <li><a class="dm-row" href="index.html#contact"><span class="dm-num">04</span><span class="dm-label">Responsive breakpoints</span></a></li>
+          <li><a class="dm-row" href="index.html#contact"><span class="dm-num">05</span><span class="dm-label">Motion and interactions</span></a></li>
+          <li><a class="dm-row" href="index.html#contact"><span class="dm-num">06</span><span class="dm-label">Domain, SEO and forms</span></a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <footer>
+      <span>© 2026 Oladele Ibraheem · Big Brain</span>
+      <span>Lagos → anywhere</span>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* lightweight nav + reveal for the standalone No-code page */
+(function(){
+  var nav=document.getElementById('nav');
+  if(nav){
+    var onScroll=function(){nav.classList.toggle('stuck',window.scrollY>10);};
+    onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+  }
+  var burger=document.getElementById('navBurger');
+  var links=document.getElementById('navLinks');
+  var dim=document.getElementById('navDim');
+  if(burger&&links){
+    var mobile=function(){return window.innerWidth<=900;};
+    var setOpen=function(on){
+      burger.classList.toggle('is-open',on);
+      links.classList.toggle('is-open',on);
+      links.setAttribute('aria-hidden',on?'false':'true');
+      if(mobile()){ if(on) links.removeAttribute('inert'); else links.setAttribute('inert',''); }
+      else links.removeAttribute('inert');
+      if(dim){ dim.classList.toggle('is-on',on); dim.setAttribute('aria-hidden',on?'false':'true'); }
+      burger.setAttribute('aria-expanded',on?'true':'false');
+      document.body.style.overflow=on?'hidden':'';
+    };
+    setOpen(false);
+    burger.addEventListener('click',function(){ setOpen(!burger.classList.contains('is-open')); });
+    if(dim) dim.addEventListener('click',function(){ setOpen(false); });
+    links.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){ if(links.classList.contains('is-open')) setOpen(false); });
+    });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') setOpen(false); });
+    window.addEventListener('resize',function(){
+      if(window.innerWidth>900){ setOpen(false); links.removeAttribute('inert'); }
+      else if(!burger.classList.contains('is-open')) links.setAttribute('inert','');
+    });
+  }
+  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduced){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  }else{
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<script src="js/cookie-consent.js"></script>
+</body>
+</html>
