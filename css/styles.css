@@ -22,8 +22,8 @@
 :root{
   --paper:#ffffff;
   --ink:#0a0a0a;
-  --ash:#71717a;
-  --smoke:#a1a1aa;
+  --ash:#63636b;
+  --smoke:#75757d;
   --line:rgba(10,10,10,.08);
   --band:#0a0a0a;
   --pad:clamp(24px,5vw,72px);
@@ -529,7 +529,7 @@ body:has(.guide.on-dark) .music-dock-close{
   gap:12px;margin-bottom:clamp(28px,4vw,48px);
 }
 .sec-head .sec-note{margin-inline:auto}
-h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-height:1.1}
+.as-h2,h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-height:1.1}
 .sec-note{font-size:14px;color:var(--ash);max-width:42ch}
 
 .work{margin-top:52px;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line)}
@@ -1096,6 +1096,7 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
   flex-shrink:0;
   position:relative;z-index:1;
 }
+.work-dot::before{content:"";position:absolute;inset:-12px;border-radius:999px}
 .work-dots-thumb{
   position:absolute;left:0;top:50%;
   width:22px;height:8px;margin-top:-4px;
@@ -1275,6 +1276,15 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
   }
 }
 
+/* ---------- inline text links (about page) ---------- */
+.about-inline-link{
+  display:inline-block;margin-top:10px;
+  font-size:var(--text-sm);font-weight:500;color:var(--ink);
+  text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;
+  transition:opacity .2s ease;
+}
+.about-inline-link:hover{opacity:.6}
+
 /* ---------- service row that navigates instead of expanding ---------- */
 .svc-item-link .svc-head{text-decoration:none}
 .svc-go{
@@ -1343,6 +1353,19 @@ h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;font-weight:600;line-hei
   transition:background .25s ease;
 }
 .dm-tile:hover{background:#f2f2f2}
+.dm-credit{
+  margin:16px 0 0;
+  font-size:13px;line-height:1.5;color:var(--ash);
+}
+.dm-credit a{color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+.dm-credit a:hover{opacity:.6}
+.dm-tile small{
+  display:block;margin-top:6px;
+  font-size:12px;font-weight:500;letter-spacing:0;color:var(--ash);
+}
+.dm-tile{flex-direction:column}
+.dm-tiles-5 .dm-tile{flex:1 1 calc(33.333% - 7px)}
+@media(max-width:900px){.dm-tiles-5 .dm-tile{flex:1 1 calc(50% - 5px)}}
 .dm-rows{list-style:none;margin:0;padding:0}
 .dm-row{
   display:flex;align-items:center;gap:10px;

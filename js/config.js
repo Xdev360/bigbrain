@@ -3,6 +3,7 @@ window.BIGBRAIN_CONFIG = {
   knowledgeUrl: "data/knowledge.json",
   substackUrl: "https://xbigbrainnx.substack.com",
   buyBase: "https://selar.com/m/xbig-brainnx1",
-  telegramBotToken: "",
-  telegramChatId: ""
+  studioUrl: "https://wintechstudio.com",
+  templatesUrl: "https://app.wintechstudio.com",
+  inquiryEndpoint: "/api/inquiry"
 };

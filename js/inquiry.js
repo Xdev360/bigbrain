@@ -210,14 +210,18 @@
       return window.XBigX.sendTelegram(text);
     }
     var c=window.BIGBRAIN_CONFIG||{};
-    if(!c.telegramBotToken || !c.telegramChatId){
-      return Promise.resolve({ok:false, reason:'missing'});
-    }
-    var url='https://api.telegram.org/bot'+encodeURIComponent(c.telegramBotToken)+
-      '/sendMessage?chat_id='+encodeURIComponent(c.telegramChatId)+
-      '&text='+encodeURIComponent(text);
-    return fetch(url,{mode:'no-cors',cache:'no-store'}).then(function(){
-      return {ok:true};
+    var endpoint=c.inquiryEndpoint||'/api/inquiry';
+    return fetch(endpoint,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text:text}),
+      cache:'no-store'
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(d){
+        if(r.ok && d && d.ok) return {ok:true};
+        if(r.status===503) return {ok:false, reason:'missing'};
+        return {ok:false, reason:'network'};
+      });
     }).catch(function(){
       return {ok:false, reason:'network'};
     });
@@ -279,6 +283,8 @@
 
   /* Also open when hash is #custom-brief */
   if(location.hash==='#custom-brief') open();
+  /* in-page links to #custom-brief (hero CTA, other pages) open the form without a reload */
+  window.addEventListener('hashchange',function(){ if(location.hash==='#custom-brief') open(); });
 
   bindPills();
   buildScroll();

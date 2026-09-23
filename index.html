@@ -4,7 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Oladele Ibraheem — Designer</title>
-<meta name="description" content="Designer. Interfaces, brands and product systems, built from Lagos.">
+<meta name="description" content="Designer. Interfaces, brands and product systems, built from Lagos."
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="canonical" href="__SITE_URL__/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BigBrain — Oladele Ibraheem">
+<meta property="og:title" content="Oladele Ibraheem — Designer">
+<meta property="og:description" content="Designer. Interfaces, brands and product systems, built from Lagos.">
+<meta property="og:url" content="__SITE_URL__/">
+<meta property="og:image" content="__SITE_URL__/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@xbigbrainnx">
+<meta name="twitter:title" content="Oladele Ibraheem — Designer">
+<meta name="twitter:description" content="Designer. Interfaces, brands and product systems, built from Lagos.">
+<meta name="twitter:image" content="__SITE_URL__/assets/og.png">
+<meta name="theme-color" content="#0a0a0a">>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -118,6 +136,7 @@
       <a href="works/spotlight.html?solo=1">Spotlight</a>
       <a href="#services">Services</a>
       <a href="no-code.html">No-code</a>
+      <a href="mvp.html">MVP</a>
       <a href="#contact">Contact</a>
     </div>
     <button type="button" class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
@@ -132,9 +151,9 @@
     <div class="hero-copy">
       <p class="status status-top"><span class="dot"></span> Open for work</p>
       <h1>Design, code and brand <span class="fade"><span class="h1-em">— </span>all from one head.</span></h1>
-      <p class="lede">Five years plus of shipping work across the design industry — mostly from Lagos.</p>
+      <p class="lede">Designer and founder of Wintech Studio. I take on a few direct projects a year — brand, web, no-code and MVPs, mostly from Lagos.</p>
       <div class="cta-row">
-        <a class="btn" href="#custom">Start a project</a>
+        <a class="btn" href="#custom-brief">Start a project</a>
         <a class="btn btn-outline" href="#work">See work</a>
       </div>
     </div>
@@ -226,6 +245,13 @@
         </a>
       </div>
 
+      <div class="svc-item svc-item-link">
+        <a class="svc-head" href="mvp.html">
+          <span class="svc-label">Fast MVP</span>
+          <span class="svc-go" aria-hidden="true">↗</span>
+        </a>
+      </div>
+
       <div class="svc-item" data-svc>
         <button type="button" class="svc-head" aria-expanded="false">
           <span class="svc-label">App design</span>
@@ -283,13 +309,12 @@
         <fieldset class="inq-block">
           <legend>Service</legend>
           <div class="inq-pills" data-inq-group="service" data-inq-mode="multi">
-            <button type="button" class="inq-pill" data-value="Interface design">Interface design</button>
-            <button type="button" class="inq-pill" data-value="Animation">Animation</button>
-            <button type="button" class="inq-pill" data-value="3D">3D</button>
-            <button type="button" class="inq-pill" data-value="Development">Development</button>
-            <button type="button" class="inq-pill" data-value="Branding">Branding</button>
-            <button type="button" class="inq-pill" data-value="Illustration">Illustration</button>
-            <button type="button" class="inq-pill" data-value="Icon">Icon</button>
+            <button type="button" class="inq-pill" data-value="Brand identity">Brand identity</button>
+            <button type="button" class="inq-pill" data-value="Web design">Web design</button>
+            <button type="button" class="inq-pill" data-value="No-code development">No-code development</button>
+            <button type="button" class="inq-pill" data-value="Fast MVP">Fast MVP</button>
+            <button type="button" class="inq-pill" data-value="App design">App design</button>
+            <button type="button" class="inq-pill" data-value="Graphic design">Graphic design</button>
           </div>
         </fieldset>
 
@@ -370,6 +395,8 @@
         <a href="https://youtube.com/@xbigbrainnx" target="_blank" rel="noopener">YouTube</a>
         <a href="https://xbigbrainnx.substack.com" target="_blank" rel="noopener">Substack</a>
         <a href="https://selar.com/m/xbig-brainnx1?category=wallpapers" target="_blank" rel="noopener">Wallpapers</a>
+        <a href="https://wintechstudio.com" target="_blank" rel="noopener">Wintech Studio</a>
+        <a href="https://app.wintechstudio.com" target="_blank" rel="noopener">Templates</a>
       </div>
     </div>
     <footer>
@@ -381,10 +408,7 @@
 
 <script src="js/config.js"></script>
 <script src="js/ai.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4.1633559619/face_mesh.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js" crossorigin="anonymous"></script>
+<script src="js/mediapipe-loader.js"></script>
 <script src="js/eyes.js"></script>
 <script src="js/hands.js"></script>
 <script src="js/main.js"></script>

@@ -60,6 +60,12 @@
       var services=(k.services||[]).join(', ');
       return services ? ('Services: '+services+'.') : null;
     }
+    if(/\b(mvp|mvps|prototype|first version|minimum viable|fast build)\b/.test(n)){
+      var f=k.fast_mvp||{};
+      if(!f.offer) return null;
+      var prods=(f.products||[]).map(function(x){ return x.name+(x.url ? ' ('+x.url+')' : ''); }).join(', ');
+      return 'Fast MVP — '+f.offer+(f.timeline ? ' '+f.timeline : '')+(prods ? ' Live products: '+prods+'.' : '')+(f.built_at ? ' Built at '+f.built_at : '');
+    }
     if(/\b(work|project|portfolio|case|golden|goalden|credigo|wintech|qafrica|cue\s*africa|blackgold|spotlight|nicovellor|velourian)\b/.test(n)){
       var works=(k.selected_work||[]).map(function(w){
         return w.name+' ('+w.type+', '+w.year+')';
@@ -67,7 +73,7 @@
       return works ? ('Selected work: '+works+'.') : null;
     }
     if(/\b(template|marketplace|buy|price|selar)\b/.test(n)){
-      return m.templates || 'Templates are in Marketplace — checkout happens off-site after you pick a kit.';
+      return (m.templates || 'Templates live at Wintech Templates.')+(m.url ? ' Browse: '+m.url : '');
     }
     if(/\b(equity|startup|stake|share)\b/.test(n)){
       return m.equity || 'Equity listings are selective — review demos in Marketplace.';
@@ -87,7 +93,8 @@
     }
     if(/\b(studio|wintech)\b/.test(n)){
       var s=k.studio||{};
-      return s.name ? (s.name+' — '+(s.focus||'')) : null;
+      if(!s.name) return null;
+      return s.name+' — '+(s.focus||'')+(s.url ? ' Site: '+s.url : '');
     }
     return null;
   }
@@ -105,29 +112,25 @@
   }
 
   function telegramConfigured(){
-    var c=cfg();
-    return !!(c.telegramBotToken && c.telegramChatId);
+    /* token lives server-side (api/inquiry.js); the endpoint answers 503 if unset */
+    return !!(cfg().inquiryEndpoint||'/api/inquiry');
   }
 
   function sendTelegram(text){
-    var c=cfg();
-    if(!c.telegramBotToken || !c.telegramChatId){
-      return Promise.resolve({ok:false, reason:'missing'});
-    }
-    var url='https://api.telegram.org/bot'+encodeURIComponent(c.telegramBotToken)+
-      '/sendMessage?chat_id='+encodeURIComponent(c.telegramChatId)+
-      '&text='+encodeURIComponent(text);
-    /* GET + no-cors avoids browser CORS blocks on api.telegram.org */
-    return fetch(url,{mode:'no-cors',cache:'no-store'}).then(function(){
-      return {ok:true};
-    }).catch(function(){
-      try{
-        var img=new Image();
-        img.src=url;
-        return {ok:true};
-      }catch(e){
+    var endpoint=cfg().inquiryEndpoint||'/api/inquiry';
+    return fetch(endpoint,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text:text}),
+      cache:'no-store'
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(d){
+        if(r.ok && d && d.ok) return {ok:true};
+        if(r.status===503) return {ok:false, reason:'missing'};
         return {ok:false, reason:'network'};
-      }
+      });
+    }).catch(function(){
+      return {ok:false, reason:'network'};
     });
   }
 

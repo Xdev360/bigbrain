@@ -81,6 +81,7 @@
   }
 
   async function start(){
+    if(window.loadMediaPipe){ try{ await window.loadMediaPipe(); }catch(e){ setHint('Could not load the camera libraries. Check your connection and try again.'); return; } }
     if(window.BigBrainEye && window.BigBrainEye.isRunning()){
       window.BigBrainEye.stop();
     }

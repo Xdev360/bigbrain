@@ -15,55 +15,55 @@
       images: [
         {
           type: 'cover',
-          src: 'assets/projects/spotlight/google-movie/cover.jpg',
+          src: 'assets/projects/spotlight/google-movie/cover.webp',
           title: 'What if Google made a movie app?',
           note: 'The thesis shot. Google DNA, Spider-Verse energy, live party feeds, and ecosystem docks in one composition — proof I can invent a product world, not just dress a player.'
         },
         {
           type: 'frame',
-          src: 'assets/projects/spotlight/google-movie/page.jpg',
+          src: 'assets/projects/spotlight/google-movie/page.webp',
           title: 'Home — Ready. Set. Watch.',
           note: 'Personal greeting, dual featured heroes, Today’s Pick, and Continue Watching. Hierarchy built so discovery feels curated, never noisy — scroll the full page in lightbox.'
         },
         {
           type: 'frame',
-          src: 'assets/projects/spotlight/google-movie/shot-01.jpg',
+          src: 'assets/projects/spotlight/google-movie/shot-01.webp',
           title: 'Cinema chrome + Smart Lens',
           note: 'Immersive player with Smart Lens as a first-class control — AI that belongs in the chrome, not buried in a menu.'
         },
         {
           type: 'frame',
-          src: 'assets/projects/spotlight/google-movie/shot-02.jpg',
+          src: 'assets/projects/spotlight/google-movie/shot-02.webp',
           title: 'Watch Party — sync + live chat',
           note: 'Google Stream sync badge, friend tiles, and party chat beside the frame. Solitary streaming becomes a shared night without leaving the player.'
         },
         {
           type: 'frame',
-          src: 'assets/projects/spotlight/google-movie/shot-03.jpg',
+          src: 'assets/projects/spotlight/google-movie/shot-03.webp',
           title: 'Gemini — ask the scene',
           note: 'Contextual Gemini panel with scene prompts and voice ask. Trivia, cast, and story beats while the film keeps playing — AI as co-viewer.'
         },
         {
           type: 'frame',
-          src: 'assets/projects/spotlight/google-movie/shot-04.jpg',
+          src: 'assets/projects/spotlight/google-movie/shot-04.webp',
           title: 'Smart Lens — shop the frame',
           note: 'On-frame tags + Lens results for Miles / Gwen fits. Watch → recognize → want → buy, designed as one continuous flow.'
         },
         {
           type: 'frame',
-          src: 'assets/projects/spotlight/google-movie/shot-05.jpg',
+          src: 'assets/projects/spotlight/google-movie/shot-05.webp',
           title: 'YouTube Music — hear the scene',
           note: 'Scene scan surfaces “Sunflower” into YouTube Music. Soundtrack discovery that feels native to Google’s stack, not a third-party popup.'
         },
         {
           type: 'frame',
-          src: 'assets/projects/spotlight/google-movie/shot-06.jpg',
+          src: 'assets/projects/spotlight/google-movie/shot-06.webp',
           title: 'Watch Party Hub',
           note: 'Live rooms, genre filters, and upcoming nights with Remind Me / View Invitation. Social viewing as a destination, not a hidden feature.'
         },
         {
           type: 'frame',
-          src: 'assets/projects/spotlight/google-movie/shot-07.jpg',
+          src: 'assets/projects/spotlight/google-movie/shot-07.webp',
           title: 'Host flow — schedule → invite → interact',
           note: 'Three-step host modal: Calendar sync, friend pick, Standard Stream vs Interactive Poll. End-to-end product thinking from empty state to scheduled party.'
         }
@@ -80,14 +80,14 @@
       images: [
         {
           type: 'cover',
-          src: 'assets/projects/spotlight/rest-jam/cover.jpg',
+          src: 'assets/projects/spotlight/rest-jam/cover.webp',
           title: 'RESJAM — Website upgrade',
           note: 'Old vs New in one frame. Dark density on the left, light clarity on the right — same 80% promise, redesigned so the product finally reads as premium.'
         },
         {
           type: 'compare-y',
-          old: 'assets/projects/spotlight/rest-jam/old.jpg',
-          new: 'assets/projects/spotlight/rest-jam/new.jpg',
+          old: 'assets/projects/spotlight/rest-jam/old.webp',
+          new: 'assets/projects/spotlight/rest-jam/new.webp',
           title: 'Full-site transform — Old → New',
           note: 'Tap Old or New to lock the reveal, or drag the line. Watch the hero, proof stats, network UI, and journey map rewrite themselves — this is conversion design you can feel.'
         }
@@ -220,10 +220,10 @@
     wrap.innerHTML = ''+
       '<div class="sp-compare-view'+(unlocked?' is-unlocked':'')+'" data-compare-view>'+
         '<div class="sp-compare-layer sp-compare-new">'+
-          '<img src="'+esc(newSrc)+'" alt="New" draggable="false">'+
+          '<img src="'+esc(newSrc)+'" alt="New" loading="lazy" decoding="async" draggable="false">'+
         '</div>'+
         '<div class="sp-compare-layer sp-compare-old" data-old-layer style="'+oldStyle+'">'+
-          '<img src="'+esc(oldSrc)+'" alt="Old" draggable="false">'+
+          '<img src="'+esc(oldSrc)+'" alt="Old" loading="lazy" decoding="async" draggable="false">'+
         '</div>'+
         '<div class="sp-compare-handle'+(axis==='y' && saved===50?' is-nudge':'')+'" data-handle style="'+handleStyle+'">'+
           '<span class="sp-compare-line" aria-hidden="true"></span>'+
@@ -435,7 +435,7 @@
     }
     return '<button type="button" class="sp-slide sp-slide-frame" data-shot="'+i+'" aria-label="Open '+esc(item.title||'')+'">'+
       '<div class="sp-frame-card">'+
-        '<img src="'+esc(url(item.src))+'" alt="'+esc(item.title||'')+'" draggable="false">'+
+        '<img src="'+esc(url(item.src))+'" alt="'+esc(item.title||'')+'" loading="lazy" decoding="async" draggable="false">'+
       '</div>'+
     '</button>';
   }

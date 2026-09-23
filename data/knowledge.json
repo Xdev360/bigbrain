@@ -21,32 +21,83 @@
     "Brand identity",
     "Web design",
     "Web development (no-code)",
+    "Fast MVP",
     "App design",
     "Graphic design"
   ],
   "no_code": {
     "tool": "Framer",
     "offer": "Design and build in one head — live Framer sites with a CMS the client's team edits themselves. No developer handoff, live in days rather than months.",
-    "covers": ["Figma to Framer builds", "CMS setup and handover", "responsive breakpoints", "custom domain connection", "form routing"],
+    "covers": [
+      "Figma to Framer builds",
+      "CMS setup and handover",
+      "responsive breakpoints",
+      "custom domain connection",
+      "form routing"
+    ],
     "builds": [
-      {"name": "Milly Expression", "type": "Creative director portfolio — designed and built", "year": "2025", "url": "https://millyexpressionportfolio.framer.website/"},
-      {"name": "TandF Technology", "type": "ICT and electrical engineering — rapid build on a licensed template base, fully customised", "year": "2025", "url": "https://tandf-tecnology.framer.website/"}
+      {
+        "name": "Milly Expression",
+        "type": "Creative director portfolio — designed and built",
+        "year": "2025",
+        "url": "https://millyexpressionportfolio.framer.website/"
+      },
+      {
+        "name": "TandF Technology",
+        "type": "ICT and electrical engineering — rapid build on a licensed template base, fully customised",
+        "year": "2025",
+        "url": "https://tandf-tecnology.framer.website/"
+      }
     ]
   },
-    "selected_work": [
-      {"name": "Goalden", "type": "Goals / habits app", "year": "2024", "url": "works/golden.html"},
-      {"name": "CrediGo", "type": "Fintech lending platform", "year": "2024", "url": "works/credigo.html"},
-      {"name": "Cue Africa", "type": "Crew marketplace", "year": "2024", "url": "works/qafrica.html"},
-      {"name": "Blackgold Studio", "type": "Photography studio booking", "year": "2024", "url": "works/blackgold-studio.html"},
-      {"name": "Nicovellor", "type": "Luxury network brand", "year": "2025", "url": "works/nicovellor.html"},
-      {"name": "Spotlight", "type": "Selected screen work", "year": "2025", "url": "works/spotlight.html"}
-    ],
+  "selected_work": [
+    {
+      "name": "Goalden",
+      "type": "Goals / habits app",
+      "year": "2024",
+      "url": "works/golden.html"
+    },
+    {
+      "name": "CrediGo",
+      "type": "Fintech lending platform",
+      "year": "2024",
+      "url": "works/credigo.html"
+    },
+    {
+      "name": "Cue Africa",
+      "type": "Crew marketplace",
+      "year": "2024",
+      "url": "works/qafrica.html"
+    },
+    {
+      "name": "Blackgold Studio",
+      "type": "Photography studio booking",
+      "year": "2024",
+      "url": "works/blackgold-studio.html"
+    },
+    {
+      "name": "Nicovellor",
+      "type": "Luxury network brand",
+      "year": "2025",
+      "url": "works/nicovellor.html"
+    },
+    {
+      "name": "Spotlight",
+      "type": "Selected screen work",
+      "year": "2025",
+      "url": "works/spotlight.html"
+    }
+  ],
   "studio": {
     "name": "Wintech Studio",
-    "focus": "Design and digital product systems for businesses in Lagos and beyond"
+    "url": "https://wintechstudio.com",
+    "focus": "Oladele's studio — a Lagos studio for AI automation, websites and fast MVPs. Brand it, build it, then let the AI run it. Five products live.",
+    "founder": "Oladele Ibraheem"
   },
   "marketplace": {
-    "templates": "Portfolio website templates for designers, developers, founders, agencies, photographers, and product roles — sold via external checkout links",
+    "name": "Wintech Templates",
+    "url": "https://app.wintechstudio.com",
+    "templates": "Wintech Templates — pick a template for a portfolio, landing page, store or booking site, preview it free, and go live today at name.wintechstudio.com.",
     "equity": "Selective equity listings in early startups with demos",
     "writing": "Essays and e-books; reading/buying via Substack",
     "podcasts": "Coming soon"
@@ -57,8 +108,16 @@
       "a": "Oladele Ibraheem (BigBrain) is a designer based in Lagos — UI/UX, brand, product, and motion. 5+ years shipping work. Currently open for work."
     },
     {
+      "q": "What is Wintech Studio?",
+      "a": "Oladele's studio — a Lagos studio for AI automation, websites and fast MVPs. Brand it, build it, then let the AI run it. Five products live: https://wintechstudio.com"
+    },
+    {
       "q": "What services do you offer?",
-      "a": "Brand identity, web design, app design, and graphic design — each phase shows up inside the project folders."
+      "a": "Brand identity, web design, no-code development (Framer builds), fast MVPs (a real first version in weeks), app design, and graphic design — each phase shows up inside the project folders."
+    },
+    {
+      "q": "What is a Fast MVP?",
+      "a": "One job, shipped in four to six weeks: real accounts, a working core flow and a live URL, so you learn from strangers instead of a meeting. Five are live — Virelle Wellness Hub, Mylo, Let’s Hang, Cleartext and Cyber Sweep — all built at Wintech Studio. Details: mvp.html"
     },
     {
       "q": "Show selected work",
@@ -66,7 +125,7 @@
     },
     {
       "q": "How do I buy a template?",
-      "a": "Open Marketplace → Templates, pick a kit, then checkout redirects off-site (Selar). Files are delivered after payment there."
+      "a": "Templates live at Wintech Templates — https://app.wintechstudio.com. Pick a portfolio, landing page, store or booking template, preview it free, and go live today at name.wintechstudio.com."
     },
     {
       "q": "What is equity here?",
@@ -90,5 +149,55 @@
     "If unknown, forward the question to Oladele on Telegram.",
     "Do not invent clients, prices, or case studies.",
     "Be concise, calm, and helpful."
-  ]
+  ],
+  "fast_mvp": {
+    "offer": "One job, shipped in weeks. A first version people can actually use — real accounts, a working core flow and a live URL — so you learn from strangers, not from a meeting.",
+    "timeline": "Four to six weeks, shipping something usable every week.",
+    "pillars": [
+      "One job, scoped and written down",
+      "Real accounts and a working core flow",
+      "A deployed URL, not a clickable prototype",
+      "Brand, site or AI layer on top after"
+    ],
+    "built_at": "Wintech Studio — https://wintechstudio.com",
+    "page": "mvp.html",
+    "products": [
+      {
+        "name": "Virelle Wellness Hub",
+        "type": "Website, brand & AI",
+        "year": "2025",
+        "about": "A wellness shop selling entirely through DMs now has a store, a brand, and two AI systems running the floor.",
+        "url": "https://www.virellewellnesshub.com/"
+      },
+      {
+        "name": "Mylo",
+        "type": "Product & AI",
+        "year": "2025",
+        "about": "A group product where the AI lives inside the room instead of in a separate chat window. Live on its own domain — site at staymylo.com, product at app.staymylo.com.",
+        "url": "https://www.staymylo.com/",
+        "app": "https://app.staymylo.com/"
+      },
+      {
+        "name": "Let’s Hang",
+        "type": "Product",
+        "year": "2025",
+        "about": "A map of people with a plan tonight, built so joining one takes a tap instead of forty messages.",
+        "url": "https://letshang-henna.vercel.app/"
+      },
+      {
+        "name": "Cleartext",
+        "type": "Product",
+        "year": "2025",
+        "about": "A browser extension that turns the message your wallet asks you to sign into a plain sentence, before you click.",
+        "url": "https://cleartextapp.vercel.app/"
+      },
+      {
+        "name": "Cyber Sweep",
+        "type": "Product",
+        "year": "2025",
+        "about": "Reads a project folder in the browser and names what is broken. No accounts, no uploads, no dashboard.",
+        "url": "https://cybersweep.vercel.app/"
+      }
+    ]
+  }
 }
