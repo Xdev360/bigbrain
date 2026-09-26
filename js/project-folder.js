@@ -198,7 +198,7 @@
   ) : '';
 
   var stickyCtaHtml = (id !== 'spotlight')
-    ? '<a class="case-sticky-cta" href="'+assetRoot+'index.html#custom">Start a project</a>'
+    ? '<a class="case-sticky-cta" href="'+assetRoot+'portfolio.html#custom">Start a project</a>'
     : '';
 
   var soloSpotlight = id === 'spotlight' && (/(?:^\?|&)solo=1(?:&|$)/.test(location.search) || location.hash === '#solo');
@@ -219,9 +219,9 @@
               '<button type="submit" class="btn">Unlock project</button>'+
             '</form>'+
             '<p class="locked-err" id="lockedErr" hidden>Wrong password. Request access if you don’t have it.</p>'+
-            '<a class="locked-request" href="'+assetRoot+'index.html#custom">Request the password →</a>'
+            '<a class="locked-request" href="'+assetRoot+'portfolio.html#custom">Request the password →</a>'
           : '<p class="locked-note">The full case study lands when the brief is ready. Watch this folder.</p>'+
-            '<a class="locked-request" href="'+assetRoot+'index.html#custom">Ask about '+esc(p.name)+' →</a>')+
+            '<a class="locked-request" href="'+assetRoot+'portfolio.html#custom">Ask about '+esc(p.name)+' →</a>')+
       '</div>'+
     '</section>';
 
@@ -267,13 +267,13 @@
     ? (
       '<nav class="nav nav-spotlight" id="nav">'+
         '<div class="wrap nav-in">'+
-          '<a href="'+assetRoot+'index.html" class="mark">BigBrain<sup>®</sup></a>'+
+          '<a href="'+assetRoot+'portfolio.html" class="mark">BigBrain<sup>®</sup></a>'+
           '<div class="nav-links" id="navLinks">'+
             '<a href="'+assetRoot+'about.html">About</a>'+
-            '<a href="'+assetRoot+'index.html#work">Work</a>'+
+            '<a href="'+assetRoot+'portfolio.html#work">Work</a>'+
             '<a href="'+assetRoot+'works/spotlight.html?solo=1" class="is-active" aria-current="page">Spotlight</a>'+
-            '<a href="'+assetRoot+'index.html#services">Services</a>'+
-            '<a href="'+assetRoot+'index.html#contact">Contact</a>'+
+            '<a href="'+assetRoot+'portfolio.html#services">Services</a>'+
+            '<a href="'+assetRoot+'portfolio.html#contact">Contact</a>'+
           '</div>'+
           '<button type="button" class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">'+
             '<span></span><span></span><span></span>'+
@@ -285,8 +285,8 @@
     : (
       '<header class="case-bar" id="caseBar">'+
         '<div class="case-bar-in">'+
-          '<a href="'+assetRoot+'index.html" class="mark">BigBrain<sup>®</sup></a>'+
-          '<a class="case-back" href="'+assetRoot+'index.html#work">← Back to work</a>'+
+          '<a href="'+assetRoot+'portfolio.html" class="mark">BigBrain<sup>®</sup></a>'+
+          '<a class="case-back" href="'+assetRoot+'portfolio.html#work">← Back to work</a>'+
         '</div>'+
       '</header>'
     );
@@ -304,8 +304,8 @@
           '<p class="eyebrow reveal">Next</p>'+
           '<h2 class="reveal" style="margin-top:16px">Got something to build? <span class="fade">Send it over.</span></h2>'+
           '<div class="contact-actions reveal">'+
-            '<a class="btn" href="'+assetRoot+'index.html#custom">Start a project</a>'+
-            '<a class="btn btn-outline" href="'+assetRoot+'index.html#work">See all work</a>'+
+            '<a class="btn" href="'+assetRoot+'portfolio.html#custom">Start a project</a>'+
+            '<a class="btn btn-outline" href="'+assetRoot+'portfolio.html#work">See all work</a>'+
           '</div>'+
         '</div>'+
       '</section>'

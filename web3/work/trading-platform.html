@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crypto trading platform — Oladele Ibraheem</title>
+<meta name="description" content="A trading product designed and built end to end: live prices, a tracked deposit flow, and the admin tools behind it. Shipped.">
+<link rel="canonical" href="https://xbigbrainnx.xyz/web3/work/trading-platform.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oladele Ibraheem — Crypto product design">
+<meta property="og:title" content="Crypto trading platform — Oladele Ibraheem">
+<meta property="og:description" content="A trading product designed and built end to end: live prices, a tracked deposit flow, and the admin tools behind it. Shipped.">
+<meta property="og:url" content="https://xbigbrainnx.xyz/web3/work/trading-platform.html">
+<meta property="og:image" content="https://xbigbrainnx.xyz/web3/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@xbigbrainnx">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()</script>
+<link rel="stylesheet" href="../css/styles.css?v=14">
+<link rel="stylesheet" href="../css/screens.css?v=14">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arr" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-octagon" viewBox="0 0 24 24"><path d="M12 16h.01"/><path d="M12 8v4"/><path d="M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-loader" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"/><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"/><path d="m2.3 2.3 7.286 7.286"/><circle cx="11" cy="11" r="2"/></symbol>
+</svg>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="mark" href="../index.html"><span class="nm">Oladele Ibraheem</span><sup>®</sup></a>
+    <nav class="nav-links" id="navLinks" aria-label="Main">
+      <a href="../index.html" data-nav="work">Work</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <div class="nav-end">
+      <span class="avail"><i></i>Open to roles</span>
+      <button class="sq theme" type="button" aria-label="Switch to dark mode" aria-pressed="false"><svg class="ico sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ico moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <a class="btn sm" href="../assets/Oladele-Ibraheem-CV.pdf" target="_blank" rel="noopener">Resume <svg class="ico"><use href="#i-arr"/></svg></a>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<main>
+
+<div class="wrap">
+  <a class="back" href="../index.html#work"><svg class="ico"><use href="#i-left"/></svg>All work</a>
+  <div class="chead">
+    <span class="eyebrow" data-reveal>Case 02 · Shipped</span>
+    <h1 data-split>Crypto trading<br><span class="accent">platform</span></h1>
+    <p class="one" data-reveal>A trading product I designed and built end to end: live market prices, a deposit flow users can track, and the admin tools behind it.</p>
+  </div>
+  <div class="meta" data-stagger>
+    <div><span class="eyebrow">Role</span><span class="v">Design + frontend, solo</span></div>
+    <div><span class="eyebrow">Status</span><span class="v">In production</span></div>
+    <div><span class="eyebrow">Timeline</span><span class="v"><span class="ph" title="Replace with real dates">[MVP → prod, X months]</span></span></div>
+    <div><span class="eyebrow">Stack</span><span class="v">Next.js · Supabase · Binance API</span></div>
+  </div>
+
+  <div class="stage" data-pin>
+    <div data-pin-inner style="width:100%;display:flex;flex-direction:column;align-items:center;gap:24px">
+      <div class="term" id="term">
+        <div class="tb">
+          <span class="l"><b id="tSym">BTC/USDT</b><span>Spot</span><span>Balance <b id="tBal">$4,250.00</b></span></span>
+          <span class="demo">SIMULATED PRICES</span>
+        </div>
+        <div class="grid">
+          <div class="pn"><div class="ph2">Markets</div><div id="mkts"></div></div>
+          <div class="pn chart">
+            <div class="hd"><span class="px" id="tPx">–</span><span id="tCh" class="up">–</span></div>
+            <canvas id="cv" width="800" height="400" aria-label="Simulated price chart"></canvas>
+          </div>
+          <div class="pn"><div class="ph2">Deposit · tracked</div><div class="dep" id="dep"></div><button class="dbtn" id="depBtn">Advance step</button></div>
+        </div>
+      </div>
+      <p class="stagecap">A recreation of the shipped interface using simulated data. Pick a market to switch the chart. "Advance step" walks through the deposit flow the way a user sees it.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap cbody">
+  <nav class="side" aria-label="Sections"><span class="eyebrow" style="margin-bottom:8px">Contents</span><a href="#s2-context">Context</a><a href="#s2-decisions">Decisions</a><a href="#s2-admin">Admin side</a><a href="#s2-outcome">Outcome</a><a href="#s2-learn">What I'd change</a></nav>
+  <div class="prose">
+    <section class="chap" id="s2-context" data-reveal>
+      <span class="eyebrow">Context</span>
+      <h2>From MVP prototype to a production app</h2>
+      <p>The brief: a web platform where users could follow live crypto markets, fund an account, and get support, with an admin team verifying deposits behind the scenes. I designed every screen and built the frontend in Next.js on Supabase, with Binance's API providing live prices.</p>
+      <p><span class="ph" title="Describe the users and the business in one honest sentence">[Who the users were and what they came to do, in one sentence.]</span></p>
+    </section>
+    <section class="chap" id="s2-decisions" data-reveal>
+      <span class="eyebrow">Key decisions</span>
+      <h2>Three problems worth solving well</h2>
+      <div class="decs">
+        <div class="dec"><span class="dn">01</span><h3>Prices that feel alive, but calm</h3><p>Prices update constantly, so numbers use fixed-width digits and tint green or red only for a moment when they change. Traders can scan the list without it jittering.</p><p class="rej"><b>Rejected:</b> full-row colour flashes. Exciting in a demo, exhausting after an hour.</p></div>
+        <div class="dec"><span class="dn">02</span><h3>Deposits as a tracked process</h3><p>Money in is the most anxious moment for a user. Each deposit shows its steps and who it's waiting on (you or us), so "where's my money" has an answer on screen.</p><p class="rej"><b>Rejected:</b> a single "Processing" status. It leaves people guessing and sends them to support.</p></div>
+        <div class="dec"><span class="dn">03</span><h3>One-time-use codes</h3><p><span class="ph" title="Describe exactly what the codes did and why single-use mattered">[What the codes unlocked, and why single-use was the right call.]</span></p><p class="rej"><b>Rejected:</b> <span class="ph" title="The real alternative you considered">[the alternative you considered]</span></p></div>
+      </div>
+    </section>
+    <section class="chap" id="s2-admin" data-reveal>
+      <span class="eyebrow">Admin side</span>
+      <h2>The screens users never see</h2>
+      <p>Deposits don't verify themselves. I designed the admin panel with the same care: reviewing incoming deposits, approving or rejecting them, notifying the user, and a support chat tied to each account. <span class="ph" title="Add the specific detail that made the admin side work well">[One specific detail you're proud of.]</span></p>
+    </section>
+    <section class="chap" id="s2-outcome" data-reveal>
+      <span class="eyebrow">Outcome</span>
+      <h2>What happened after launch</h2>
+      <div class="measure">
+        <div><span class="n"><span class="ph" title="Real number only">[X]</span></span><span class="d">Registered users</span></div>
+        <div><span class="n"><span class="ph" title="Real number only">[X]</span></span><span class="d">Deposits processed</span></div>
+        <div><span class="n"><span class="ph" title="Real number only">[X] h</span></span><span class="d">Average time from deposit to credit</span></div>
+      </div>
+    </section>
+    <section class="chap" id="s2-learn" data-reveal>
+      <span class="eyebrow">What I'd change</span>
+      <h2>Looking back</h2>
+      <p><span class="ph" title="One honest thing">[One thing you'd do differently now, e.g. design the empty and error states before the dashboard, not after.]</span></p>
+    </section>
+  </div>
+</div>
+<div class="wrap"><a class="nextcase" href="corridor.html"><span><span class="eyebrow">Next case</span><br><span class="t">Corridor: stablecoin payments</span></span><svg class="ico"><use href="#i-right"/></svg></a></div>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Oladele Ibraheem · Crypto product design · Lagos</span>
+    <nav aria-label="Footer">
+      <a href="../index.html">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a>
+      <a href="https://x.com/xbigbrainnx" target="_blank" rel="noopener">X</a>
+      <a href="/portfolio" target="_blank" rel="noopener">Main site</a>
+      <a href="https://wintechstudio.com" target="_blank" rel="noopener">Wintech Studio</a>
+    </nav>
+  </div>
+</footer>
+<script src="../js/vendor/gsap.min.js"></script>
+<script src="../js/vendor/ScrollTrigger.min.js"></script>
+<script src="../js/theme.js?v=11"></script>
+<script src="../js/motion.js?v=11"></script>
+<script src="../js/screens.js?v=11"></script>
+</body>
+</html>

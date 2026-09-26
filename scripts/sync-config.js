@@ -28,7 +28,7 @@ console.log('Updated js/config.js — Telegram is relayed through /api/inquiry (
 if (process.env.VERCEL) {
   const site = (process.env.SITE_URL || ('https://' + (process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL || ''))).replace(/\/$/, '');
   const glob = require('fs').readdirSync;
-  const pages = ['index.html','about.html','no-code.html','mvp.html']
+  const pages = ['index.html','portfolio.html','archive.html','about.html','no-code.html','mvp.html']
     .concat(glob(path.join(root,'works')).filter(f => f.endsWith('.html')).map(f => 'works/' + f));
   let n = 0;
   pages.forEach(function (rel) {

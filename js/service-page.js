@@ -38,8 +38,8 @@
   root.innerHTML = ''+
     '<header class="case-bar" id="caseBar">'+
       '<div class="case-bar-in">'+
-        '<a href="'+assetRoot+'index.html" class="mark">BigBrain<sup>®</sup></a>'+
-        '<a class="case-back" href="'+assetRoot+'index.html#services">← Back to services</a>'+
+        '<a href="'+assetRoot+'portfolio.html" class="mark">BigBrain<sup>®</sup></a>'+
+        '<a class="case-back" href="'+assetRoot+'portfolio.html#services">← Back to services</a>'+
       '</div>'+
     '</header>'+
 
@@ -66,8 +66,8 @@
         '<p class="eyebrow reveal">Next</p>'+
         '<h2 class="reveal" style="margin-top:16px">Need this for your product?</h2>'+
         '<div class="contact-actions reveal">'+
-          '<a class="btn" href="'+assetRoot+'index.html#custom">Start a project</a>'+
-          '<a class="btn btn-outline" href="'+assetRoot+'index.html#work">View all projects</a>'+
+          '<a class="btn" href="'+assetRoot+'portfolio.html#custom">Start a project</a>'+
+          '<a class="btn btn-outline" href="'+assetRoot+'portfolio.html#work">View all projects</a>'+
         '</div>'+
       '</div>'+
     '</section>';
