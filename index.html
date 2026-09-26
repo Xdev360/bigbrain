@@ -24,9 +24,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/folders.css?v=3">
+<link rel="stylesheet" href="css/folders.css?v=6">
 </head>
 <body class="landing">
+<div class="beam" aria-hidden="true"></div>
 <header class="ftop">
   <a class="who" href="/"><img src="assets/portrait.jpg" alt=""><span>Oladele Ibraheem</span></a>
   <div class="ftop-r">
@@ -36,11 +37,77 @@
 </header>
 <main class="lmain">
   <div class="lhead" data-in>
-    <h1>Designer in Lagos. <span class="dim">Pick a folder.</span></h1>
+    <p class="eyebrow">Oladele Ibraheem · Designer</p>
+    <h1>Design, code and brand. <span class="dim">From Lagos.</span></h1>
     <p>Brand, web and product for businesses — and crypto products people can actually read. Founder of <a href="https://wintechstudio.com" target="_blank" rel="noopener">Wintech Studio</a>.</p>
   </div>
+
+  <section class="spot glass" data-spot aria-roledescription="carousel" aria-label="Spotlight: selected projects" data-in data-tilt-area>
+    <div class="spot-glow" aria-hidden="true"></div>
+    <div class="spot-stage" data-tilt>
+        <figure class="sp-media is-on" data-sp="0" aria-hidden="false"><div class="phones"><img src="web3/assets/wallet/wallet-recipient.webp?v=2" alt="" decoding="async"><img src="web3/assets/wallet/wallet-home.webp?v=2" alt="Wallet home screen" decoding="async"><img src="web3/assets/wallet/wallet-sent.webp?v=2" alt="" decoding="async"></div></figure>
+        <figure class="sp-media" data-sp="1" aria-hidden="true"><img class="win" src="assets/spot/swap.webp" alt="Swap dashboard" decoding="async"></figure>
+        <figure class="sp-media" data-sp="2" aria-hidden="true"><img class="win" src="assets/spot/goalden.webp" alt="Goalden landing page" decoding="async" loading="lazy"></figure>
+        <figure class="sp-media" data-sp="3" aria-hidden="true"><img class="win" src="assets/spot/credigo.webp" alt="CrediGo landing page" decoding="async" loading="lazy"></figure>
+        <figure class="sp-media" data-sp="4" aria-hidden="true"><img class="win" src="assets/spot/qafrica.webp" alt="Cue Africa landing page" decoding="async" loading="lazy"></figure>
+        <figure class="sp-media" data-sp="5" aria-hidden="true"><img class="win" src="assets/spot/blackgold.webp" alt="Blackgold Studio booking site" decoding="async" loading="lazy"></figure>
+    </div>
+    <div class="spot-info">
+      <div class="sp-top"><span class="eyebrow">Spotlight</span><span class="sp-count"><b data-sp-now>01</b> / 06</span></div>
+      <div class="sp-copies" aria-live="polite">
+        <div class="sp-copy is-on" data-sp="0">
+          <span class="sp-chip">Web3</span>
+          <h2><span>Mobile wallet</span></h2>
+          <p>Fee, arrival time and what you sign — before you tap.</p>
+          <a class="sp-open" href="/web3/#product">Open project <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+        <div class="sp-copy" data-sp="1" hidden>
+          <span class="sp-chip">Web3</span>
+          <h2><span>Swap</span></h2>
+          <p>Minimum received, fee and price impact — before you confirm.</p>
+          <a class="sp-open" href="/web3/#product">Open project <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+        <div class="sp-copy" data-sp="2" hidden>
+          <span class="sp-chip">Portfolio</span>
+          <h2><span>Goalden</span></h2>
+          <p>Big yearly goals, turned into daily check-ins people keep.</p>
+          <a class="sp-open" href="/works/golden">Open project <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+        <div class="sp-copy" data-sp="3" hidden>
+          <span class="sp-chip">Portfolio</span>
+          <h2><span>CrediGo</span></h2>
+          <p>Loans managed from one clear dashboard, on web and mobile.</p>
+          <a class="sp-open" href="/works/credigo">Open project <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+        <div class="sp-copy" data-sp="4" hidden>
+          <span class="sp-chip">Portfolio</span>
+          <h2><span>Cue Africa</span></h2>
+          <p>A marketplace that gets African crews hired without friction.</p>
+          <a class="sp-open" href="/works/qafrica">Open project <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+        <div class="sp-copy" data-sp="5" hidden>
+          <span class="sp-chip">Portfolio</span>
+          <h2><span>Blackgold Studio</span></h2>
+          <p>From the space to a locked-in booking, in a few taps.</p>
+          <a class="sp-open" href="/works/blackgold-studio">Open project <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
+      <div class="sp-bar">
+        <div class="sp-segs"><button type="button" class="sp-seg is-on" data-go="0" aria-label="Show Mobile wallet"><i></i></button><button type="button" class="sp-seg" data-go="1" aria-label="Show Swap"><i></i></button><button type="button" class="sp-seg" data-go="2" aria-label="Show Goalden"><i></i></button><button type="button" class="sp-seg" data-go="3" aria-label="Show CrediGo"><i></i></button><button type="button" class="sp-seg" data-go="4" aria-label="Show Cue Africa"><i></i></button><button type="button" class="sp-seg" data-go="5" aria-label="Show Blackgold Studio"><i></i></button></div>
+        <div class="sp-arrows">
+          <button type="button" class="sp-arrow" data-sp-prev aria-label="Previous project"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
+          <button type="button" class="sp-arrow" data-sp-next aria-label="Next project"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lsec" data-in>
+    <p class="eyebrow">Folders</p>
+    <p class="lsec-note"><span class="d">Pick one to go in.</span><span class="m">Swipe to see all three.</span></p>
+  </div>
   <nav class="folders" aria-label="Portfolios" data-in>
-    <a class="folder" href="/portfolio" style="--back:#1c1c1e;--front:#d6d4cf;--tab:#2a2a2d" aria-label="Portfolio — Brand, web and app for businesses">
+    <a class="folder" href="/portfolio" style="--back:#2b2b2d;--front:#dcdad6" aria-label="Portfolio — Brand, web and app for businesses">
       <span class="fart" aria-hidden="true">
         <svg class="fback" viewBox="0 0 200 158"><path d="M28 38c0-9 7-16 16-16h36c5.2 0 10 2.4 13.2 6.4l8.4 10.4c2.2 2.7 5.5 4.2 9 4.2H156c9 0 16 7 16 16v62c0 9-7 16-16 16H44c-9 0-16-7-16-16V38z"/></svg>
         <span class="papers"><img class="paper p1" src="assets/archive/golden-golden-web-01.webp" alt="" loading="eager" decoding="async"><img class="paper p2" src="assets/archive/credigo-credigo-web-01.webp" alt="" loading="eager" decoding="async"></span>
@@ -51,7 +118,7 @@
       <span class="fline">Brand, web and app for businesses</span>
       <span class="fmeta">6 case studies · no-code · MVPs</span>
     </a>
-    <a class="folder" href="/web3/" style="--back:#8e2410;--front:#ff8b70;--tab:#a83218" aria-label="Web3 — Wallets, swaps, trading, meme coins">
+    <a class="folder" href="/web3/" style="--back:#3a302d;--front:#cdbfb9" aria-label="Web3 — Wallets, swaps, trading, meme coins">
       <span class="fart" aria-hidden="true">
         <svg class="fback" viewBox="0 0 200 158"><path d="M28 38c0-9 7-16 16-16h36c5.2 0 10 2.4 13.2 6.4l8.4 10.4c2.2 2.7 5.5 4.2 9 4.2H156c9 0 16 7 16 16v62c0 9-7 16-16 16H44c-9 0-16-7-16-16V38z"/></svg>
         <span class="papers"><img class="paper p1" src="assets/archive/wallet-wallet-home.webp" alt="" loading="eager" decoding="async"><img class="paper p2" src="assets/archive/swap-swap-dashboard.webp" alt="" loading="eager" decoding="async"></span>
@@ -62,7 +129,7 @@
       <span class="fline">Wallets, swaps, trading, meme coins</span>
       <span class="fmeta">Product · websites · graphics</span>
     </a>
-    <a class="folder" href="/archive" style="--back:#6b5220;--front:#e6cf98;--tab:#806228" aria-label="Archive — Every design, no write-ups">
+    <a class="folder" href="/archive" style="--back:#36332c;--front:#d2cbbd" aria-label="Archive — Every design, no write-ups">
       <span class="fart" aria-hidden="true">
         <svg class="fback" viewBox="0 0 200 158"><path d="M28 38c0-9 7-16 16-16h36c5.2 0 10 2.4 13.2 6.4l8.4 10.4c2.2 2.7 5.5 4.2 9 4.2H156c9 0 16 7 16 16v62c0 9-7 16-16 16H44c-9 0-16-7-16-16V38z"/></svg>
         <span class="papers"><img class="paper p1" src="assets/archive/qafrica-qafrica-graphic-03.webp" alt="" loading="eager" decoding="async"><img class="paper p2" src="assets/archive/golden-golden-graphic-01.webp" alt="" loading="eager" decoding="async"></span>
@@ -74,8 +141,9 @@
       <span class="fmeta">77 designs</span>
     </a>
   </nav>
+  <div class="fdots" aria-hidden="true"><i class="is-on"></i><i></i><i></i></div>
 </main>
 <footer class="ffoot"><span>© 2026 Oladele Ibraheem</span><nav><a href="https://x.com/xbigbrainnx" target="_blank" rel="noopener">X</a><a href="mailto:ibrahimoladele9@gmail.com">Email</a><a href="https://wintechstudio.com" target="_blank" rel="noopener">Wintech Studio</a></nav></footer>
-<script src="js/folders.js?v=2"></script>
+<script src="js/folders.js?v=6"></script>
 </body>
 </html>
